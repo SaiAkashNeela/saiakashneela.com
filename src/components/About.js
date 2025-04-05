@@ -1,0 +1,128 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+
+const About = ({ darkMode }) => {
+  return (
+    <section id="about" className={`py-16 md:py-24 ${darkMode ? 'bg-navy' : 'bg-slate-50'}`}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className={`text-2xl md:text-3xl font-bold mb-2 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>About Me</h2>
+          <h3 className={`text-3xl md:text-4xl font-bold mb-8 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Get to know me</h3>
+        </motion.div>
+        
+        <div className="grid md:grid-cols-5 gap-8 md:gap-12">
+          <motion.div 
+            className="md:col-span-3"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className={`prose prose-lg max-w-none ${darkMode ? 'prose-dark' : 'prose-light'}`}>
+              <p className={darkMode ? 'text-gray-300' : 'text-slate-700'}>
+                Hello! I'm Sai Akash, a passionate DevOps Engineer with a strong background in frontend development. 
+                My journey in technology began when I was introduced to programming in college, and since then, I've 
+                been on an exciting path of continuous learning and growth.
+              </p>
+              <p className={darkMode ? 'text-gray-300' : 'text-slate-700'}>
+                With over 4 years of professional experience, I've had the opportunity to work with diverse technologies 
+                and teams. My expertise lies in designing and implementing robust CI/CD pipelines, optimizing cloud infrastructure, 
+                and developing responsive web applications.
+              </p>
+              <p className={darkMode ? 'text-gray-300' : 'text-slate-700'}>
+                I'm particularly passionate about combining DevOps practices with modern frontend development to create 
+                scalable, high-performing applications. My goal is to build systems that not only work efficiently but 
+                also provide exceptional user experiences.
+              </p>
+              <p className={darkMode ? 'text-gray-300' : 'text-slate-700'}>
+                When I'm not immersed in code or configuring servers, you can find me exploring new hiking trails, 
+                experimenting with photography, or diving into a good book on technology trends.
+              </p>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            className="md:col-span-2"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <div className={`${darkMode ? 'bg-navy-light' : 'bg-white'} p-6 rounded-lg shadow-md ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} hover-lift`}>
+              <h4 className={`text-xl font-bold mb-4 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Personal Info</h4>
+              <ul className="space-y-2">
+                <InfoItem 
+                  label="Name" 
+                  value="Sai Akash Neela" 
+                  darkMode={darkMode} 
+                />
+                <InfoItem 
+                  label="Location" 
+                  value="San Francisco, CA" 
+                  darkMode={darkMode} 
+                />
+                <InfoItem 
+                  label="Email" 
+                  value="contact@saiakash.com" 
+                  isEmail={true} 
+                  darkMode={darkMode} 
+                />
+                <InfoItem 
+                  label="Education" 
+                  value="Bachelor of Technology in Computer Science" 
+                  darkMode={darkMode} 
+                />
+                <InfoItem 
+                  label="Experience" 
+                  value="4+ Years" 
+                  darkMode={darkMode} 
+                />
+              </ul>
+              
+              <div className="mt-8">
+                <a 
+                  href="/resume.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`btn-primary ${darkMode ? '' : 'btn-primary-light'} px-6 py-3 rounded inline-flex items-center hover-lift`}
+                >
+                  <span>Download Resume</span>
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const InfoItem = ({ label, value, isEmail = false, darkMode }) => (
+  <li className="flex items-start">
+    <span className={`font-medium w-28 flex-shrink-0 ${darkMode ? 'text-gray-400' : 'text-slate-500'}`}>
+      {label}:
+    </span>
+    {isEmail ? (
+      <a 
+        href={`mailto:${value}`} 
+        className={`${darkMode ? 'text-secondary hover:text-secondary-dark' : 'text-secondary-light hover:text-secondary'} hover-glow`}
+      >
+        {value}
+      </a>
+    ) : (
+      <span className={darkMode ? 'text-gray-300' : 'text-slate-700'}>
+        {value}
+      </span>
+    )}
+  </li>
+);
+
+export default About; 

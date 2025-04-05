@@ -1,0 +1,103 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedinIn, FaTwitter, FaRegCopyright, FaHeart } from 'react-icons/fa';
+
+const Footer = ({ darkMode }) => {
+  const currentYear = new Date().getFullYear();
+  
+  const socialIcons = [
+    { icon: <FaGithub />, url: 'https://github.com/saiakash' },
+    { icon: <FaLinkedinIn />, url: 'https://www.linkedin.com/in/saiakashneela/' },
+    { icon: <FaTwitter />, url: 'https://twitter.com/saiakash' },
+  ];
+
+  return (
+    <footer className={`py-8 ${darkMode ? 'bg-navy-dark' : 'bg-slate-800'}`}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <a href="#home" className={`text-2xl font-bold ${darkMode ? 'text-secondary' : 'text-secondary-light'} hover-glow`}>
+              Sai Akash
+            </a>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex space-x-6 mb-6"
+          >
+            {socialIcons.map((social, index) => (
+              <a 
+                key={index} 
+                href={social.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={`text-xl hover-glow hover-lift flex items-center justify-center h-10 w-10 rounded-full ${
+                  darkMode 
+                    ? 'bg-navy text-gray-300 hover:text-secondary' 
+                    : 'bg-slate-700 text-gray-200 hover:text-secondary-light'
+                } transition-all duration-300`}
+              >
+                {social.icon}
+              </a>
+            ))}
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex flex-wrap justify-center gap-4 md:gap-8 mb-6 text-sm"
+          >
+            <a href="#home" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Home</a>
+            <a href="#about" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>About</a>
+            <a href="#experience" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Experience</a>
+            <a href="#skills" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Skills</a>
+            <a href="#projects" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Projects</a>
+            <a href="#contact" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Contact</a>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex items-center text-sm"
+          >
+            <FaRegCopyright className={`mr-1 ${darkMode ? 'text-gray-400' : 'text-gray-300'}`} />
+            <span className={darkMode ? 'text-gray-400' : 'text-gray-300'}>
+              {currentYear} Sai Akash Neela. All rights reserved.
+            </span>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-4 text-xs flex items-center"
+          >
+            <span className={darkMode ? 'text-gray-500' : 'text-gray-400'}>
+              Made with 
+            </span>
+            <FaHeart className={`mx-1 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`} />
+            <span className={darkMode ? 'text-gray-500' : 'text-gray-400'}>
+              and React + Tailwind CSS
+            </span>
+          </motion.div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer; 
