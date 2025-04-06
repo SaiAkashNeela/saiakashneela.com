@@ -24,22 +24,22 @@ const About = ({ darkMode }) => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className={`prose prose-lg max-w-none ${darkMode ? 'prose-dark' : 'prose-light'}`}>
-              <p className={darkMode ? 'text-gray-300' : 'text-slate-700'}>
+              <p className={`${darkMode ? 'text-gray-300' : 'text-slate-700'} text-sm sm:text-base leading-relaxed`}>
                 Hello! I'm Sai Akash, a passionate DevOps Engineer with a strong background in frontend development. 
                 My journey in technology began when I was introduced to programming in college, and since then, I've 
                 been on an exciting path of continuous learning and growth.
               </p>
-              <p className={darkMode ? 'text-gray-300' : 'text-slate-700'}>
+              <p className={`${darkMode ? 'text-gray-300' : 'text-slate-700'} text-sm sm:text-base leading-relaxed mt-3`}>
                 With over 4 years of professional experience, I've had the opportunity to work with diverse technologies 
                 and teams. My expertise lies in designing and implementing robust CI/CD pipelines, optimizing cloud infrastructure, 
                 and developing responsive web applications.
               </p>
-              <p className={darkMode ? 'text-gray-300' : 'text-slate-700'}>
+              <p className={`${darkMode ? 'text-gray-300' : 'text-slate-700'} text-sm sm:text-base leading-relaxed mt-3`}>
                 I'm particularly passionate about combining DevOps practices with modern frontend development to create 
                 scalable, high-performing applications. My goal is to build systems that not only work efficiently but 
                 also provide exceptional user experiences.
               </p>
-              <p className={darkMode ? 'text-gray-300' : 'text-slate-700'}>
+              <p className={`${darkMode ? 'text-gray-300' : 'text-slate-700'} text-sm sm:text-base leading-relaxed mt-3`}>
                 When I'm not immersed in code or configuring servers, you can find me exploring new hiking trails, 
                 experimenting with photography, or diving into a good book on technology trends.
               </p>
@@ -53,9 +53,9 @@ const About = ({ darkMode }) => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <div className={`${darkMode ? 'bg-navy-light' : 'bg-white'} p-6 rounded-lg shadow-md ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} hover-lift`}>
-              <h4 className={`text-xl font-bold mb-4 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Personal Info</h4>
-              <ul className="space-y-2">
+            <div className={`${darkMode ? 'bg-navy-light' : 'bg-white'} p-4 sm:p-6 rounded-lg shadow-md ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} hover-lift`}>
+              <h4 className={`text-lg sm:text-xl font-bold mb-3 sm:mb-4 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Personal Info</h4>
+              <ul className="space-y-1 sm:space-y-2">
                 <InfoItem 
                   label="Name" 
                   value="Sai Akash Neela" 
@@ -106,19 +106,19 @@ const About = ({ darkMode }) => {
 };
 
 const InfoItem = ({ label, value, isEmail = false, darkMode }) => (
-  <li className="flex items-start">
-    <span className={`font-medium w-28 flex-shrink-0 ${darkMode ? 'text-gray-400' : 'text-slate-500'}`}>
+  <li className="flex flex-col sm:flex-row sm:items-start">
+    <span className={`font-medium sm:w-28 flex-shrink-0 text-sm sm:text-base ${darkMode ? 'text-gray-400' : 'text-slate-500'}`}>
       {label}:
     </span>
     {isEmail ? (
       <a 
         href={`mailto:${value}`} 
-        className={`${darkMode ? 'text-secondary hover:text-secondary-dark' : 'text-secondary-light hover:text-secondary'} hover-glow`}
+        className={`${darkMode ? 'text-secondary hover:text-secondary-dark' : 'text-secondary-light hover:text-secondary'} text-sm sm:text-base hover-glow mt-0.5 sm:mt-0`}
       >
         {value}
       </a>
     ) : (
-      <span className={darkMode ? 'text-gray-300' : 'text-slate-700'}>
+      <span className={`${darkMode ? 'text-gray-300' : 'text-slate-700'} text-sm sm:text-base mt-0.5 sm:mt-0`}>
         {value}
       </span>
     )}
