@@ -66,7 +66,7 @@ const Loader = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4"
+          className="flex flex-row items-center justify-center space-x-2 sm:space-x-4"
         >
           {nameParts.map((word, wordIndex) => (
             <motion.div key={wordIndex} variants={wordVariants} className="flex">
@@ -74,7 +74,7 @@ const Loader = () => {
                 <motion.span
                   key={letterIndex}
                   variants={letterVariants}
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-secondary inline-block transform"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-secondary inline-block transform"
                 >
                   {letter}
                 </motion.span>
