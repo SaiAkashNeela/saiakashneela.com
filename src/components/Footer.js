@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedinIn, FaRegCopyright, FaHeart } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn, FaRegCopyright, FaHeart, FaShieldAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = ({ darkMode }) => {
   const currentYear = new Date().getFullYear();
   
   const socialIcons = [
-    { icon: <FaGithub />, url: 'https://github.com/saiakash' },
+    { icon: <FaGithub />, url: 'https://github.com/SaiAkashNeela' },
     { icon: <FaLinkedinIn />, url: 'https://www.linkedin.com/in/saiakashneela/' },
   ];
 
@@ -70,7 +71,7 @@ const Footer = ({ darkMode }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex items-center text-sm"
+            className="flex items-center text-sm mb-4"
           >
             <FaRegCopyright className={`mr-1 ${darkMode ? 'text-gray-400' : 'text-gray-300'}`} />
             <span className={darkMode ? 'text-gray-400' : 'text-gray-300'}>
@@ -82,8 +83,21 @@ const Footer = ({ darkMode }) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="flex items-center text-sm mb-4"
+          >
+            <Link to="/privacy-policy" className={`flex items-center ${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>
+              <FaShieldAlt className="mr-1" />
+              Privacy Policy
+            </Link>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-4 text-xs flex items-center"
+            className="text-xs flex items-center"
           >
             <span className={darkMode ? 'text-gray-500' : 'text-gray-400'}>
               Made with 

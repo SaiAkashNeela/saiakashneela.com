@@ -13,7 +13,7 @@ module.exports = {
         },
         secondary: {
           DEFAULT: "#64ffda", // Dark mode secondary
-          light: "#f97316"    // Light mode secondary (orange)
+          light: "#3b82f6"    // Light mode secondary (light blue)
         },
         tertiary: {
           DEFAULT: "#112240", // Dark mode tertiary
