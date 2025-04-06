@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with React, Tailwind CSS, and Framer Motion. This project showcases my skills, experience, and projects in a clean and interactive interface.
 
-![Portfolio Preview](www.saiakashneela.com)
+![Portfolio Preview](https://www.saiakashneela.com)
 
 ## Features
 
