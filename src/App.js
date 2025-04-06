@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Experience from './components/Experience';
+import Freelance from './components/Freelance';
 import Skills from './components/Skills';
 import Publications from './components/Publications';
 import Projects from './components/Projects';
@@ -48,6 +49,7 @@ function App() {
         <Skills darkMode={darkMode} />
         <Publications darkMode={darkMode} />
         <Projects darkMode={darkMode} />
+        <Freelance darkMode={darkMode} />
         <Contact darkMode={darkMode} />
         <Footer darkMode={darkMode} />
       </div>
