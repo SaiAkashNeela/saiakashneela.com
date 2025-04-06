@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
+import Publications from './components/Publications';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -45,6 +46,7 @@ function App() {
         <About darkMode={darkMode} />
         <Experience darkMode={darkMode} />
         <Skills darkMode={darkMode} />
+        <Publications darkMode={darkMode} />
         <Projects darkMode={darkMode} />
         <Contact darkMode={darkMode} />
         <Footer darkMode={darkMode} />
