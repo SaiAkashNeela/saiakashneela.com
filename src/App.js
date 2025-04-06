@@ -66,9 +66,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/privacy-policy" element={
               <>
-                <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-                <PrivacyPolicy darkMode={darkMode} />
-                <Footer darkMode={darkMode} />
+                <PrivacyPolicy darkMode={darkMode} setDarkMode={setDarkMode} />
               </>
             } />
           </Routes>
