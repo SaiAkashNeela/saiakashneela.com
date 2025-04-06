@@ -20,7 +20,7 @@ const Hero = ({ darkMode }) => {
   };
 
   const socialIcons = [
-    { icon: <FaGithub />, url: 'https://github.com/SaiAkashNeelaNeela' },
+    { icon: <FaGithub />, url: 'https://github.com/SaiAkashNeela' },
     { icon: <FaLinkedinIn />, url: 'https://www.linkedin.com/in/saiakashneela/' },
   ];
 
@@ -104,7 +104,7 @@ const Hero = ({ darkMode }) => {
           <div className={`relative ${darkMode ? 'glow-card' : 'glow-card-light'} rounded-lg p-1 max-w-md mx-auto`}>
             <div className="animate-float">
               <img 
-                src="/me.jpeg" 
+                src="https://s3.ap-south-2.amazonaws.com/saiakashneela.com/profile.png" 
                 alt="Sai Akash Neela" 
                 className="rounded-lg shadow-lg w-full"
               />
