@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with React, Tailwind CSS, and Framer Motion. This project showcases my skills, experience, and projects in a clean and interactive interface.
 
-![Portfolio Preview](https://www.saiakashneela.com)
+![Portfolio Preview](http://www.saiakashneela.com)
 
 ## Features
 
@@ -26,8 +26,8 @@ A modern, responsive portfolio website built with React, Tailwind CSS, and Frame
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/SaiAkashNeela/portfolio-site.git
-   cd portfolio-site
+   git clone https://github.com/SaiAkashNeela/saiakashneela.com.git
+   cd saiakashneela.com
    ```
 
 2. Install dependencies:
@@ -60,8 +60,10 @@ A modern, responsive portfolio website built with React, Tailwind CSS, and Frame
    - `About.js`: Modify the about me section
    - `Experience.js`: Update your work experience
    - `Skills.js`: Modify your skills
+   - `Publications.js`: Add your research papers and academic work
    - `Projects.js`: Showcase your projects
    - `Contact.js`: Update contact information
+   - `Freelance.js`: Update freelance experience
 
 ### Styling
 
@@ -81,7 +83,7 @@ A modern, responsive portfolio website built with React, Tailwind CSS, and Frame
 ## Project Structure
 
 ```
-portfolio-site/
+saiakashneela.com/
 ├── public/             # Static files
 ├── src/                # Source code
 │   ├── components/     # React components
