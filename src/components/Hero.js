@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 const Hero = ({ darkMode }) => {
   const container = {
@@ -20,9 +20,8 @@ const Hero = ({ darkMode }) => {
   };
 
   const socialIcons = [
-    { icon: <FaGithub />, url: 'https://github.com/saiakash' },
+    { icon: <FaGithub />, url: 'https://github.com/SaiAkashNeelaNeela' },
     { icon: <FaLinkedinIn />, url: 'https://www.linkedin.com/in/saiakashneela/' },
-    { icon: <FaTwitter />, url: 'https://twitter.com/saiakash' },
   ];
 
   return (
@@ -51,7 +50,7 @@ const Hero = ({ darkMode }) => {
               variants={item} 
               className={`text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 ${darkMode ? 'text-gray-400' : 'text-slate-600'}`}
             >
-              DevOps Engineer & WordPress/Domain Expert
+              DevOps & Cloud/Web Infrastructure Engineer
             </motion.h2>
             <motion.p 
               variants={item} 

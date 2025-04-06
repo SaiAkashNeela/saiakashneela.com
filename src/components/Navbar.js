@@ -58,7 +58,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             className="flex items-center"
           >
             <a href="#home" className={`font-bold text-xl sm:text-2xl ${darkMode ? 'text-secondary' : 'text-secondary-light'} hover-glow ${scrolled ? '' : 'hidden sm:block'}`}>
-              Sai Akash
+              Sai Akash Neela
             </a>
             {!scrolled && (
               <div className="block sm:hidden w-8"></div>

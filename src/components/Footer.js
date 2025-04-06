@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedinIn, FaTwitter, FaRegCopyright, FaHeart } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn, FaRegCopyright, FaHeart } from 'react-icons/fa';
 
 const Footer = ({ darkMode }) => {
   const currentYear = new Date().getFullYear();
@@ -8,7 +8,6 @@ const Footer = ({ darkMode }) => {
   const socialIcons = [
     { icon: <FaGithub />, url: 'https://github.com/saiakash' },
     { icon: <FaLinkedinIn />, url: 'https://www.linkedin.com/in/saiakashneela/' },
-    { icon: <FaTwitter />, url: 'https://twitter.com/saiakash' },
   ];
 
   return (
@@ -23,7 +22,7 @@ const Footer = ({ darkMode }) => {
             className="mb-6"
           >
             <a href="#home" className={`text-2xl font-bold ${darkMode ? 'text-secondary' : 'text-secondary-light'} hover-glow`}>
-              Sai Akash
+              Sai Akash Neela
             </a>
           </motion.div>
           

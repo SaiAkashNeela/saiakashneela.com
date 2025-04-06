@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  portfolio:
+    build: 
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "3333:3333"
+    volumes:
+      - ../src:/app/src
+      - ./nginx_logs:/var/log/nginx
+    environment:
+      - NODE_ENV=development 

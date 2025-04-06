@@ -63,18 +63,18 @@ const About = ({ darkMode }) => {
                 />
                 <InfoItem 
                   label="Location" 
-                  value="San Francisco, CA" 
+                  value="St Albans, United Kingdom" 
                   darkMode={darkMode} 
                 />
                 <InfoItem 
                   label="Email" 
-                  value="contact@saiakash.com" 
+                  value="hello@saiakashneela.com" 
                   isEmail={true} 
                   darkMode={darkMode} 
                 />
                 <InfoItem 
                   label="Education" 
-                  value="Bachelor of Technology in Computer Science" 
+                  value="Master of Science in Computer Science" 
                   darkMode={darkMode} 
                 />
                 <InfoItem 

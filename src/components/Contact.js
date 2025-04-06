@@ -38,20 +38,20 @@ const Contact = ({ darkMode }) => {
     {
       icon: <FaEnvelope />,
       title: 'Email',
-      content: 'contact@saiakash.com',
-      link: 'mailto:contact@saiakash.com',
+      content: 'hello@saiakashneela.com',
+      link: 'mailto:hello@saiakashneela.com',
     },
     {
       icon: <FaPhone />,
       title: 'Phone',
-      content: '+1 (123) 456-7890',
-      link: 'tel:+11234567890',
+      content: '+44 7920444964',
+      link: 'tel:+447920444964',
     },
     {
       icon: <FaMapMarkerAlt />,
       title: 'Location',
-      content: 'San Francisco, CA',
-      link: 'https://maps.google.com/?q=San+Francisco,+CA',
+      content: 'St Albans, United Kingdom',
+      link: 'https://maps.google.com/?q=St+Albans,+United+Kingdom',
     },
   ];
 

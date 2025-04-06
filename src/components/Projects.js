@@ -11,7 +11,7 @@ const Projects = ({ darkMode }) => {
       description: 'A centralized platform for automating CI/CD pipelines across multiple projects. Features include template management, monitoring dashboards, and automated deployment.',
       image: '/projects/devops-automation.jpg',
       technologies: ['AWS', 'Terraform', 'Jenkins', 'React', 'Node.js'],
-      github: 'https://github.com/saiakash/devops-automation',
+      github: 'https://github.com/SaiAkashNeela/devops-automation',
       live: 'https://devops-automation.demo.com',
       category: 'DevOps',
     },
@@ -20,7 +20,7 @@ const Projects = ({ darkMode }) => {
       description: 'A custom monitoring solution for Kubernetes clusters that provides real-time metrics, alerts, and visualization of container health and performance.',
       image: '/projects/k8s-monitor.jpg',
       technologies: ['Kubernetes', 'Prometheus', 'Grafana', 'Go', 'Python'],
-      github: 'https://github.com/saiakash/k8s-monitor',
+      github: 'https://github.com/SaiAkashNeela/k8s-monitor',
       live: 'https://k8s-monitor.demo.com',
       category: 'DevOps',
     },
@@ -29,7 +29,7 @@ const Projects = ({ darkMode }) => {
       description: 'A full-featured e-commerce platform with product catalog, shopping cart, user authentication, and payment processing capabilities.',
       image: '/projects/ecommerce.jpg',
       technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
-      github: 'https://github.com/saiakash/ecommerce-site',
+      github: 'https://github.com/SaiAkashNeela/ecommerce-site',
       live: 'https://ecommerce-demo.saiakash.com',
       category: 'Frontend',
     },
@@ -38,7 +38,7 @@ const Projects = ({ darkMode }) => {
       description: 'A customizable portfolio website template for developers and designers with sections for projects, skills, and contact information.',
       image: '/projects/portfolio-template.jpg',
       technologies: ['React', 'Tailwind CSS', 'Framer Motion'],
-      github: 'https://github.com/saiakash/portfolio-template',
+      github: 'https://github.com/SaiAkashNeela/portfolio-template',
       live: 'https://portfolio-template.saiakash.com',
       category: 'Frontend',
     },
@@ -47,7 +47,7 @@ const Projects = ({ darkMode }) => {
       description: 'A tool for analyzing and optimizing cloud infrastructure costs across AWS, Azure, and GCP with recommendations for cost-saving measures.',
       image: '/projects/cloud-cost.jpg',
       technologies: ['Python', 'AWS SDK', 'Azure SDK', 'React', 'D3.js'],
-      github: 'https://github.com/saiakash/cloud-cost-optimizer',
+      github: 'https://github.com/SaiAkashNeela/cloud-cost-optimizer',
       live: 'https://cloud-cost-optimizer.demo.com',
       category: 'Cloud',
     },
@@ -56,7 +56,7 @@ const Projects = ({ darkMode }) => {
       description: 'A toolkit for automating database migrations between different database systems with schema conversion and data transfer capabilities.',
       image: '/projects/db-migration.jpg',
       technologies: ['Python', 'PostgreSQL', 'MySQL', 'MongoDB', 'SQLAlchemy'],
-      github: 'https://github.com/saiakash/db-migration-toolkit',
+      github: 'https://github.com/SaiAkashNeela/db-migration-toolkit',
       live: 'https://db-migration.demo.com',
       category: 'Backend',
     },
@@ -175,7 +175,7 @@ const Projects = ({ darkMode }) => {
           className="mt-12 text-center"
         >
           <a
-            href="https://github.com/saiakash"
+            href="https://github.com/SaiAkashNeela"
             target="_blank"
             rel="noopener noreferrer"
             className={`btn-secondary ${darkMode ? '' : 'btn-secondary-light'} px-6 py-3 rounded inline-flex items-center hover-lift`}

@@ -8,7 +8,7 @@ const Experience = ({ darkMode }) => {
     {
       company: 'BellSoft Ltd',
       title: 'DevOps Engineer',
-      period: 'June 2021 - Present',
+      period: 'June 2022 - Present',
       responsibilities: [
         'Led the implementation of CI/CD pipelines using Jenkins, GitHub Actions, and Azure DevOps, reducing deployment time by 60%.',
         'Designed and maintained cloud infrastructure on AWS and Azure, improving system reliability by 40%.',
@@ -22,7 +22,7 @@ const Experience = ({ darkMode }) => {
     {
       company: 'Qapita Pte Ltd',
       title: 'DevOps Engineer',
-      period: 'February 2020 - May 2021',
+      period: 'February 2020 - May 2022',
       responsibilities: [
         'Managed multiple database systems including MySQL, PostgreSQL, and MongoDB.',
         'Deployed microservices on AWS ECS and EC2, improving application scalability by 30%.',
@@ -35,16 +35,16 @@ const Experience = ({ darkMode }) => {
     },
     {
       company: 'Freelance',
-      title: 'Full Stack Developer',
-      period: 'January 2019 - January 2020',
+      title: 'Freelance',
+      period: 'From January 2019',
       responsibilities: [
-        'Developed responsive web applications using React.js, Node.js, and Express.js.',
-        'Created custom WordPress themes and plugins for various clients.',
-        'Implemented SEO best practices resulting in improved search rankings for client websites.',
-        'Designed and developed e-commerce solutions using WooCommerce and Shopify.',
-        'Built RESTful APIs to enable seamless integration between different systems.',
-        'Managed hosting environments and optimized website performance.',
-        'Provided ongoing maintenance and support for client websites.',
+        'Configured and managed WordPress websites, including domain setup, DNS management, and SSL implementation.',
+  'Handled end-to-end hosting setup using cPanel, WHM, and cloud-based platforms for WordPress deployments.',
+  'Optimized website performance through caching solutions, image compression, and database tuning.',
+  'Implemented SEO best practices using WordPress plugins like Rank Math and Yoast.',
+  'Integrated third-party tools and services such as Google Analytics, SMTP, and payment gateways.',
+  'Managed DNS configurations (A, CNAME, MX, TXT, SPF, DKIM) to ensure domain and email reliability.',
+  'Provided ongoing technical support, regular maintenance, backups, and security scans for WordPress sites.'
       ],
     },
   ];
