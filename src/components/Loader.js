@@ -90,7 +90,7 @@ const Loader = () => {
           transition={{ delay: 1.5, duration: 0.8 }}
           className="text-gray-400 mt-6 text-lg md:text-xl"
         >
-          DevOps Engineer & Frontend Developer
+          DevOps & Cloud/Web Infrastructure Engineer
         </motion.p>
         
         {/* Spinning loading indicator */}

@@ -43,6 +43,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
     { name: 'About', href: '#about' },
     { name: 'Experience', href: '#experience' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Publications', href: '#publications' },
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -58,7 +59,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             className="flex items-center"
           >
             <a href="#home" className={`font-bold text-xl sm:text-2xl ${darkMode ? 'text-secondary' : 'text-secondary-light'} hover-glow ${scrolled ? '' : 'hidden sm:block'}`}>
-              Sai Akash
+              Sai Akash Neela
             </a>
             {!scrolled && (
               <div className="block sm:hidden w-8"></div>

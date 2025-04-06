@@ -4,9 +4,7 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/f
 
 const Contact = ({ darkMode }) => {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
-    subject: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,37 +19,48 @@ const Contact = ({ darkMode }) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
+    // Prepare email content - only include body, not subject
+    const body = encodeURIComponent(
+      `Email: ${formData.email}\n\n${formData.message}`
+    );
+    
+    // Create mailto link without subject
+    const mailtoLink = `mailto:hello@saiakashneela.com?body=${body}`;
+    
+    // Open default mail client with prefilled data
+    window.location.href = mailtoLink;
+    
+    // Show success message after a short delay
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ email: '', message: '' });
       
-      // Reset submitted state after 5 seconds
+      // Reset submitted state after 15 seconds
       setTimeout(() => {
         setSubmitted(false);
-      }, 5000);
-    }, 1500);
+      }, 15000);
+    }, 1000);
   };
 
   const contactInfo = [
     {
       icon: <FaEnvelope />,
       title: 'Email',
-      content: 'contact@saiakash.com',
-      link: 'mailto:contact@saiakash.com',
+      content: 'hello@saiakashneela.com',
+      link: 'mailto:hello@saiakashneela.com',
     },
     {
       icon: <FaPhone />,
       title: 'Phone',
-      content: '+1 (123) 456-7890',
-      link: 'tel:+11234567890',
+      content: '+44 7920444964',
+      link: 'tel:+447920444964',
     },
     {
       icon: <FaMapMarkerAlt />,
       title: 'Location',
-      content: 'San Francisco, CA',
-      link: 'https://maps.google.com/?q=San+Francisco,+CA',
+      content: 'St Albans, United Kingdom',
+      link: 'https://maps.google.com/?q=St+Albans,+United+Kingdom',
     },
   ];
 
@@ -155,60 +164,22 @@ const Contact = ({ darkMode }) => {
                   <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${darkMode ? 'bg-secondary bg-opacity-20' : 'bg-secondary-light bg-opacity-20'} mb-4`}>
                     <FaPaperPlane className={`w-6 h-6 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`} />
                   </div>
-                  <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Message Sent!</h4>
+                  <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Email Client Opened!</h4>
                   <p className={`${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                    Thank you for reaching out. I'll get back to you as soon as possible.
+                    Your email app has been launched. Please send the email to complete your message.
                   </p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit}>
-                  <div className="grid md:grid-cols-2 gap-4 mb-4">
-                    <div>
-                      <label htmlFor="name" className={`block mb-1 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className={`w-full p-3 rounded-md ${
-                          darkMode 
-                            ? 'bg-primary border-gray-700 text-gray-200 focus:border-secondary' 
-                            : 'bg-slate-100 border-gray-300 text-slate-800 focus:border-secondary-light'
-                        } border focus:outline-none transition-colors duration-300`}
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className={`block mb-1 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className={`w-full p-3 rounded-md ${
-                          darkMode 
-                            ? 'bg-primary border-gray-700 text-gray-200 focus:border-secondary' 
-                            : 'bg-slate-100 border-gray-300 text-slate-800 focus:border-secondary-light'
-                        } border focus:outline-none transition-colors duration-300`}
-                      />
-                    </div>
-                  </div>
                   <div className="mb-4">
-                    <label htmlFor="subject" className={`block mb-1 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                      Subject
+                    <label htmlFor="email" className={`block mb-1 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
+                      Email *
                     </label>
                     <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
                       onChange={handleChange}
                       required
                       className={`w-full p-3 rounded-md ${
@@ -220,7 +191,7 @@ const Contact = ({ darkMode }) => {
                   </div>
                   <div className="mb-6">
                     <label htmlFor="message" className={`block mb-1 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                      Message
+                      Message *
                     </label>
                     <textarea
                       id="message"
