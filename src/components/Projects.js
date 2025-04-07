@@ -7,62 +7,80 @@ const Projects = ({ darkMode }) => {
 
   const projects = [
     {
-      title: 'DevOps Automation Platform',
-      description: 'A centralized platform for automating CI/CD pipelines across multiple projects. Features include template management, monitoring dashboards, and automated deployment.',
-      image: '/projects/devops-automation.jpg',
-      technologies: ['AWS', 'Terraform', 'Jenkins', 'React', 'Node.js'],
-      github: 'https://github.com/SaiAkashNeela/devops-automation',
-      live: 'https://devops-automation.demo.com',
-      category: 'DevOps',
+      title: 'TheMadZone',
+      description: 'E-commerce platform specializing in lifestyle products with modern design and seamless shopping experience.',
+      image: null,
+      technologies: ['WordPress', 'WooCommerce', 'CSS', 'JavaScript', 'Responsive Design'],
+      github: '#',
+      live: 'https://www.themadzone.co.uk/',
+      category: 'E-commerce',
     },
     {
-      title: 'Kubernetes Monitoring System',
-      description: 'A custom monitoring solution for Kubernetes clusters that provides real-time metrics, alerts, and visualization of container health and performance.',
-      image: '/projects/k8s-monitor.jpg',
-      technologies: ['Kubernetes', 'Prometheus', 'Grafana', 'Go', 'Python'],
-      github: 'https://github.com/SaiAkashNeela/k8s-monitor',
-      live: 'https://k8s-monitor.demo.com',
-      category: 'DevOps',
+      title: 'AmazingTricks',
+      description: 'Content-rich blog focused on tech tips and tricks, featuring a clean, user-friendly interface with enhanced performance.',
+      image: null,
+      technologies: ['WordPress', 'PHP', 'SEO', 'Content Management', 'Web Optimization'],
+      github: '#',
+      live: 'https://www.amazingtricks.in/',
+      category: 'Blog',
     },
     {
-      title: 'E-commerce Website',
-      description: 'A full-featured e-commerce platform with product catalog, shopping cart, user authentication, and payment processing capabilities.',
-      image: '/projects/ecommerce.jpg',
-      technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
-      github: 'https://github.com/SaiAkashNeela/ecommerce-site',
-      live: 'https://ecommerce-demo.saiakash.com',
-      category: 'Frontend',
+      title: 'Cardgency',
+      description: 'Digital card creation platform allowing users to create, customize and share digital business cards and invitations.',
+      image: null,
+      technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Digital Design'],
+      github: '#',
+      live: 'https://www.cardgency.com/',
+      category: 'Web App',
     },
     {
-      title: 'Portfolio Website Template',
-      description: 'A customizable portfolio website template for developers and designers with sections for projects, skills, and contact information.',
-      image: '/projects/portfolio-template.jpg',
-      technologies: ['React', 'Tailwind CSS', 'Framer Motion'],
-      github: 'https://github.com/SaiAkashNeela/portfolio-template',
-      live: 'https://portfolio-template.saiakash.com',
-      category: 'Frontend',
+      title: 'Broadway Constructions',
+      description: 'Corporate website for a construction company featuring project portfolio, services, and client testimonials.',
+      image: null,
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'Responsive Design'],
+      github: '#',
+      live: 'https://bwc.geeksdesigns.com/',
+      category: 'Corporate',
     },
     {
-      title: 'Cloud Cost Optimization Tool',
-      description: 'A tool for analyzing and optimizing cloud infrastructure costs across AWS, Azure, and GCP with recommendations for cost-saving measures.',
-      image: '/projects/cloud-cost.jpg',
-      technologies: ['Python', 'AWS SDK', 'Azure SDK', 'React', 'D3.js'],
-      github: 'https://github.com/SaiAkashNeela/cloud-cost-optimizer',
-      live: 'https://cloud-cost-optimizer.demo.com',
-      category: 'Cloud',
+      title: 'GeeksDesigns Portal',
+      description: 'Client management portal providing access to project status, invoices, and support tickets for GeeksDesigns clients.',
+      image: null,
+      technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT Authentication'],
+      github: '#',
+      live: 'https://myaccount.geeksdesigns.com/',
+      category: 'Web App',
     },
     {
-      title: 'Database Migration Toolkit',
-      description: 'A toolkit for automating database migrations between different database systems with schema conversion and data transfer capabilities.',
-      image: '/projects/db-migration.jpg',
-      technologies: ['Python', 'PostgreSQL', 'MySQL', 'MongoDB', 'SQLAlchemy'],
-      github: 'https://github.com/SaiAkashNeela/db-migration-toolkit',
-      live: 'https://db-migration.demo.com',
-      category: 'Backend',
+      title: 'PrimePay',
+      description: 'Financial technology platform offering payment solutions, transaction management, and financial reporting tools.',
+      image: null,
+      technologies: ['React', 'Redux', 'Node.js', 'PostgreSQL', 'Payment API Integration'],
+      github: '#',
+      live: 'https://www.primepay.in/',
+      category: 'FinTech',
     },
   ];
 
-  const filters = ['All', 'DevOps', 'Cloud', 'Frontend', 'Backend'];
+  const filters = ['All', 'E-commerce', 'Blog', 'Web App', 'Corporate', 'FinTech'];
+
+  // Function to get gradient based on category
+  const getCategoryGradient = (category) => {
+    switch(category) {
+      case 'E-commerce':
+        return 'from-green-700 to-emerald-900';
+      case 'Blog':
+        return 'from-blue-700 to-indigo-900';
+      case 'Web App':
+        return 'from-purple-700 to-violet-900';
+      case 'Corporate':
+        return 'from-slate-700 to-gray-900';
+      case 'FinTech':
+        return 'from-yellow-600 to-orange-800';
+      default:
+        return 'from-blue-800 to-purple-800';
+    }
+  };
 
   const filteredProjects = activeFilter === 'All' 
     ? projects 
@@ -78,7 +96,7 @@ const Projects = ({ darkMode }) => {
           transition={{ duration: 0.5 }}
         >
           <h2 className={`text-2xl md:text-3xl font-bold mb-2 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>Projects</h2>
-          <h3 className={`text-3xl md:text-4xl font-bold mb-10 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>My Recent Work</h3>
+          <h3 className={`text-3xl md:text-4xl font-bold mb-10 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Sandbox Projects</h3>
         </motion.div>
 
         <div className="flex flex-wrap justify-center mb-8">
@@ -116,11 +134,28 @@ const Projects = ({ darkMode }) => {
               className={`rounded-lg overflow-hidden ${darkMode ? 'bg-navy-light' : 'bg-white'} shadow-md hover-lift ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'}`}
             >
               <div className="relative overflow-hidden group">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      e.target.parentElement.querySelector('.fallback-title').style.display = 'flex';
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                ) : (
+                  <div className={`fallback-title w-full h-48 flex items-center justify-center bg-gradient-to-r ${getCategoryGradient(project.category)}`}>
+                    <h3 className={`text-xl md:text-2xl font-bold px-4 text-white text-center`}>
+                      {project.title}
+                    </h3>
+                  </div>
+                )}
+                <div className={`fallback-title hidden w-full h-48 absolute top-0 left-0 items-center justify-center bg-gradient-to-r ${getCategoryGradient(project.category)}`}>
+                  <h3 className={`text-xl md:text-2xl font-bold px-4 text-white text-center`}>
+                    {project.title}
+                  </h3>
+                </div>
                 <div className={`absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${darkMode ? 'bg-primary/80' : 'bg-slate-900/80'}`}>
                   <div className="flex space-x-4">
                     <a
@@ -175,13 +210,13 @@ const Projects = ({ darkMode }) => {
           className="mt-12 text-center"
         >
           <a
-            href="https://github.com/SaiAkashNeela"
+            href="https://www.geeksdesigns.com"
             target="_blank"
             rel="noopener noreferrer"
             className={`btn-secondary ${darkMode ? '' : 'btn-secondary-light'} px-6 py-3 rounded inline-flex items-center hover-lift`}
           >
-            <span>View More on GitHub</span>
-            <FaGithub className="ml-2 w-5 h-5" />
+            <span>View More Projects</span>
+            <FaExternalLinkAlt className="ml-2 w-4 h-4" />
           </a>
         </motion.div>
       </div>
