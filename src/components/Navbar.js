@@ -85,7 +85,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               </a>
             ))}
             <button 
-              onClick={() => window.open('https://s3.ap-south-2.amazonaws.com/saiakashneela.com/resume.pdf', '_blank')}
+              onClick={() => window.open('https://s3.ap-south-2.amazonaws.com/saiakashneela.com/Sai-Akash-Neela.docx', '_blank')}
               className={`border rounded px-3 py-1 transition-colors duration-300 text-sm lg:text-base ml-2 ${
                 darkMode 
                   ? 'border-secondary text-secondary hover:bg-secondary hover:bg-opacity-10' 
@@ -202,7 +202,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           ))}
           <motion.button 
             onClick={() => {
-              window.open('https://s3.ap-south-2.amazonaws.com/saiakashneela.com/resume.pdf', '_blank');
+              window.open('https://s3.ap-south-2.amazonaws.com/saiakashneela.com/Sai-Akash-Neela.docx', '_blank');
               toggleMenu();
             }}
             className={`border rounded px-4 py-2 my-2 w-full flex justify-center items-center hover-lift ${
