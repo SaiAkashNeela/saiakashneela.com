@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -13,6 +13,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import NotFound from './components/NotFound';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -69,6 +70,7 @@ function App() {
                 <PrivacyPolicy darkMode={darkMode} setDarkMode={setDarkMode} />
               </>
             } />
+            <Route path="*" element={<NotFound darkMode={darkMode} setDarkMode={setDarkMode} />} />
           </Routes>
         )}
       </div>
