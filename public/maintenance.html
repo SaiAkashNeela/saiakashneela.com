@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Sai Akash Neela's site is currently under maintenance. We'll be back soon!">
+  <title>Maintenance | Sai Akash Neela</title>
+  <link rel="icon" href="https://s3.ap-south-2.amazonaws.com/saiakashneela.com/profile.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-dark: #0a192f;
+      --primary-light: #f5f9ff;
+      --secondary-dark: #64ffda;
+      --secondary-light: #ff7e50;
+      --navy-light: #233554;
+      --navy-dark: #0a192f;
+      --slate-light: #f8fafc;
+      --text-dark: #e6f1ff;
+      --text-light: #334155;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: var(--primary-dark);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    body.light {
+      background-color: var(--primary-light);
+      color: var(--text-light);
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    
+    .maintenance-container {
+      background-color: var(--navy-light);
+      border-radius: 1rem;
+      padding: 2rem;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      transition: background-color 0.3s;
+    }
+    
+    .light .maintenance-container {
+      background-color: var(--slate-light);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+    
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1.5rem;
+      border: 4px solid var(--secondary-dark);
+      transition: border-color 0.3s, transform 0.3s;
+      animation: floating 6s ease-in-out infinite;
+    }
+    
+    .light .logo {
+      border-color: var(--secondary-light);
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, var(--secondary-dark), #a8edea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      transition: background 0.3s;
+    }
+    
+    .light h1 {
+      background: linear-gradient(to right, var(--secondary-light), #ffb347);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      opacity: 0.8;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .progress-container {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto 2rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      height: 10px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      border-radius: 50px;
+      background: linear-gradient(90deg, var(--secondary-dark), #0f83fd);
+      width: 0%;
+      transition: width 0.5s ease;
+      animation: progressAnimation 2.5s infinite ease-in-out;
+    }
+    
+    .light .progress-bar {
+      background: linear-gradient(90deg, var(--secondary-light), #ff6b6b);
+    }
+    
+    .countdown {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .countdown-item {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 1rem;
+      min-width: 80px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s, background-color 0.3s;
+    }
+    
+    .light .countdown-item {
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .countdown-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .count {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--secondary-dark);
+      transition: color 0.3s;
+    }
+    
+    .light .count {
+      color: var(--secondary-light);
+    }
+    
+    .count-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.7;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--navy-dark);
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .light .social-link {
+      background-color: var(--slate-light);
+      color: var(--text-light);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .social-link:hover {
+      transform: translateY(-3px);
+    }
+    
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--secondary-dark);
+      transition: all 0.3s;
+      opacity: 0;
+      transform: scale(0);
+      border-radius: 50%;
+    }
+    
+    .light .social-link::before {
+      background: var(--secondary-light);
+    }
+    
+    .social-link:hover::before {
+      opacity: 0.2;
+      transform: scale(1);
+    }
+    
+    .social-link i {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .mode-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dark);
+      background-color: var(--navy-dark);
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .light .mode-toggle {
+      color: var(--text-light);
+      background-color: var(--slate-light);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .mode-toggle:hover {
+      transform: rotate(30deg);
+    }
+    
+    .notify-container {
+      margin-top: 2rem;
+      width: 100%;
+      max-width: 400px;
+    }
+    
+    .notify-input {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      padding: 0.8rem 1.5rem;
+      width: 100%;
+      color: var(--text-dark);
+      outline: none;
+      transition: all 0.3s;
+      margin-bottom: 1rem;
+    }
+    
+    .light .notify-input {
+      background-color: rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      color: var(--text-light);
+    }
+    
+    .notify-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .light .notify-input::placeholder {
+      color: rgba(0, 0, 0, 0.4);
+    }
+    
+    .notify-input:focus {
+      border-color: var(--secondary-dark);
+      box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.2);
+    }
+    
+    .light .notify-input:focus {
+      border-color: var(--secondary-light);
+      box-shadow: 0 0 0 2px rgba(255, 126, 80, 0.2);
+    }
+    
+    .notify-btn {
+      background-color: var(--secondary-dark);
+      color: var(--navy-dark);
+      border: none;
+      border-radius: 50px;
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+    
+    .light .notify-btn {
+      background-color: var(--secondary-light);
+      color: white;
+    }
+    
+    .notify-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(100, 255, 218, 0.3);
+    }
+    
+    .light .notify-btn:hover {
+      box-shadow: 0 10px 20px rgba(255, 126, 80, 0.3);
+    }
+    
+    .footer {
+      margin-top: 2rem;
+      opacity: 0.7;
+      font-size: 0.85rem;
+    }
+    
+    @keyframes floating {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    @keyframes progressAnimation {
+      0% {
+        width: 0%;
+      }
+      50% {
+        width: 85%;
+      }
+      75% {
+        width: 95%;
+      }
+      100% {
+        width: 0%;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 1.5rem;
+      }
+      
+      .maintenance-container {
+        padding: 1.5rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.2rem;
+      }
+      
+      .countdown-item {
+        min-width: 60px;
+        padding: 0.8rem;
+      }
+      
+      .count {
+        font-size: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .logo {
+        width: 100px;
+        height: 100px;
+      }
+      
+      h1 {
+        font-size: 1.75rem;
+      }
+      
+      .countdown {
+        gap: 0.5rem;
+      }
+      
+      .countdown-item {
+        min-width: 50px;
+        padding: 0.6rem;
+      }
+      
+      .count {
+        font-size: 1.2rem;
+      }
+      
+      .social-links {
+        gap: 0.75rem;
+      }
+      
+      .notify-container {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="maintenance-container">
+      <button id="mode-toggle" class="mode-toggle" aria-label="Toggle dark/light mode">
+        <svg id="moon-icon" class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg id="sun-icon" class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+      
+      <img src="https://s3.ap-south-2.amazonaws.com/saiakashneela.com/profile.png" alt="Sai Akash Neela" class="logo" id="profile-img">
+      
+      <h1>Under Maintenance</h1>
+      <h2>I am making some improvements</h2>
+      
+      <p>My portfolio site is currently undergoing scheduled maintenance to bring you an even better experience. Thank you for your patience!</p>
+      
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+      
+      
+      
+      <div class="social-links">
+        <a href="https://github.com/SaiAkashNeela" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/saiakashneela/" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+          </svg>
+        </a>
+        <a href="mailto:hello@saiakashneela.com" class="social-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    
+    <div class="notify-container">
+      <form id="notify-form">
+        <input type="email" id="email-input" class="notify-input" placeholder="Enter your email address" required>
+        <button type="submit" class="notify-btn">Notify Me When It's Ready</button>
+      </form>
+    </div>
+    
+    <div class="footer">
+      &copy; <span id="current-year"></span> Sai Akash Neela. All rights reserved.
+    </div>
+  </div>
+  
+  <script>
+    // Set current year in footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Dark/Light mode toggle
+    const body = document.body;
+    const modeToggle = document.getElementById('mode-toggle');
+    const moonIcon = document.getElementById('moon-icon');
+    const sunIcon = document.getElementById('sun-icon');
+    const profileImg = document.getElementById('profile-img');
+    
+    // Check for saved user preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      body.classList.add('light');
+      moonIcon.style.display = 'block';
+      sunIcon.style.display = 'none';
+    } else {
+      moonIcon.style.display = 'none';
+      sunIcon.style.display = 'block';
+    }
+    
+    modeToggle.addEventListener('click', () => {
+      if (body.classList.contains('light')) {
+        body.classList.remove('light');
+        localStorage.setItem('theme', 'dark');
+        moonIcon.style.display = 'none';
+        sunIcon.style.display = 'block';
+      } else {
+        body.classList.add('light');
+        localStorage.setItem('theme', 'light');
+        moonIcon.style.display = 'block';
+        sunIcon.style.display = 'none';
+      }
+    });
+    
+    // Countdown timer (set to 7 days from now)
+    function updateCountdown() {
+      const now = new Date();
+      const targetDate = new Date();
+      targetDate.setDate(now.getDate() + 7);
+      
+      const diff = targetDate - now;
+      
+      // Convert to days, hours, minutes, seconds
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      // Update the DOM
+      document.getElementById('days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    // Update countdown every second
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+    
+    // Email notification form
+    document.getElementById('notify-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email-input').value;
+      
+      // This would normally send to a server, but for now we'll just simulate success
+      if (email) {
+        const button = this.querySelector('button');
+        const originalText = button.textContent;
+        
+        button.textContent = 'Thanks! We\'ll let you know';
+        button.disabled = true;
+        button.style.opacity = '0.7';
+        
+        setTimeout(() => {
+          document.getElementById('email-input').value = '';
+          button.textContent = originalText;
+          button.disabled = false;
+          button.style.opacity = '1';
+        }, 3000);
+      }
+    });
+  </script>
+</body>
+</html> 
