@@ -86,11 +86,15 @@ const Footer = ({ darkMode }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.35 }}
-            className="flex items-center text-sm mb-4"
+            className="flex items-center text-sm mb-4 gap-4"
           >
             <Link to="/privacy-policy" className={`flex items-center ${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>
               <FaShieldAlt className="mr-1" />
               Privacy Policy
+            </Link>
+            <Link to="/cookie-policy" className={`flex items-center ${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>
+              <FaShieldAlt className="mr-1" />
+              Cookie Policy
             </Link>
           </motion.div>
           

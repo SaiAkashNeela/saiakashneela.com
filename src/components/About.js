@@ -86,7 +86,7 @@ const About = ({ darkMode }) => {
               
               <div className="mt-8">
                 <a 
-                  href="/resume.pdf" 
+                  href="https://s3.ap-south-2.amazonaws.com/saiakashneela.com/resume.pdf" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className={`btn-primary ${darkMode ? '' : 'btn-primary-light'} px-6 py-3 rounded inline-flex items-center hover-lift`}

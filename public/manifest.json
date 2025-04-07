@@ -1,6 +1,7 @@
 {
   "short_name": "Sai Akash",
-  "name": "Sai Akash Neela Portfolio",
+  "name": "Sai Akash Neela - Portfolio",
+  "description": "Portfolio website of Sai Akash Neela, a software developer specializing in React, Node.js and cloud technologies.",
   "icons": [
     {
       "src": "https://s3.ap-south-2.amazonaws.com/saiakashneela.com/profile.png",
@@ -10,16 +11,43 @@
     {
       "src": "https://s3.ap-south-2.amazonaws.com/saiakashneela.com/profile.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "https://s3.ap-south-2.amazonaws.com/saiakashneela.com/profile.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#0a192f",
-  "background_color": "#ffffff"
+  "background_color": "#0a192f",
+  "categories": ["portfolio", "developer", "web development", "software engineering"],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "type": "image/png",
+      "sizes": "1280x720"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "About",
+      "url": "/#about",
+      "description": "Learn about Sai Akash Neela's background"
+    },
+    {
+      "name": "Projects",
+      "url": "/#projects",
+      "description": "View Sai Akash Neela's projects"
+    },
+    {
+      "name": "Contact",
+      "url": "/#contact",
+      "description": "Get in touch with Sai Akash Neela"
+    }
+  ]
 }
