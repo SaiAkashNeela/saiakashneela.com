@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -13,11 +14,25 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import CookiePolicy from './components/CookiePolicy';
 import NotFound from './components/NotFound';
+import SEO from './components/SEO';
+import CookieConsent from './components/CookieConsent';
+import CookieConsentButton from './components/CookieConsentButton';
+import { getPersonSchema, getWebsiteSchema } from './schema';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [loading, setLoading] = useState(true);
+
+  // Combined schema for the homepage
+  const homePageSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getPersonSchema(),
+      getWebsiteSchema()
+    ]
+  };
 
   useEffect(() => {
     // Apply dark/light mode to body
@@ -42,6 +57,12 @@ function App() {
   // Homepage component
   const HomePage = () => (
     <>
+      <SEO 
+        title="Sai Akash Neela | Software Developer Portfolio"
+        description="Sai Akash Neela is a skilled software developer specializing in React, Node.js, and cloud technologies. Explore my projects, experience, and skills."
+        canonicalUrl="/"
+        schemaData={homePageSchema}
+      />
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
       <div className="min-h-screen">
         <Hero darkMode={darkMode} />
@@ -58,23 +79,56 @@ function App() {
   );
 
   return (
-    <Router>
-      <div className={`App transition-colors duration-300 ${darkMode ? 'dark' : 'light'}`}>
-        {loading ? (
-          <Loader />
-        ) : (
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/privacy-policy" element={
-              <>
-                <PrivacyPolicy darkMode={darkMode} setDarkMode={setDarkMode} />
-              </>
-            } />
-            <Route path="*" element={<NotFound darkMode={darkMode} setDarkMode={setDarkMode} />} />
-          </Routes>
-        )}
-      </div>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <div className={`App transition-colors duration-300 ${darkMode ? 'dark' : 'light'}`}>
+          {loading ? (
+            <>
+              <SEO title="Loading... | Sai Akash Neela" />
+              <Loader />
+            </>
+          ) : (
+            <>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/privacy-policy" element={
+                  <>
+                    <SEO 
+                      title="Privacy Policy | Sai Akash Neela"
+                      description="Privacy policy for Sai Akash Neela's portfolio website. Learn about how we handle your data and protect your privacy."
+                      canonicalUrl="/privacy-policy"
+                    />
+                    <PrivacyPolicy darkMode={darkMode} setDarkMode={setDarkMode} />
+                  </>
+                } />
+                <Route path="/cookie-policy" element={
+                  <>
+                    <SEO 
+                      title="Cookie Policy | Sai Akash Neela"
+                      description="Cookie policy for Sai Akash Neela's portfolio website. Learn about how we use cookies and protect your privacy."
+                      canonicalUrl="/cookie-policy"
+                    />
+                    <CookiePolicy darkMode={darkMode} setDarkMode={setDarkMode} />
+                  </>
+                } />
+                <Route path="*" element={
+                  <>
+                    <SEO 
+                      title="Page Not Found | Sai Akash Neela"
+                      description="The page you are looking for could not be found. Please navigate back to the homepage."
+                      canonicalUrl="/404"
+                    />
+                    <NotFound darkMode={darkMode} setDarkMode={setDarkMode} />
+                  </>
+                } />
+              </Routes>
+              <CookieConsentButton darkMode={darkMode} />
+            </>
+          )}
+          <CookieConsent darkMode={darkMode} />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }
 

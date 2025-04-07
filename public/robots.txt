@@ -1,3 +1,10 @@
 # https://www.robotstxt.org/robotstxt.html
+# Allow all web crawlers to access all content
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow maintenance page
+Disallow: /maintenance.html
+
+# Sitemap location
+Sitemap: https://saiakashneela.com/sitemap.xml
