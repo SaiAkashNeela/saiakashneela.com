@@ -63,6 +63,7 @@ const Footer = ({ darkMode }) => {
             <a href="#experience" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Experience</a>
             <a href="#skills" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Skills</a>
             <a href="#publications" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Publications</a>
+            <a href="#certifications" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Certifications</a>
             <a href="#projects" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Projects</a>
             <a href="#freelance" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Freelance</a>
             <a href="#contact" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Contact</a>

@@ -9,6 +9,7 @@ import Experience from './components/Experience';
 import Freelance from './components/Freelance';
 import Skills from './components/Skills';
 import Publications from './components/Publications';
+import Certifications from './components/Certifications';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -70,6 +71,7 @@ function App() {
         <Experience darkMode={darkMode} />
         <Skills darkMode={darkMode} />
         <Publications darkMode={darkMode} />
+        <Certifications darkMode={darkMode} />
         <Projects darkMode={darkMode} />
         <Freelance darkMode={darkMode} />
         <Contact darkMode={darkMode} />
