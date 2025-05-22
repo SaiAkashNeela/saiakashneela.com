@@ -1,0 +1,310 @@
+/* Developer-themed hover effects */
+.dev-hover-effect {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Empty section hover effect */
+.empty-section {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.empty-section::after {
+  content: attr(data-code);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: #00ff99;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  max-width: 300px;
+  width: max-content;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.empty-section:hover {
+  transform: translateY(-2px);
+}
+
+.empty-section:hover::after {
+  opacity: 1;
+  visibility: visible;
+  bottom: -25px;
+}
+
+/* Skill item specific effects */
+.skill-item {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.skill-item::after {
+  content: attr(data-code);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: #00ff99;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.skill-item:hover {
+  transform: translateY(-2px);
+}
+
+.skill-item:hover::after {
+  opacity: 1;
+  visibility: visible;
+  bottom: -25px;
+}
+
+/* Project card effects */
+.project-card {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.project-card::after {
+  content: attr(data-code);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: #00ff99;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+}
+
+.project-card:hover::after {
+  opacity: 1;
+  visibility: visible;
+  bottom: -25px;
+}
+
+/* Experience card effects */
+.experience-card {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.experience-card::after {
+  content: attr(data-code);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: #00ff99;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  max-width: 300px;
+  width: max-content;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.experience-card:hover {
+  transform: translateY(-2px);
+}
+
+.experience-card:hover::after {
+  opacity: 1;
+  visibility: visible;
+  bottom: -25px;
+}
+
+/* Contact form effects */
+.contact-form {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.contact-form::after {
+  content: attr(data-code);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: #00ff99;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.contact-form:hover {
+  transform: translateY(-2px);
+}
+
+.contact-form:hover::after {
+  opacity: 1;
+  visibility: visible;
+  bottom: -25px;
+}
+
+/* Section header effects */
+.section-header {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.section-header::after {
+  content: attr(data-code);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: #00ff99;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  max-width: 300px;
+  width: max-content;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.section-header:hover {
+  transform: translateY(-2px);
+}
+
+.section-header:hover::after {
+  opacity: 1;
+  visibility: visible;
+  bottom: -25px;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, .dev-hover-effect {
+  transition: all 0.3s ease;
+}
+
+/* Remove all other effects */
+.dev-hover-effect::before,
+.dev-hover-effect[data-code]::before,
+.category-card::before,
+.nav-link::before {
+  display: none !important;
+}
+
+/* Code Background Effect */
+.code-background {
+  position: fixed;
+  pointer-events: none;
+  z-index: 50;
+  transition: all 0.1s ease;
+}
+
+.code-snippet {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.9);
+  color: #00ff99;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  max-width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.code-snippet.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add a subtle glow effect */
+.code-snippet::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ff99, #0066ff);
+  border-radius: 0.6rem;
+  z-index: -1;
+  opacity: 0.2;
+  filter: blur(4px);
+}
+
+/* Add a typing animation */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.code-snippet.typing {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(40, end);
+}
+
+/* Add a cursor blink effect */
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.code-snippet::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+} 

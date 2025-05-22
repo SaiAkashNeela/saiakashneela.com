@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
+import './components/DevEffects.css';
+import AnimatedBackground from './components/AnimatedBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -50,9 +52,22 @@ function App() {
     // Simulating loading time for the intro animation
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 5000);
     
     return () => clearTimeout(timer);
+  }, []);
+
+  // Preload critical images
+  useEffect(() => {
+    const preloadImages = [
+      'https://s3.ap-south-2.amazonaws.com/saiakashneela.com/profile.png',
+      // Add other critical images here
+    ];
+
+    preloadImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
   }, []);
 
   // Homepage component
@@ -83,6 +98,7 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
+        <AnimatedBackground darkMode={darkMode} />
         <div className={`App transition-colors duration-300 ${darkMode ? 'dark' : 'light'}`}>
           {loading ? (
             <>

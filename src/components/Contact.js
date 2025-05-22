@@ -47,14 +47,14 @@ const Contact = ({ darkMode }) => {
     {
       icon: <FaEnvelope />,
       title: 'Email',
-      content: 'hello@saiakashneela.com',
+      content: 'hello@saiakashneela.com\nsaiakashneela@outlook.com',
       link: 'mailto:hello@saiakashneela.com',
     },
     {
       icon: <FaPhone />,
       title: 'Phone',
-      content: '+44 7920444964',
-      link: 'tel:+447920444964',
+      content: '+44 7767934364',
+      link: 'tel:+447767934364',
     },
     {
       icon: <FaMapMarkerAlt />,
@@ -65,7 +65,7 @@ const Contact = ({ darkMode }) => {
   ];
 
   return (
-    <section id="contact" className={`py-16 md:py-24 ${darkMode ? 'bg-navy' : 'bg-slate-50'}`}>
+    <section id="contact" className={`py-12 md:py-16 ${darkMode ? 'bg-navy' : 'bg-slate-50'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -93,21 +93,48 @@ const Contact = ({ darkMode }) => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: index * 0.1 + 0.3 }}
-                  className={`flex items-start p-4 rounded-lg ${darkMode ? 'bg-navy-light' : 'bg-white'} shadow-md hover-lift`}
+                  className={`flex items-start p-4 rounded-lg ${darkMode ? 'bg-navy-light' : 'bg-white'} shadow-md hover-lift dev-hover-effect`}
+                  data-code={`const ${info.title.toLowerCase()} = {
+  type: '${info.title}',
+  value: '${info.content}',
+  action: '${info.link}'
+}`}
                 >
                   <div className={`p-3 rounded-full ${darkMode ? 'bg-primary' : 'bg-slate-100'} mr-4`}>
                     <span className={darkMode ? 'text-secondary' : 'text-secondary-light'}>{info.icon}</span>
                   </div>
                   <div>
                     <h4 className={`font-medium mb-1 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>{info.title}</h4>
-                    <a
-                      href={info.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${darkMode ? 'text-gray-300 hover:text-secondary' : 'text-slate-700 hover:text-secondary-light'} hover-glow transition-colors duration-300`}
-                    >
-                      {info.content}
-                    </a>
+                    {info.title === 'Email' ? (
+                      <div className={`${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
+                        <a
+                          href={info.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`${darkMode ? 'text-gray-300 hover:text-secondary' : 'text-slate-700 hover:text-secondary-light'} hover-glow transition-colors duration-300`}
+                        >
+                          {info.content.split('\n')[0]}
+                        </a>
+                        <br />
+                        <a
+                          href={`mailto:${info.content.split('\n')[1]}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`${darkMode ? 'text-gray-300 hover:text-secondary' : 'text-slate-700 hover:text-secondary-light'} hover-glow transition-colors duration-300`}
+                        >
+                          {info.content.split('\n')[1]}
+                        </a>
+                      </div>
+                    ) : (
+                      <a
+                        href={info.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${darkMode ? 'text-gray-300 hover:text-secondary' : 'text-slate-700 hover:text-secondary-light'} hover-glow transition-colors duration-300`}
+                      >
+                        {info.content}
+                      </a>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -118,7 +145,11 @@ const Contact = ({ darkMode }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className={`p-6 rounded-lg ${darkMode ? 'bg-navy-light' : 'bg-white'} shadow-md`}
+              className={`p-6 rounded-lg ${darkMode ? 'bg-navy-light' : 'bg-white'} shadow-md dev-hover-effect`}
+              data-code={`const availability = {
+  status: 'open',
+  opportunities: ['Full-time', 'Freelance', 'Consulting']
+}`}
             >
               <h4 className={`text-xl font-bold mb-4 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Availability</h4>
               <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
@@ -154,7 +185,11 @@ const Contact = ({ darkMode }) => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="md:col-span-2"
           >
-            <div className={`p-6 rounded-lg ${darkMode ? 'bg-navy-light' : 'bg-white'} shadow-md ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'}`}>
+            <motion.form
+              onSubmit={handleSubmit}
+              className={`contact-form ${darkMode ? 'bg-navy-light' : 'bg-white'} p-6 rounded-lg shadow-md ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} hover-lift`}
+              data-code={`POST /api/contact\nContent-Type: application/json\n\n{\n  "name": "${formData.name}",\n  "email": "${formData.email}",\n  "message": "${formData.message}"\n}`}
+            >
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -170,68 +205,66 @@ const Contact = ({ darkMode }) => {
                   </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit}>
-                  <div className="mb-4">
-                    <label htmlFor="email" className={`block mb-1 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className={`w-full p-3 rounded-md ${
-                        darkMode 
-                          ? 'bg-primary border-gray-700 text-gray-200 focus:border-secondary' 
-                          : 'bg-slate-100 border-gray-300 text-slate-800 focus:border-secondary-light'
-                      } border focus:outline-none transition-colors duration-300`}
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <label htmlFor="message" className={`block mb-1 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows="5"
-                      className={`w-full p-3 rounded-md ${
-                        darkMode 
-                          ? 'bg-primary border-gray-700 text-gray-200 focus:border-secondary' 
-                          : 'bg-slate-100 border-gray-300 text-slate-800 focus:border-secondary-light'
-                      } border focus:outline-none transition-colors duration-300`}
-                    ></textarea>
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`btn-primary ${darkMode ? '' : 'btn-primary-light'} px-6 py-3 rounded flex items-center justify-center hover-lift w-full md:w-auto ${
-                      isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
-                    }`}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        Send Message
-                        <FaPaperPlane className="ml-2" />
-                      </>
-                    )}
-                  </button>
-                </form>
+                <div className="mb-4">
+                  <label htmlFor="email" className={`block mb-1 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className={`w-full p-3 rounded-md ${
+                      darkMode 
+                        ? 'bg-primary border-gray-700 text-gray-200 focus:border-secondary' 
+                        : 'bg-slate-100 border-gray-300 text-slate-800 focus:border-secondary-light'
+                    } border focus:outline-none transition-colors duration-300`}
+                  />
+                </div>
               )}
-            </div>
+              <div className="mb-6">
+                <label htmlFor="message" className={`block mb-1 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
+                  Message *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows="5"
+                  className={`w-full p-3 rounded-md ${
+                    darkMode 
+                      ? 'bg-primary border-gray-700 text-gray-200 focus:border-secondary' 
+                      : 'bg-slate-100 border-gray-300 text-slate-800 focus:border-secondary-light'
+                  } border focus:outline-none transition-colors duration-300`}
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`btn-primary ${darkMode ? '' : 'btn-primary-light'} px-6 py-3 rounded flex items-center justify-center hover-lift w-full md:w-auto ${
+                  isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <FaPaperPlane className="ml-2" />
+                  </>
+                )}
+              </button>
+            </motion.form>
           </motion.div>
         </div>
       </div>

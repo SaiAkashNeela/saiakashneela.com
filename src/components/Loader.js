@@ -87,10 +87,25 @@ const Loader = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          className="text-gray-400 mt-6 text-lg md:text-xl"
+          transition={{ delay: 0.8, duration: 0.5 }}
+          className="text-gray-400 mt-4 text-lg md:text-xl font-medium"
         >
           DevOps & Cloud/Web Infrastructure Engineer
+        </motion.p>
+
+        {/* Loading Message */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            delay: 1.2, 
+            duration: 0.9,
+            repeat: 0,
+            repeatDelay: 5
+          }}
+          className="text-secondary mt-6 text-base md:text-lg italic"
+        >
+          Crafting your personalized experience...
         </motion.p>
         
         {/* Spinning loading indicator */}
@@ -106,7 +121,7 @@ const Loader = () => {
             duration: 2,
             ease: "easeInOut" 
           }}
-          className="mt-8 w-8 h-8 border-t-2 border-secondary rounded-full"
+          className="mt-6 w-8 h-8 border-t-2 border-secondary rounded-full"
         />
       </div>
     </motion.div>

@@ -3,13 +3,13 @@ import { motion } from 'framer-motion';
 
 const About = ({ darkMode }) => {
   return (
-    <section id="about" className={`py-16 md:py-24 ${darkMode ? 'bg-navy' : 'bg-slate-50'}`}>
+    <section id="about" className={`py-12 md:py-16 ${darkMode ? 'bg-navy' : 'bg-slate-50'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.3 }}
         >
           <h2 className={`text-2xl md:text-3xl font-bold mb-2 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>About Me</h2>
           <h3 className={`text-3xl md:text-4xl font-bold mb-8 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Get to know me</h3>
@@ -18,10 +18,10 @@ const About = ({ darkMode }) => {
         <div className="grid md:grid-cols-5 gap-8 md:gap-12">
           <motion.div 
             className="md:col-span-3"
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.3 }}
           >
             <div className={`prose prose-lg max-w-none ${darkMode ? 'prose-dark' : 'prose-light'}`}>
               <p className={`${darkMode ? 'text-gray-300' : 'text-slate-700'} text-sm sm:text-base leading-relaxed`}>
@@ -48,12 +48,26 @@ const About = ({ darkMode }) => {
           
           <motion.div 
             className="md:col-span-2"
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 10 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.3 }}
           >
-            <div className={`${darkMode ? 'bg-navy-light' : 'bg-white'} p-4 sm:p-6 rounded-lg shadow-md ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} hover-lift`}>
+            <div className={`${darkMode ? 'bg-navy-light' : 'bg-white'} p-4 sm:p-6 rounded-lg shadow-md ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} hover-lift empty-section`}
+              data-code={`// Personal Information
+const personalInfo = {
+  name: "Sai Akash Neela",
+  location: "St Albans, United Kingdom",
+  email: "hello@saiakashneela.com",
+  education: "Master of Science in Computer Science",
+  experience: "4+ Years",
+  interests: [
+    "Hiking",
+    "Photography",
+    "Technology Trends"
+  ]
+};`}
+            >
               <h4 className={`text-lg sm:text-xl font-bold mb-3 sm:mb-4 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Personal Info</h4>
               <ul className="space-y-1 sm:space-y-2">
                 <InfoItem 

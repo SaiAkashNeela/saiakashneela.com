@@ -79,18 +79,20 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               <a 
                 key={index} 
                 href={link.href} 
-                className={`transition-colors duration-300 text-sm lg:text-base hover-glow ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}
+                className={`transition-colors duration-300 text-sm lg:text-base hover-glow dev-hover-effect nav-link ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}
+                data-code={`<nav-link href="${link.href}">${link.name}</nav-link>`}
               >
                 {link.name}
               </a>
             ))}
             <button 
               onClick={() => window.open('https://s3.ap-south-2.amazonaws.com/saiakashneela.com/Sai-Akash-Neela.docx', '_blank')}
-              className={`border rounded px-3 py-1 transition-colors duration-300 text-sm lg:text-base ml-2 ${
+              className={`border rounded px-3 py-1 transition-colors duration-300 text-sm lg:text-base ml-2 dev-hover-effect ${
                 darkMode 
                   ? 'border-secondary text-secondary hover:bg-secondary hover:bg-opacity-10' 
                   : 'border-secondary-light text-secondary-light hover:bg-secondary-light hover:bg-opacity-10'
               } hover-lift`}
+              data-code="window.open('resume.pdf')"
             >
               Resume
             </button>

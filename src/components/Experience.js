@@ -50,7 +50,7 @@ const Experience = ({ darkMode }) => {
   ];
 
   return (
-    <section id="experience" className={`py-16 md:py-24 ${darkMode ? 'bg-primary' : 'bg-primary-light'}`}>
+    <section id="experience" className={`py-12 md:py-16 ${darkMode ? 'bg-primary' : 'bg-primary-light'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -106,7 +106,29 @@ const Experience = ({ darkMode }) => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="md:col-span-3"
           >
-            <div className={`${darkMode ? 'bg-navy-light' : 'bg-white'} p-6 rounded-lg shadow-md ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} hover-lift`}>
+            <motion.div
+              key={experiences[activeTab].id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: activeTab * 0.1 }}
+              className={`experience-card ${darkMode ? 'bg-navy-light' : 'bg-white'} p-6 rounded-lg shadow-md ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} hover-lift`}
+              data-code={`// ${experiences[activeTab].title}
+// ${experiences[activeTab].company}
+// ${experiences[activeTab].period}
+
+const responsibilities = [
+${experiences[activeTab].responsibilities.map(r => `  "${r}"`).join(',\n')}
+];
+
+const techStack = [
+${experiences[activeTab].techStack ? experiences[activeTab].techStack.map(tech => `  "${tech}"`).join(',\n') : '  "Various technologies"'}
+];
+
+const achievements = [
+${experiences[activeTab].achievements ? experiences[activeTab].achievements.map(achievement => `  "${achievement}"`).join(',\n') : '  "Multiple successful projects"'}
+];`}
+            >
               <div>
                 <h3 className={`text-xl md:text-2xl font-bold ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>
                   {experiences[activeTab].title}{' '}
@@ -134,7 +156,7 @@ const Experience = ({ darkMode }) => {
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
