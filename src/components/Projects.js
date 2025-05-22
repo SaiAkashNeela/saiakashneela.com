@@ -87,7 +87,7 @@ const Projects = ({ darkMode }) => {
     : projects.filter(project => project.category === activeFilter);
 
   return (
-    <section id="projects" className={`py-16 md:py-24 ${darkMode ? 'bg-primary' : 'bg-primary-light'}`}>
+    <section id="projects" className={`py-12 md:py-16 ${darkMode ? 'bg-primary' : 'bg-primary-light'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -108,7 +108,7 @@ const Projects = ({ darkMode }) => {
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               onClick={() => setActiveFilter(filter)}
-              className={`px-4 py-2 m-2 rounded-full transition-all duration-300 ${
+              className={`px-4 py-2 m-2 rounded-full transition-all duration-300 dev-hover-effect ${
                 activeFilter === filter
                   ? darkMode
                     ? 'bg-secondary text-primary-light font-medium'
@@ -117,6 +117,7 @@ const Projects = ({ darkMode }) => {
                     ? 'bg-navy-light text-gray-300 hover:bg-secondary hover:text-primary-light'
                     : 'bg-slate-100 text-slate-700 hover:bg-secondary-light hover:text-white'
               } hover-lift`}
+              data-code={`setFilter('${filter}')`}
             >
               {filter}
             </motion.button>
@@ -126,12 +127,13 @@ const Projects = ({ darkMode }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project, index) => (
             <motion.div
-              key={index}
+              key={project.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`rounded-lg overflow-hidden ${darkMode ? 'bg-navy-light' : 'bg-white'} shadow-md hover-lift ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'}`}
+              className={`rounded-lg overflow-hidden ${darkMode ? 'bg-navy-light' : 'bg-white'} shadow-md hover-lift ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} dev-hover-effect project-card`}
+              data-code={`git clone ${project.github}\ncd ${project.title.toLowerCase().replace(/\s+/g, '-')}\nnpm install\nnpm start`}
             >
               <div className="relative overflow-hidden group">
                 {project.image ? (

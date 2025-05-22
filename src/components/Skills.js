@@ -13,6 +13,45 @@ import {
   SiAnsible, SiJenkins, SiCloudflare, SiApache, SiNginx
 } from 'react-icons/si';
 
+const skillCommands = {
+  'Docker': 'docker run hello-world',
+  'Kubernetes': 'kubectl get pods',
+  'Jenkins': 'jenkins --version',
+  'GitHub Actions': 'gh workflow list',
+  'Azure DevOps': 'az pipelines list',
+  'Terraform': 'terraform init',
+  'Ansible': 'ansible-playbook site.yml',
+  'Prometheus': 'prometheus --config.file=prometheus.yml',
+  'Grafana': 'grafana-server web',
+  'AWS': 'aws s3 ls',
+  'Azure': 'az login',
+  'GCP': 'gcloud init',
+  'S3': 'aws s3 cp file.txt s3://bucket/',
+  'EC2': 'aws ec2 describe-instances',
+  'RDS': 'aws rds describe-db-instances',
+  'EKS': 'aws eks list-clusters',
+  'ECS': 'aws ecs list-clusters',
+  'Lambda': 'aws lambda list-functions',
+  'HTML': '<!DOCTYPE html>',
+  'CSS': 'body { color: #222; }',
+  'JavaScript': 'console.log("Hello, world!")',
+  'React': 'npx create-react-app my-app',
+  'Tailwind CSS': 'npx tailwindcss init',
+  'WordPress': 'wp plugin install',
+  'Node.js': 'node app.js',
+  'Python': 'python3 script.py',
+  'MongoDB': 'mongod --dbpath /data/db',
+  'DNS': 'dig example.com',
+  'Domain Mgmt': 'whois example.com',
+  'Web Hosting': 'scp index.html user@host:/var/www',
+  'MX Records': 'dig MX example.com',
+  'TXT Records': 'dig TXT example.com',
+  'Cloudflare': 'cloudflared tunnel run',
+  'Apache': 'apachectl -k restart',
+  'Nginx': 'nginx -s reload',
+  'MySQL': 'mysql -u root -p'
+};
+
 const Skills = ({ darkMode }) => {
   const skillCategories = [
     {
@@ -105,7 +144,8 @@ const Skills = ({ darkMode }) => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: skillIndex * 0.05 + categoryIndex * 0.1 }}
-                    className={`flex flex-col items-center ${darkMode ? 'hover:bg-primary' : 'hover:bg-slate-100'} p-2 rounded-md hover-lift transition-colors duration-300`}
+                    className={`flex flex-col items-center ${darkMode ? 'hover:bg-primary' : 'hover:bg-slate-100'} p-2 rounded-md hover-lift transition-colors duration-300 dev-hover-effect skill-item`}
+                    data-code={skillCommands[skill.name]}
                   >
                     <div className={`mb-2 flex items-center justify-center ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>
                       {skill.icon}
