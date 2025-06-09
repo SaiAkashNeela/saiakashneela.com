@@ -190,3 +190,51 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Loader terminal styles */
+.terminal-text {
+  font-family: 'Fira Mono', monospace;
+  line-height: 1.6;
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.6rem;
+  height: 1.2rem;
+  background-color: currentColor;
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Global mobile optimization */
+html.mobile-device .chat-input-bar,
+html.mobile-device .chat-box-container {
+  width: 90% !important;
+  max-width: none !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+@media screen and (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  .chat-input-bar {
+    width: 90% !important;
+    max-width: none !important;
+  }
+  
+  .chat-box-container {
+    width: 90% !important;
+    max-width: none !important;
+  }
+}

@@ -65,6 +65,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <title>Sai Akash Neela | Software Developer Portfolio</title>
+    
+    <!-- Inline styles for mobile optimization -->
+    <style>
+      @media (max-width: 768px) {
+        html, body, #root {
+          overflow-x: hidden !important;
+          max-width: 100vw !important;
+          width: 100% !important;
+        }
+        
+        .chat-input-bar {
+          width: 90vw !important;
+          max-width: 90vw !important;
+          right: auto !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          position: fixed !important;
+        }
+        
+        .chat-box-container {
+          width: 90vw !important;
+          max-width: 90vw !important;
+          right: auto !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          position: fixed !important;
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>

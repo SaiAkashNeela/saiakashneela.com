@@ -30,7 +30,7 @@ const About = ({ darkMode }) => {
                 been on an exciting path of continuous learning and growth.
               </p>
               <p className={`${darkMode ? 'text-gray-300' : 'text-slate-700'} text-sm sm:text-base leading-relaxed mt-3`}>
-                With over 4 years of professional experience, I've had the opportunity to work with diverse technologies 
+                With over 6 years of professional experience, I've had the opportunity to work with diverse technologies 
                 and teams. My expertise lies in designing and implementing robust CI/CD pipelines, optimizing cloud infrastructure, 
                 and developing responsive web applications.
               </p>
@@ -60,7 +60,7 @@ const personalInfo = {
   location: "St Albans, United Kingdom",
   email: "hello@saiakashneela.com",
   education: "Master of Science in Computer Science",
-  experience: "4+ Years",
+  experience: "6+ Years",
   interests: [
     "Hiking",
     "Photography",
@@ -93,7 +93,7 @@ const personalInfo = {
                 />
                 <InfoItem 
                   label="Experience" 
-                  value="4+ Years" 
+                  value="6+ Years" 
                   darkMode={darkMode} 
                 />
               </ul>

@@ -3,7 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import './components/DevEffects.css';
+import './components/MobileFixes.css';
 import AnimatedBackground from './components/AnimatedBackground';
+import DevTerminal from './components/DevTerminal';
+import CodeSnippets from './components/CodeSnippets';
+import ChatBox from './components/ChatBox';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -22,11 +26,14 @@ import NotFound from './components/NotFound';
 import SEO from './components/SEO';
 import CookieConsent from './components/CookieConsent';
 import CookieConsentButton from './components/CookieConsentButton';
+import MobileFixer from './components/MobileFixer';
 import { getPersonSchema, getWebsiteSchema } from './schema';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [showTerminal, setShowTerminal] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Combined schema for the homepage
   const homePageSchema = {
@@ -48,14 +55,57 @@ function App() {
     }
   }, [darkMode]);
 
+  // Check if device is mobile
   useEffect(() => {
-    // Simulating loading time for the intro animation
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 5000);
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      
+      // Add a class to the root html element for global mobile styling
+      if (mobile) {
+        document.documentElement.classList.add('mobile-device');
+      } else {
+        document.documentElement.classList.remove('mobile-device');
+      }
+    };
     
-    return () => clearTimeout(timer);
+    // Run immediately
+    checkMobile();
+    
+    // Set up listener
+    window.addEventListener('resize', checkMobile);
+    
+    // Log the mobile state for debugging
+    console.log('Is mobile device:', window.innerWidth <= 768);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  useEffect(() => {
+    // Initial loading sequence
+    const loadTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // Loading screen duration
+    
+    // Show terminal after a delay when page loads (after main loader is gone)
+    const terminalTimer = setTimeout(() => {
+      // Only show terminal on non-mobile devices
+      if (!isMobile) {
+        setShowTerminal(true);
+      }
+    }, 5000); // Delay before showing terminal
+    
+    // Automatically hide terminal after 1 minute if user doesn't interact with it
+    const terminalHideTimer = setTimeout(() => {
+      setShowTerminal(false);
+    }, 60000);
+    
+    return () => {
+      clearTimeout(loadTimer);
+      clearTimeout(terminalTimer);
+      clearTimeout(terminalHideTimer);
+    };
+  }, [isMobile]); // Add isMobile as dependency
 
   // Preload critical images
   useEffect(() => {
@@ -69,6 +119,11 @@ function App() {
       img.src = src;
     });
   }, []);
+
+  // Handler to hide terminal
+  const hideTerminal = () => {
+    setShowTerminal(false);
+  };
 
   // Homepage component
   const HomePage = () => (
@@ -99,8 +154,12 @@ function App() {
     <HelmetProvider>
       <Router>
         <AnimatedBackground darkMode={darkMode} />
+        <CodeSnippets darkMode={darkMode} />
+        {showTerminal && !isMobile && <DevTerminal darkMode={darkMode} hideTerminal={hideTerminal} />}
+        <ChatBox darkMode={darkMode} isMobile={isMobile} />
+        <MobileFixer />
         <div className={`App transition-colors duration-300 ${darkMode ? 'dark' : 'light'}`}>
-          {loading ? (
+          {isLoading ? (
             <>
               <SEO title="Loading... | Sai Akash Neela" />
               <Loader />
@@ -143,7 +202,6 @@ function App() {
               <CookieConsentButton darkMode={darkMode} />
             </>
           )}
-          <CookieConsent darkMode={darkMode} />
         </div>
       </Router>
     </HelmetProvider>

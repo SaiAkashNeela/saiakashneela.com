@@ -2,16 +2,55 @@
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
   transition: all 0.3s ease-in-out;
+  position: relative;
+  z-index: 1;
 }
 
 .dark {
   background-color: #0a192f;
   color: #e6f1ff;
+  background-image: 
+    linear-gradient(to bottom, rgba(10, 25, 47, 0.95), rgba(10, 25, 47, 0.98)),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2364ffda' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 .light {
   background-color: #f5f9ff;
   color: #334155;
+  background-image: 
+    linear-gradient(to bottom, rgba(245, 249, 255, 0.97), rgba(245, 249, 255, 0.99)),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff7e50' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Code line patterns */
+.dark::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(to right, transparent 49px, rgba(100, 255, 218, 0.015) 49px, rgba(100, 255, 218, 0.015) 51px, transparent 51px),
+    linear-gradient(to bottom, transparent 49px, rgba(100, 255, 218, 0.015) 49px, rgba(100, 255, 218, 0.015) 51px, transparent 51px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -5;
+}
+
+.light::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(to right, transparent 49px, rgba(255, 126, 80, 0.015) 49px, rgba(255, 126, 80, 0.015) 51px, transparent 51px),
+    linear-gradient(to bottom, transparent 49px, rgba(255, 126, 80, 0.015) 49px, rgba(255, 126, 80, 0.015) 51px, transparent 51px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -5;
 }
 
 /* Floating animation */
@@ -73,6 +112,28 @@
   transition: transform 0.5s ease-out, opacity 0.3s linear;
 }
 
+/* Code decoration */
+.code-decoration {
+  position: relative;
+}
+
+.code-decoration::before {
+  content: '</>';
+  position: absolute;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.7em;
+  opacity: 0.3;
+  transform: translateY(-50%);
+}
+
+.dark .code-decoration::before {
+  color: #64ffda;
+}
+
+.light .code-decoration::before {
+  color: #ff7e50;
+}
+
 /* Dark/Light mode toggle animation */
 .toggle-track {
   border-radius: 1rem;
@@ -112,12 +173,47 @@
   transform: translateX(1.5rem);
 }
 
-.dark .toggle-track:hover .toggle-thumb {
-  box-shadow: 0 0 10px 2px rgba(100, 255, 218, 0.7);
+/* Blinking cursor animation */
+.cursor::after {
+  content: '|';
+  display: inline-block;
+  animation: blink 1s step-end infinite;
 }
 
-.light .toggle-track:hover .toggle-thumb {
-  box-shadow: 0 0 10px 2px rgba(255, 126, 80, 0.7);
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Section dividers with code-inspired design */
+.section-divider {
+  position: relative;
+  height: 4px;
+  margin: 40px 0;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.dark .section-divider {
+  background: linear-gradient(to right, transparent, rgba(100, 255, 218, 0.1), transparent);
+}
+
+.section-divider::before {
+  content: '// -----------------------------';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Fira Mono', monospace;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.dark .section-divider::before {
+  color: #64ffda;
+}
+
+.light .section-divider::before {
+  color: #ff7e50;
 }
 
 html {
@@ -152,4 +248,64 @@ html {
 *:focus {
   outline: 2px dashed #64ffda;
   outline-offset: 3px;
+}
+
+/* Ensure mobile optimization for chat components */
+@media screen and (max-width: 768px) {
+  .chat-input-bar {
+    width: 90% !important;
+    max-width: none !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  
+  .chat-box-container {
+    width: 90% !important;
+    max-width: none !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  
+  /* Force correct sizing regardless of other styles */
+  html, body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Extra mobile fixes */
+@media (max-width: 768px) {
+  #root, body, html {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+  }
+  
+  .chat-input-bar {
+    width: 90vw !important;
+    max-width: 90vw !important;
+    right: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  
+  .chat-box-container {
+    width: 90vw !important;
+    max-width: 90vw !important;
+    right: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
 }

@@ -1,0 +1,163 @@
+.code-snippets-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -4;
+  overflow: hidden;
+}
+
+.code-snippet {
+  position: absolute;
+  width: 320px;
+  max-width: 80vw;
+  max-height: 300px;
+  overflow: hidden;
+  border-radius: 8px;
+  font-family: 'Fira Mono', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: -3;
+}
+
+@media (max-width: 768px) {
+  .code-snippet {
+    width: 280px;
+    font-size: 10px;
+  }
+}
+
+.code-snippet.visible {
+  opacity: 0.15;
+  transform: translateY(0) scale(1);
+}
+
+.code-snippet:hover {
+  opacity: 0.3;
+}
+
+/* Dark theme */
+.code-snippet.dark {
+  background-color: #1a1e2b;
+  border: 1px solid #2d3748;
+}
+
+/* Light theme */
+.code-snippet.light {
+  background-color: #f5f7fa;
+  border: 1px solid #e2e8f0;
+  opacity: 0.1;
+}
+
+.code-snippet.light:hover {
+  opacity: 0.25;
+}
+
+/* Language label */
+.lang-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 8px;
+  font-size: 10px;
+  text-transform: uppercase;
+  border-bottom-left-radius: 6px;
+  z-index: 2;
+}
+
+.dark .lang-label {
+  background-color: #2d3748;
+  color: #00ff99;
+}
+
+.light .lang-label {
+  background-color: #e2e8f0;
+  color: #0a7042;
+}
+
+/* Code block styling */
+.code-snippet pre {
+  margin: 0;
+  padding: 16px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.dark .code-snippet pre {
+  color: #e6f1ff;
+}
+
+.light .code-snippet pre {
+  color: #2d3748;
+}
+
+/* Syntax highlighting */
+.dark .language-javascript, 
+.dark .language-jsx, 
+.dark .language-typescript {
+  color: #e6f1ff;
+}
+
+.light .language-javascript, 
+.light .language-jsx, 
+.light .language-typescript {
+  color: #2d3748;
+}
+
+/* JavaScript-specific */
+.dark .language-javascript .keyword,
+.dark .language-jsx .keyword,
+.dark .language-typescript .keyword {
+  color: #ff79c6;
+}
+
+.dark .language-javascript .string,
+.dark .language-jsx .string,
+.dark .language-typescript .string {
+  color: #f1fa8c;
+}
+
+.dark .language-javascript .function,
+.dark .language-jsx .function,
+.dark .language-typescript .function {
+  color: #50fa7b;
+}
+
+.dark .language-javascript .comment,
+.dark .language-jsx .comment,
+.dark .language-typescript .comment {
+  color: #6272a4;
+}
+
+/* Animation for floating effect */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.code-snippet {
+  animation: float 15s ease-in-out infinite;
+}
+
+.code-snippet:nth-child(odd) {
+  animation-duration: 18s;
+}
+
+.code-snippet:nth-child(3n) {
+  animation-duration: 20s;
+}
+
+.code-snippet:nth-child(3n+1) {
+  animation-duration: 22s;
+} 

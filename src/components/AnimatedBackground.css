@@ -6,9 +6,87 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 0;
+  z-index: -10;
   overflow: hidden;
   background: transparent;
+}
+
+/* Dark mode background */
+.dark.animated-background {
+  background: linear-gradient(to bottom right, rgba(10, 25, 47, 0.92), rgba(17, 34, 64, 0.92));
+}
+
+/* Light mode background */
+.light.animated-background {
+  background: linear-gradient(to bottom right, rgba(245, 249, 255, 0.95), rgba(230, 241, 255, 0.95));
+}
+
+/* Grid layer */
+.grid-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -9;
+}
+
+/* Grid dots */
+.grid-dot {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: rgba(0, 255, 153, 0.08);
+  pointer-events: none;
+}
+
+/* Grid pulse effect */
+.grid-pulse {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: rgba(0, 255, 153, 0.08);
+  pointer-events: none;
+  animation: pulseDot 3s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: scale(12);
+    opacity: 0.05;
+  }
+}
+
+/* Circuit lines */
+.circuit-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -8;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: 
+    /* Horizontal lines */
+    linear-gradient(to right, transparent 49.5%, rgba(0, 255, 153, 0.3) 49.5%, rgba(0, 255, 153, 0.3) 50.5%, transparent 50.5%),
+    /* Vertical lines */
+    linear-gradient(to bottom, transparent 49.5%, rgba(0, 255, 153, 0.3) 49.5%, rgba(0, 255, 153, 0.3) 50.5%, transparent 50.5%);
+  background-size: 200px 200px;
+}
+
+.dark .circuit-lines {
+  opacity: 0.05;
+}
+
+.light .circuit-lines {
+  opacity: 0.02;
 }
 
 /* Primary gradient layer */
@@ -19,14 +97,15 @@
   left: -50%;
   width: 200%;
   height: 200%;
+  z-index: -7;
   background: radial-gradient(
     circle at center,
     transparent 0%,
-    rgba(0, 255, 153, 0.05) 25%,
-    rgba(0, 102, 204, 0.05) 50%,
+    rgba(0, 255, 153, 0.03) 25%,
+    rgba(0, 102, 204, 0.03) 50%,
     transparent 75%
   );
-  animation: rotateGradient 20s linear infinite;
+  animation: rotateGradient 25s linear infinite;
   transform-origin: center;
 }
 
@@ -38,14 +117,15 @@
   left: -50%;
   width: 200%;
   height: 200%;
+  z-index: -6;
   background: radial-gradient(
     circle at center,
     transparent 0%,
-    rgba(0, 102, 204, 0.05) 25%,
-    rgba(0, 255, 153, 0.05) 50%,
+    rgba(0, 102, 204, 0.03) 25%,
+    rgba(0, 255, 153, 0.03) 50%,
     transparent 75%
   );
-  animation: rotateGradient 15s linear infinite reverse;
+  animation: rotateGradient 20s linear infinite reverse;
   transform-origin: center;
 }
 
@@ -56,9 +136,10 @@
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 5;
   background: radial-gradient(
     circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(0, 255, 153, 0.08) 0%,
+    rgba(0, 255, 153, 0.06) 0%,
     transparent 50%
   );
   opacity: 0;
@@ -71,10 +152,11 @@
   position: absolute;
   font-family: 'Fira Mono', monospace;
   font-size: 12px;
-  color: rgba(0, 255, 153, 0.12);
+  color: rgba(0, 255, 153, 0.06);
   pointer-events: none;
   animation: floatParticle 8s linear infinite;
-  text-shadow: 0 0 5px rgba(0, 255, 153, 0.2);
+  text-shadow: 0 0 5px rgba(0, 255, 153, 0.08);
+  z-index: -2;
 }
 
 /* Animations */
@@ -136,8 +218,8 @@
 }
 
 .light .code-particle {
-  color: rgba(0, 255, 153, 0.12);
-  text-shadow: 0 0 6px rgba(0, 255, 153, 0.25);
+  color: rgba(0, 255, 153, 0.08);
+  text-shadow: 0 0 6px rgba(0, 255, 153, 0.15);
 }
 
 /* Dark mode adjustments */
@@ -172,8 +254,8 @@
 }
 
 .dark .code-particle {
-  color: rgba(0, 255, 153, 0.15);
-  text-shadow: 0 0 8px rgba(0, 255, 153, 0.3);
+  color: rgba(0, 255, 153, 0.12);
+  text-shadow: 0 0 8px rgba(0, 255, 153, 0.2);
 }
 
 /* Interactive elements */
