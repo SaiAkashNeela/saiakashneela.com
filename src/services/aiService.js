@@ -182,17 +182,7 @@ function getApiKey() {
   
   // For AWS Amplify, this fallback should never be used in production
   // It's only here for local development
-  if (process.env.NODE_ENV !== 'production') {
-    // Obfuscated key to make it harder to extract from client-side code
-    // Still not secure for production use!
-    const keyParts = [
-      'sk-or-v1-c608871',
-      '62c032622a7f6dde8',
-      '41889fa051a77b8d04',
-      '874f18bf4e4e4ef3ced991'
-    ];
-    return keyParts.join('');
-  }
+  
   
   return null; // No key available, will cause an error
 }
