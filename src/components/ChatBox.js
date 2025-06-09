@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './ChatBox.css';
 import { crawlSiteContent } from '../utils/contentCrawler';
+import { getChatCompletions } from '../services/aiService';
 
 const ChatBox = ({ darkMode, isMobile: propIsMobile }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,10 +19,6 @@ const ChatBox = ({ darkMode, isMobile: propIsMobile }) => {
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
   const messagesEndRef = useRef(null);
   
-  // Configure with API key - use environment variable if available, otherwise use fallback
-  const apiKey = process.env.REACT_APP_GROQ_API_KEY || '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';
-  const apiUrl = 'https://api.groq.com/openai/v1/chat/completions';
-
   // Use isMobile from props if available
   useEffect(() => {
     if (propIsMobile !== undefined) {
@@ -47,6 +44,52 @@ const ChatBox = ({ darkMode, isMobile: propIsMobile }) => {
       return () => window.removeEventListener('resize', checkMobile);
     }
   }, [propIsMobile]);
+
+  // Direct DOM manipulation for mobile fix
+  useEffect(() => {
+    // Function to apply fixes directly to DOM elements
+    const applyMobileFixes = () => {
+      if (window.innerWidth <= 768) {
+        // Find chat elements
+        const chatInputBar = document.querySelector('.chat-input-bar');
+        const chatBoxContainer = document.querySelector('.chat-box-container');
+        
+        // Apply fixes to chat input bar
+        if (chatInputBar) {
+          chatInputBar.style.width = '90vw';
+          chatInputBar.style.maxWidth = '90vw';
+          chatInputBar.style.left = '50%';
+          chatInputBar.style.right = 'auto';
+          chatInputBar.style.transform = 'translateX(-50%)';
+        }
+        
+        // Apply fixes to chat box container
+        if (chatBoxContainer) {
+          chatBoxContainer.style.width = '90vw';
+          chatBoxContainer.style.maxWidth = '90vw';
+          chatBoxContainer.style.left = '50%';
+          chatBoxContainer.style.right = 'auto';
+          chatBoxContainer.style.transform = 'translateX(-50%)';
+        }
+        
+        console.log('Applied direct mobile fixes');
+      }
+    };
+    
+    // Apply fixes immediately
+    applyMobileFixes();
+    
+    // Also apply fixes whenever the window is resized
+    window.addEventListener('resize', applyMobileFixes);
+    
+    // Apply fixes again after a delay to ensure they stick
+    const fixTimer = setTimeout(applyMobileFixes, 1000);
+    
+    return () => {
+      window.removeEventListener('resize', applyMobileFixes);
+      clearTimeout(fixTimer);
+    };
+  }, []);
 
   // Crawl the site content when the component mounts
   useEffect(() => {
@@ -95,13 +138,44 @@ Here is the content extracted from the website that you should use to answer que
 
 ${siteContent}
 
+SITE ARCHITECTURE:
+This portfolio website is built with React and deployed on AWS Amplify. It features a modern design with dark/light mode toggle, interactive components, and this AI chat interface. The site showcases Sai's projects, skills, and professional experience in web development, DevOps, and cloud infrastructure.
+
+TECHNICAL DETAILS:
+- Frontend: React.js with modern hooks and functional components
+- Styling: CSS with responsive design for all device sizes
+- Deployment: AWS Amplify with CI/CD pipeline
+- AI Integration: OpenRouter API with Mistral 7B Instruct model
+- Features: Interactive terminal, particle animations, responsive design
+
 INSTRUCTIONS:
-1. Use ONLY the information provided above to answer questions.
-2. If the information to answer a question is not in the provided content, respond with: "I don't have specific information about that in Sai Akash's portfolio, but I'd be happy to tell you about [suggest related topic from available info]."
-3. If asked about topics unrelated to Sai Akash Neela or this website, politely decline with: "I'm sorry, I can only answer questions related to Sai Akash Neela's portfolio website."
-4. Be concise, helpful, and informative in your responses.
-5. Don't mention that you're using "extracted content" in your responses.
-6. On mobile devices, keep responses shorter and more to the point.`;
+1. ALWAYS respond in English only, regardless of the language of the question.
+2. You MUST be an expert on Sai Akash Neela's portfolio, skills, projects, and experience.
+3. Use ONLY the information provided above to answer questions.
+4. If the information to answer a question is not in the provided content, respond with: "I don't have specific information about that in Sai Akash's portfolio, but I'd be happy to tell you about [suggest related topic from available info]."
+5. If asked about topics unrelated to Sai Akash Neela or this website, politely decline with: "I'm sorry, I can only answer questions related to Sai Akash Neela's portfolio website."
+6. Be concise yet engaging in your responses.
+7. Don't mention that you're using "extracted content" in your responses.
+8. On mobile devices, keep responses shorter and more to the point.
+9. DO NOT use ANY emojis or emoticons in your responses.
+10. Maintain a conversational yet professional tone.
+11. Use varied sentence structures and natural language patterns.
+12. Keep responses clear and straightforward without excessive formality.
+13. NEVER respond in any language other than English.
+14. You are powered by Mistral 7B Instruct model through OpenRouter API.`;
+  };
+
+  // Function to remove emojis from text
+  const removeEmojis = (text) => {
+    // Unicode ranges for emojis - without using problematic ranges
+    const emojiPattern = /(?:[\u2600-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD00-\uDDFF])/g;
+    
+    // Pattern for common emoticons - properly escaped
+    // eslint-disable-next-line no-useless-escape
+    const emoticonPattern = /[:;=][-']?[()\[\]DPdp]/g;
+    
+    // Replace emojis and emoticons with empty string
+    return text.replace(emojiPattern, '').replace(emoticonPattern, '');
   };
 
   const handleSubmit = async (e) => {
@@ -132,30 +206,36 @@ INSTRUCTIONS:
         });
       }
       
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
+      // Prepare messages array with system prompt
+      const messagePayload = [
+        {
+          role: 'system',
+          content: createSystemPrompt()
         },
-        body: JSON.stringify({
-          model: 'llama-3.1-8b-instant',
-          messages: [
-            {
-              role: 'system',
-              content: createSystemPrompt()
-            },
-            ...messages,
-            userMessage
-          ],
-          temperature: 0.5,
-          max_tokens: isMobile ? 400 : 800, // Shorter responses on mobile
-        }),
-      });
+        ...messages,
+        userMessage
+      ];
       
-      const data = await response.json();
+      // Call OpenRouter API through our service
+      const data = await getChatCompletions(messagePayload, isMobile);
+      
       if (data.choices && data.choices[0] && data.choices[0].message) {
-        setMessages(prev => [...prev, data.choices[0].message]);
+        // Additional emoji cleanup at the component level
+        let responseContent = data.choices[0].message.content;
+        
+        // Simple check for emoticons
+        if (responseContent.includes(':)') || 
+            responseContent.includes(':D') || 
+            responseContent.includes(';)') ||
+            responseContent.includes(':(')) {
+          responseContent = removeEmojis(responseContent);
+        }
+        
+        // Add the cleaned message to the state
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: responseContent
+        }]);
       } else {
         throw new Error('Invalid response format');
       }
@@ -169,52 +249,6 @@ INSTRUCTIONS:
       setIsLoading(false);
     }
   };
-
-  // Direct DOM manipulation for mobile fix
-  useEffect(() => {
-    // Function to apply fixes directly to DOM elements
-    const applyMobileFixes = () => {
-      if (window.innerWidth <= 768) {
-        // Find chat elements
-        const chatInputBar = document.querySelector('.chat-input-bar');
-        const chatBoxContainer = document.querySelector('.chat-box-container');
-        
-        // Apply fixes to chat input bar
-        if (chatInputBar) {
-          chatInputBar.style.width = '90vw';
-          chatInputBar.style.maxWidth = '90vw';
-          chatInputBar.style.left = '50%';
-          chatInputBar.style.right = 'auto';
-          chatInputBar.style.transform = 'translateX(-50%)';
-        }
-        
-        // Apply fixes to chat box container
-        if (chatBoxContainer) {
-          chatBoxContainer.style.width = '90vw';
-          chatBoxContainer.style.maxWidth = '90vw';
-          chatBoxContainer.style.left = '50%';
-          chatBoxContainer.style.right = 'auto';
-          chatBoxContainer.style.transform = 'translateX(-50%)';
-        }
-        
-        console.log('Applied direct mobile fixes');
-      }
-    };
-    
-    // Apply fixes immediately
-    applyMobileFixes();
-    
-    // Also apply fixes whenever the window is resized
-    window.addEventListener('resize', applyMobileFixes);
-    
-    // Apply fixes again after a delay to ensure they stick
-    const fixTimer = setTimeout(applyMobileFixes, 1000);
-    
-    return () => {
-      window.removeEventListener('resize', applyMobileFixes);
-      clearTimeout(fixTimer);
-    };
-  }, []);
 
   // For debugging purposes
   useEffect(() => {
@@ -268,7 +302,7 @@ INSTRUCTIONS:
         >
           <div className="chat-header">
             <div className="chat-title">
-              <span className="chat-title-text">Chat with Portfolio AI</span>
+              <span className="chat-title-text">Chat with SAN's AI</span>
             </div>
             <button 
               className="chat-close-button"

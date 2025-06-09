@@ -24,7 +24,6 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import CookiePolicy from './components/CookiePolicy';
 import NotFound from './components/NotFound';
 import SEO from './components/SEO';
-import CookieConsent from './components/CookieConsent';
 import CookieConsentButton from './components/CookieConsentButton';
 import MobileFixer from './components/MobileFixer';
 import { getPersonSchema, getWebsiteSchema } from './schema';

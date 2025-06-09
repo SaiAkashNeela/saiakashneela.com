@@ -1,116 +1,92 @@
-# Sai Akash Neela - Portfolio Site
+# Sai Akash Neela - Portfolio Website
 
-A modern, responsive portfolio website built with React, Tailwind CSS, and Framer Motion. This project showcases my skills, experience, and projects in a clean and interactive interface.
-
-![Portfolio Preview](http://www.saiakashneela.com)
+A modern, interactive portfolio website built with React and deployed on AWS Amplify.
 
 ## Features
 
-- **Responsive Design**: Looks great on all devices, from mobile to desktop
-- **Dark/Light Mode**: Toggle between dark and light themes
-- **Smooth Animations**: Using Framer Motion for engaging UI interactions
-- **Docker Ready**: Containerized for easy deployment
-- **Modern UI**: Built with Tailwind CSS for a clean, modern look
-- **Publications Section**: Showcase research papers and academic work
-- **Contact Form**: Simple email-based contact system
+- Interactive terminal with command-line interface
+- Dynamic background with code particles and circuit lines
+- Dark/Light mode toggle
+- AI chatbot powered by Mistral 7B Instruct model via OpenRouter
+- Responsive design for all device sizes
+- Cookie consent management
 
-## Getting Started
+## Tech Stack
 
-### Prerequisites
+- **Frontend**: React.js
+- **Styling**: CSS with responsive design
+- **Deployment**: AWS Amplify
+- **AI Integration**: OpenRouter API with Mistral 7B Instruct model
 
-- Node.js (v14 or higher)
-- npm or yarn
-- Docker (optional, for containerized deployment)
+## Local Development
 
-### Local Development
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/SaiAkashNeela/saiakashneela.com.git
-   cd saiakashneela.com
-   ```
-
+1. Clone the repository
 2. Install dependencies:
-   ```bash
+   ```
    npm install
    ```
-
-3. Start the development server:
-   ```bash
+3. Create a `.env` file in the root directory with your OpenRouter API key:
+   ```
+   REACT_APP_OPENROUTER_API_KEY=your_openrouter_api_key
+   ```
+4. Start the development server:
+   ```
    npm start
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## AWS Amplify Deployment
 
-### Docker Deployment
+### Initial Setup
 
-1. Build and run using the provided Docker configuration:
-   ```bash
-   ./docker/run.sh
-   ```
+1. Log in to AWS Management Console
+2. Navigate to AWS Amplify
+3. Click "New app" > "Host web app"
+4. Choose GitHub as the repository source
+5. Connect to your GitHub account and select this repository
+6. Configure build settings:
+   - Build command: `npm run build`
+   - Output directory: `build`
 
-2. Access the site at [http://localhost:3333](http://localhost:3333)
+### Environment Variables Configuration
 
-## Customizing the Portfolio
+For the AI chat functionality to work properly, you need to configure the OpenRouter API key as an environment variable in AWS Amplify:
 
-### Personal Information
+1. In your Amplify app, go to "App settings" > "Environment variables"
+2. Add a new variable:
+   - Key: `REACT_APP_OPENROUTER_API_KEY`
+   - Value: Your OpenRouter API key
+3. Save and deploy
 
-1. Edit the components in the `src/components` directory to update content:
-   - `Hero.js`: Update name, title, and introduction
-   - `About.js`: Modify the about me section
-   - `Experience.js`: Update your work experience
-   - `Skills.js`: Modify your skills
-   - `Publications.js`: Add your research papers and academic work
-   - `Projects.js`: Showcase your projects
-   - `Contact.js`: Update contact information
-   - `Freelance.js`: Update freelance experience
+### Custom Domain Setup (Optional)
 
-### Styling
+1. In your Amplify app, go to "App settings" > "Domain management"
+2. Click "Add domain"
+3. Enter your domain name and follow the verification steps
+4. Configure subdomains as needed
 
-1. Colors and theme:
-   - Edit `tailwind.config.js` to modify color schemes
-   - Update `src/index.css` and `src/App.css` for global styles
+## AI Chatbot Configuration
 
-2. Layout:
-   - Each component has its own styling that can be customized
+The chatbot uses OpenRouter API to access the Mistral 7B Instruct model. The system is configured to:
 
-### Adding New Sections
+1. Extract content from the website to answer questions
+2. Enforce English-only responses
+3. Remove emojis and maintain professional tone
+4. Optimize responses for mobile devices
 
-1. Create a new component in `src/components`
-2. Import and add the component to `App.js`
-3. Add navigation link in `Navbar.js` if needed
+### Updating the AI Model
 
-## Project Structure
+To change the AI model:
 
-```
-saiakashneela.com/
-├── public/             # Static files
-├── src/                # Source code
-│   ├── components/     # React components
-│   ├── App.js          # Main application component
-│   ├── index.js        # Entry point
-│   └── ...
-├── docker/             # Docker configuration
-│   ├── Dockerfile      # Docker build instructions
-│   ├── nginx.conf      # Nginx server configuration
-│   └── ...
-└── ...
-```
+1. Edit `src/services/aiService.js`
+2. Update the `MODEL` constant
+3. Adjust temperature and token settings as needed
 
-## Technologies Used
+## Maintenance
 
-- **React**: UI library
-- **Tailwind CSS**: Utility-first CSS framework
-- **Framer Motion**: Animation library
-- **React Router**: For page navigation
-- **Docker**: Containerization
-- **Nginx**: Web server for production
+- **Content Updates**: Update site content in the relevant React components
+- **AI Training**: The AI automatically crawls the site content on load
+- **Styling**: Modify CSS files for design changes
 
 ## License
 
-This project is open-source and available under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
-
-## Acknowledgments
-
-- Icons provided by [React Icons](https://react-icons.github.io/react-icons/)
-- Animations powered by [Framer Motion](https://www.framer.com/motion/)
+All rights reserved. This code is not open for reuse without permission.
