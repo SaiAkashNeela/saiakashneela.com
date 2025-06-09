@@ -38,8 +38,8 @@ const Hero = ({ darkMode }) => {
               variants={item}
               className={`text-lg sm:text-xl mb-3 mt-8 sm:mt-0 font-medium ${darkMode ? 'text-secondary' : 'text-secondary-light'} section-header`}
               data-code={`// Welcome message
-console.log("Hello, I'm Sai Akash Neela");
-console.log("DevOps & Cloud Engineer");`}
+const greeting = "Hello, I'm Sai Akash Neela";
+const role = "DevOps & Cloud Engineer";`}
             >
               Hello, my name is
             </motion.p>

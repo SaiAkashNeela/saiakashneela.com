@@ -14,7 +14,6 @@ export const getChatCompletions = async (messages, isMobile = false) => {
     const apiKey = getApiKey();
     
     if (!apiKey) {
-      console.error('OpenRouter API key not found');
       throw new Error('API key configuration error');
     }
     
@@ -44,7 +43,6 @@ export const getChatCompletions = async (messages, isMobile = false) => {
     // Call the model directly without fallback
     return await callModel(MODEL, messages, isMobile, apiKey);
   } catch (error) {
-    console.error('Error calling OpenRouter API:', error);
     throw error;
   }
 };
@@ -74,12 +72,10 @@ async function callModel(model, messages, isMobile, apiKey) {
   
   if (!response.ok) {
     const errorText = await response.text();
-    console.error(`API Error Response (${model}):`, errorText);
-    throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+    throw new Error(`API request failed with status ${response.status}`);
   }
   
   const data = await response.json();
-  console.log(`API Response (${model}):`, data); // Log successful response for debugging
   
   // Post-process response to remove excessive emojis
   if (data.choices && data.choices[0] && data.choices[0].message) {
@@ -157,9 +153,8 @@ function containsNonLatinCharacters(text) {
   const nonLatinMatches = text.match(nonLatinPattern);
   const nonLatinCount = nonLatinMatches ? nonLatinMatches.length : 0;
   
-  // If more than 10% of the text is non-Latin, consider it a non-English response
+  // If more than 5% of the text is non-Latin, consider it a non-English response
   if (nonLatinCount > 0 && nonLatinCount > totalChars * 0.05) {
-    console.log(`Detected non-Latin script: ${nonLatinCount} characters out of ${totalChars}`);
     return true;
   }
   
@@ -184,7 +179,6 @@ function getApiKey() {
   // For development or if env variable isn't available
   // NOTE: This API key should be removed before deployment to production
   // and properly configured in AWS Amplify Console
-  console.warn('Using fallback API key - make sure to set REACT_APP_OPENROUTER_API_KEY in production');
   
   // For AWS Amplify, this fallback should never be used in production
   // It's only here for local development
@@ -207,5 +201,4 @@ function getApiKey() {
 // This would be replaced with actual AWS Amplify / AWS SSM code
 export const configureAiService = () => {
   // Configuration for AWS Amplify would go here
-  console.log('AI Service configured');
 }; 

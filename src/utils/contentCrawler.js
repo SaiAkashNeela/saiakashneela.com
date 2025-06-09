@@ -138,13 +138,11 @@ export const chunkContent = (content, chunkSize = 1000) => {
 export const crawlSiteContent = () => {
   try {
     const rawContent = extractPageContent();
-    console.log('Content crawled:', rawContent.substring(0, 100) + '...');
     return {
       rawContent,
       chunks: chunkContent(rawContent)
     };
   } catch (error) {
-    console.error('Error in crawlSiteContent:', error);
     return {
       rawContent: 'Error crawling site content',
       chunks: []

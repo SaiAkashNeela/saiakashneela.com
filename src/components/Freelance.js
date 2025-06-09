@@ -103,7 +103,7 @@ const Freelance = ({ darkMode }) => {
             </p>
             <div className={`flex flex-wrap justify-center gap-3 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
               {[
-                { name: "TheMadZone", url: "https://www.themadzone.co.uk/" },
+                { name: "TheMadZone", url: "https://www.themadzone.com/" },
                 { name: "AmazingTricks", url: "https://www.amazingtricks.in/" },
                 { name: "Cardgency", url: "https://www.cardgency.com/" },
                 { name: "Broadway Constructions", url: "https://bwc.geeksdesigns.com/" },

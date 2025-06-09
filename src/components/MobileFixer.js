@@ -9,8 +9,6 @@ const MobileFixer = () => {
   useEffect(() => {
     const fixMobileStyles = () => {
       if (window.innerWidth <= 768) {
-        console.log('MobileFixer: Applying fixes');
-        
         // Directly get elements
         const chatInput = document.querySelector('.chat-input-bar');
         const chatBox = document.querySelector('.chat-box-container');

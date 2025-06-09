@@ -71,8 +71,6 @@ const ChatBox = ({ darkMode, isMobile: propIsMobile }) => {
           chatBoxContainer.style.right = 'auto';
           chatBoxContainer.style.transform = 'translateX(-50%)';
         }
-        
-        console.log('Applied direct mobile fixes');
       }
     };
     
@@ -96,13 +94,10 @@ const ChatBox = ({ darkMode, isMobile: propIsMobile }) => {
     const crawlContent = () => {
       try {
         setIsCrawling(true);
-        console.log('Starting content crawl...');
         const content = crawlSiteContent();
         setSiteContent(content.rawContent);
         setContentLoaded(true);
-        console.log('Site content crawled successfully');
       } catch (error) {
-        console.error('Error crawling site content:', error);
         // Set some fallback content
         setSiteContent('Sai Akash Neela is a DevOps & Cloud/Web Infrastructure Engineer with expertise in React, Node.js, AWS, Docker, and Kubernetes.');
         setContentLoaded(true);
@@ -240,7 +235,6 @@ INSTRUCTIONS:
         throw new Error('Invalid response format');
       }
     } catch (error) {
-      console.error('Error:', error);
       setMessages(prev => [...prev, { 
         role: 'assistant', 
         content: 'Sorry, I encountered an error. Please try again later.' 
@@ -252,7 +246,7 @@ INSTRUCTIONS:
 
   // For debugging purposes
   useEffect(() => {
-    console.log('Mobile state:', isMobile);
+    // No debugging in production
   }, [isMobile]);
 
   return (

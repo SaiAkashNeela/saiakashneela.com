@@ -12,7 +12,7 @@ const Projects = ({ darkMode }) => {
       image: null,
       technologies: ['WordPress', 'WooCommerce', 'CSS', 'JavaScript', 'Responsive Design'],
       github: '#',
-      live: 'https://www.themadzone.co.uk/',
+      live: 'https://www.themadzone.com/',
       category: 'E-commerce',
     },
     {

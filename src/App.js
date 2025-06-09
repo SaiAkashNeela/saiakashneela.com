@@ -54,29 +54,19 @@ function App() {
     }
   }, [darkMode]);
 
-  // Check if device is mobile
+  // Check if the device is mobile
   useEffect(() => {
     const checkMobile = () => {
-      const mobile = window.innerWidth <= 768;
-      setIsMobile(mobile);
-      
-      // Add a class to the root html element for global mobile styling
-      if (mobile) {
-        document.documentElement.classList.add('mobile-device');
-      } else {
-        document.documentElement.classList.remove('mobile-device');
-      }
+      setIsMobile(window.innerWidth <= 768);
     };
     
-    // Run immediately
+    // Initial check
     checkMobile();
     
-    // Set up listener
+    // Add event listener for window resize
     window.addEventListener('resize', checkMobile);
     
-    // Log the mobile state for debugging
-    console.log('Is mobile device:', window.innerWidth <= 768);
-    
+    // Cleanup
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 

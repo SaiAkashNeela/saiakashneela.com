@@ -3,7 +3,7 @@ import './DevBackground.css';
 
 const codeSnippets = [
   'const user = { name: "Sai", role: "DevOps" };',
-  'console.log("Hello, developer!");',
+  'function greet() { return "Hello, developer!"; }',
   'docker run hello-world',
   'kubectl get pods',
   'terraform apply',
