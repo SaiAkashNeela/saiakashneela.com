@@ -11,6 +11,20 @@ const Footer = ({ darkMode }) => {
     { icon: <FaLinkedinIn />, url: 'https://www.linkedin.com/in/saiakashneela/' },
   ];
 
+  // Footer links in the same order as in the main navigation
+  const footerLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Publications', href: '#publications' },
+    { name: 'Certifications', href: '#certifications' },
+    { name: 'Freelance', href: '#freelance' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Education', href: '#education' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
   return (
     <footer className={`py-8 ${darkMode ? 'bg-navy-dark' : 'bg-slate-800'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,15 +72,15 @@ const Footer = ({ darkMode }) => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex flex-wrap justify-center gap-4 md:gap-8 mb-6 text-sm"
           >
-            <a href="#home" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Home</a>
-            <a href="#about" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>About</a>
-            <a href="#experience" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Experience</a>
-            <a href="#skills" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Skills</a>
-            <a href="#publications" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Publications</a>
-            <a href="#certifications" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Certifications</a>
-            <a href="#projects" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Projects</a>
-            <a href="#freelance" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Freelance</a>
-            <a href="#contact" className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>Contact</a>
+            {footerLinks.map((link, index) => (
+              <a 
+                key={index}
+                href={link.href} 
+                className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}
+              >
+                {link.name}
+              </a>
+            ))}
           </motion.div>
           
           <motion.div

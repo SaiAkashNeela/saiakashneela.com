@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaCookieBite } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const CookieConsentButton = ({ darkMode }) => {
   const [showMessage, setShowMessage] = useState(false);
@@ -78,14 +79,13 @@ const CookieConsentButton = ({ darkMode }) => {
               </h3>
               <p className="text-sm">
                 This website uses cookies from Google Analytics to analyze traffic and improve your experience.
-                Learn more in our <a 
-                  href="/privacy-policy" 
+                Learn more in our <Link 
+                  to="/privacy-policy" 
                   className={`${darkMode ? 'text-secondary hover:text-secondary-light' : 'text-secondary-light hover:text-secondary'}`}
-                  target="_blank"
-                  rel="noreferrer"
+                  onClick={() => setShowMessage(false)}
                 >
                   Privacy & Cookie Policy
-                </a>.
+                </Link>.
               </p>
               <div className="flex gap-2 mt-2">
                 <button

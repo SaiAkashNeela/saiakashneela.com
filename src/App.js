@@ -17,6 +17,7 @@ import Certifications from './components/Certifications';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Education from './components/Education';
 import AIIntroLoader from './components/AIIntroLoader';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import NotFound from './components/NotFound';
@@ -26,14 +27,13 @@ import MobileFixer from './components/MobileFixer';
 import { getPersonSchema, getWebsiteSchema } from './schema';
 
 function App() {
+  // Initialize dark mode based on time of day (dark mode between 7PM and 6AM)
   const [darkMode, setDarkMode] = useState(() => {
-    const currentHour = new Date().getHours();
-    // Default to dark mode between 7 PM (19:00) and 6 AM (6:00)
-    const isDarkMode = currentHour >= 19 || currentHour < 6;
-    console.log(`Current hour: ${currentHour}, Dark mode: ${isDarkMode}`);
-    return isDarkMode;
+    const hours = new Date().getHours();
+    return hours >= 19 || hours < 6;
   });
-  const [isLoading, setIsLoading] = useState(true);
+  
+  const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
   // Combined schema for the homepage
@@ -45,14 +45,14 @@ function App() {
     ]
   };
 
+  // Apply dark mode class to body
   useEffect(() => {
-    // Apply dark/light mode to body
     if (darkMode) {
-      document.documentElement.classList.add('dark');
-      document.documentElement.classList.remove('light');
+      document.body.classList.add('dark');
+      document.body.classList.remove('light');
     } else {
-      document.documentElement.classList.add('light');
-      document.documentElement.classList.remove('dark');
+      document.body.classList.add('light');
+      document.body.classList.remove('dark');
     }
   }, [darkMode]);
 
@@ -72,16 +72,14 @@ function App() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Simple loading screen
   useEffect(() => {
-    // Initial loading sequence
-    const loadTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000); // Loading screen duration
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
     
-    return () => {
-      clearTimeout(loadTimer);
-    };
-  }, []); 
+    return () => clearTimeout(timer);
+  }, []);
 
   // Preload critical images
   useEffect(() => {
@@ -115,6 +113,7 @@ function App() {
         <Certifications darkMode={darkMode} />
         <Freelance darkMode={darkMode} />
         <Projects darkMode={darkMode} />
+        <Education darkMode={darkMode} />
         <Contact darkMode={darkMode} />
         <Footer darkMode={darkMode} />
       </div>
@@ -128,7 +127,7 @@ function App() {
         <CodeSnippets darkMode={darkMode} />
         <MobileFixer />
         <div className={`App transition-colors duration-300 ${darkMode ? 'dark' : 'light'}`}>
-          {isLoading ? (
+          {loading ? (
             <>
               <SEO title="Loading... | Sai Akash Neela" />
               <AIIntroLoader darkMode={darkMode} />

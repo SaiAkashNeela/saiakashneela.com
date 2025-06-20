@@ -1,9 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 const Navbar = ({ darkMode, setDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+
+  // Check if device is tablet
+  useEffect(() => {
+    const checkTablet = () => {
+      const width = window.innerWidth;
+      // Consider screens between 768px and 1024px as tablets
+      setIsTablet(width >= 768 && width <= 1024);
+    };
+    
+    // Initial check
+    checkTablet();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkTablet);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkTablet);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +50,30 @@ const Navbar = ({ darkMode, setDarkMode }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isOpen]);
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isOpen && !event.target.closest('.mobile-menu') && !event.target.closest('.menu-button')) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -44,12 +88,39 @@ const Navbar = ({ darkMode, setDarkMode }) => {
     { name: 'Experience', href: '#experience' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Education', href: '#education' },
     { name: 'Contact', href: '#contact' },
   ];
 
+  // Mobile menu slide-in animation variants
+  const menuVariants = {
+    closed: {
+      x: "100%",
+      opacity: 0,
+      transition: {
+        type: "tween",
+        duration: 0.25
+      }
+    },
+    open: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "tween",
+        duration: 0.25
+      }
+    }
+  };
+
+  // Backdrop variants
+  const backdropVariants = {
+    closed: { opacity: 0 },
+    open: { opacity: 1 }
+  };
+
   return (
-    <nav className={`navbar fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-3 shadow-md' : 'py-5'}`}>
-      <div className="container mx-auto px-4">
+    <nav className={`navbar fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-2 shadow-md' : 'py-4'}`}>
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -58,93 +129,77 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             className="flex items-center"
           >
             <a href="#home" className={`font-bold text-xl sm:text-2xl ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-              <span className={darkMode ? 'text-indigo-400' : 'text-indigo-600'}>Sai</span> Akash Neela
+              <span className={darkMode ? 'text-indigo-400' : 'text-indigo-600'}>Sai Akash</span> Neela
             </a>
           </motion.div>
 
-          {/* Desktop Menu */}
+          {/* Desktop Menu - Hidden on small screens and tablets, visible only on large screens */}
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="hidden md:flex items-center space-x-6"
+            className="hidden lg:flex items-center space-x-6"
           >
             {navLinks.map((link, index) => (
               <a 
                 key={index} 
                 href={link.href} 
-                className={`text-sm font-medium hover:text-indigo-500 transition-colors duration-300 ${
+                className={`text-base font-medium hover:text-indigo-500 transition-colors duration-300 ${
                   darkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}
               >
                 {link.name}
               </a>
             ))}
-            <button 
-              onClick={() => window.open('https://s3.ap-south-2.amazonaws.com/saiakashneela.com/Sai-Akash-Neela.docx', '_blank')}
+            <a 
+              href="https://s3.ap-south-2.amazonaws.com/saiakashneela.com/Sai-Akash-Neela.docx" 
+              target="_blank" 
+              rel="noopener noreferrer"
               className="button button-primary"
             >
               Resume
-            </button>
+            </a>
             
-            {/* Dark Mode Toggle */}
+            {/* Dark Mode Toggle Button */}
             <button 
               onClick={toggleDarkMode} 
-              className="focus:outline-none"
+              className={`p-2 rounded-full transition-colors duration-300 ${
+                darkMode 
+                  ? 'bg-gray-800 text-yellow-300 hover:bg-gray-700' 
+                  : 'bg-indigo-100 text-indigo-800 hover:bg-indigo-200'
+              }`}
               aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
             >
-              <div className="toggle-track">
-                <motion.div 
-                  className="toggle-thumb"
-                  initial={false}
-                  animate={{ x: darkMode ? 0 : 24 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                >
-                  {darkMode ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                    </svg>
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
-                    </svg>
-                  )}
-                </motion.div>
-              </div>
+              {darkMode ? (
+                <FaSun className="h-5 w-5" />
+              ) : (
+                <FaMoon className="h-5 w-5" />
+              )}
             </button>
           </motion.div>
 
-          {/* Mobile Menu Toggle */}
-          <div className="md:hidden flex items-center">
-            {/* Dark Mode Toggle - Mobile */}
+          {/* Mobile & Tablet Menu Toggle - Visible on small and medium screens */}
+          <div className="lg:hidden flex items-center">
+            {/* Dark Mode Toggle - Mobile & Tablet */}
             <button 
               onClick={toggleDarkMode} 
-              className="mr-3 focus:outline-none"
+              className={`mr-3 p-2 rounded-full transition-colors duration-300 ${
+                darkMode 
+                  ? 'bg-gray-800 text-yellow-300 hover:bg-gray-700' 
+                  : 'bg-indigo-100 text-indigo-800 hover:bg-indigo-200'
+              }`}
               aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
             >
-              <div className="toggle-track">
-                <motion.div 
-                  className="toggle-thumb"
-                  initial={false}
-                  animate={{ x: darkMode ? 0 : 24 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                >
-                  {darkMode ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                    </svg>
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
-                    </svg>
-                  )}
-                </motion.div>
-              </div>
+              {darkMode ? (
+                <FaSun className="h-4 w-4" />
+              ) : (
+                <FaMoon className="h-4 w-4" />
+              )}
             </button>
             
             <button 
               onClick={toggleMenu} 
-              className={`focus:outline-none p-2 rounded-md ${darkMode ? 'text-gray-300 hover:bg-gray-800' : 'text-gray-700 hover:bg-gray-100'} transition-colors duration-300`}
+              className="menu-button focus:outline-none p-2 rounded-md transition-colors duration-300"
               aria-label="Toggle menu"
             >
               {isOpen ? (
@@ -161,7 +216,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Uses previous implementation */}
       <motion.div 
         initial={{ opacity: 0, height: 0 }}
         animate={{ 
@@ -169,7 +224,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           height: isOpen ? 'auto' : 0
         }}
         transition={{ duration: 0.3 }}
-        className={`md:hidden overflow-hidden ${darkMode ? 'bg-gray-900/90' : 'bg-white/90'} backdrop-blur-sm`}
+        className={`lg:hidden overflow-hidden ${darkMode ? 'bg-gray-900/90' : 'bg-white/90'} backdrop-blur-sm`}
       >
         <div className="px-4 py-3 space-y-2">
           {navLinks.map((link, index) => (
@@ -187,18 +242,17 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               {link.name}
             </motion.a>
           ))}
-          <motion.button 
-            onClick={() => {
-              window.open('https://s3.ap-south-2.amazonaws.com/saiakashneela.com/Sai-Akash-Neela.docx', '_blank');
-              toggleMenu();
-            }}
-            className="button button-primary w-full mt-3"
+          <motion.a
+            href="https://s3.ap-south-2.amazonaws.com/saiakashneela.com/Sai-Akash-Neela.docx"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button button-primary w-full mt-3 text-center"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: navLinks.length * 0.05 }}
           >
             Resume
-          </motion.button>
+          </motion.a>
         </div>
       </motion.div>
     </nav>

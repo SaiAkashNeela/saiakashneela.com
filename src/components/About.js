@@ -15,9 +15,9 @@ const About = ({ darkMode }) => {
           <h3 className={`text-3xl md:text-4xl font-bold mb-8 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Get to know me</h3>
         </motion.div>
         
-        <div className="grid md:grid-cols-5 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-6 lg:gap-12">
           <motion.div 
-            className="md:col-span-3"
+            className="md:col-span-1 lg:col-span-3"
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -47,7 +47,7 @@ const About = ({ darkMode }) => {
           </motion.div>
           
           <motion.div 
-            className="md:col-span-2"
+            className="md:col-span-1 lg:col-span-2"
             initial={{ opacity: 0, x: 10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -57,7 +57,7 @@ const About = ({ darkMode }) => {
               data-code={`// Personal Information
 const personalInfo = {
   name: "Sai Akash Neela",
-  location: "St Albans, United Kingdom",
+  location: "United Kingdom",
   email: "hello@saiakashneela.com",
   education: "Master of Science in Computer Science",
   experience: "6+ Years",
@@ -77,7 +77,7 @@ const personalInfo = {
                 />
                 <InfoItem 
                   label="Location" 
-                  value="St Albans, United Kingdom" 
+                  value="United Kingdom" 
                   darkMode={darkMode} 
                 />
                 <InfoItem 
@@ -98,12 +98,12 @@ const personalInfo = {
                 />
               </ul>
               
-              <div className="mt-8">
+              <div className="mt-6 sm:mt-8">
                 <a 
                   href="https://s3.ap-south-2.amazonaws.com/saiakashneela.com/Sai-Akash-Neela.docx" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className={`btn-primary ${darkMode ? '' : 'btn-primary-light'} px-6 py-3 rounded inline-flex items-center hover-lift`}
+                  className={`btn-primary ${darkMode ? '' : 'btn-primary-light'} px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded inline-flex items-center justify-center hover-lift w-full sm:w-auto`}
                 >
                   <span>Download Resume</span>
                   <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -121,13 +121,13 @@ const personalInfo = {
 
 const InfoItem = ({ label, value, isEmail = false, darkMode }) => (
   <li className="flex flex-col sm:flex-row sm:items-start">
-    <span className={`font-medium sm:w-28 flex-shrink-0 text-sm sm:text-base ${darkMode ? 'text-gray-400' : 'text-slate-500'}`}>
+    <span className={`font-medium sm:w-24 md:w-28 flex-shrink-0 text-sm sm:text-base ${darkMode ? 'text-gray-400' : 'text-slate-500'}`}>
       {label}:
     </span>
     {isEmail ? (
       <a 
         href={`mailto:${value}`} 
-        className={`${darkMode ? 'text-secondary hover:text-secondary-dark' : 'text-secondary-light hover:text-secondary'} text-sm sm:text-base hover-glow mt-0.5 sm:mt-0`}
+        className={`${darkMode ? 'text-secondary hover:text-secondary-dark' : 'text-secondary-light hover:text-secondary'} text-sm sm:text-base break-all hover-glow mt-0.5 sm:mt-0`}
       >
         {value}
       </a>
