@@ -48,15 +48,16 @@ const CookieConsent = ({ darkMode }) => {
           <div className="container mx-auto">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div className={`text-sm md:text-base ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                <p>
-                  This website uses cookies from Google Analytics to analyze traffic and improve your experience. 
-                  These cookies collect information about how you use our site.
+                <p className="mb-4 text-sm">
+                  We use cookies to improve your experience on our website. By clicking "Accept All", you consent to our use of cookies. For more details, read our{' '}
                   <a 
-                    href="/cookie-policy" 
-                    className={`ml-1 underline ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}
+                    href="/privacy-policy" 
+                    className={`text-blue-400 hover:text-blue-300 hover:underline`}
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    Learn more
-                  </a>
+                    Privacy & Cookie Policy
+                  </a>.
                 </p>
               </div>
               <div className="flex gap-3 mt-3 md:mt-0">

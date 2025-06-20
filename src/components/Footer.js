@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedinIn, FaRegCopyright, FaHeart, FaShieldAlt } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn, FaRegCopyright, FaShieldAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Footer = ({ darkMode }) => {
@@ -87,32 +87,12 @@ const Footer = ({ darkMode }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.35 }}
-            className="flex items-center text-sm mb-4 gap-4"
+            className="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-4 text-xs md:text-sm"
           >
             <Link to="/privacy-policy" className={`flex items-center ${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>
-              <FaShieldAlt className="mr-1" />
-              Privacy Policy
+              <FaShieldAlt className="mr-2" />
+              <span>Privacy & Cookie Policy</span>
             </Link>
-            <Link to="/cookie-policy" className={`flex items-center ${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-300 hover:text-white'} hover-glow`}>
-              <FaShieldAlt className="mr-1" />
-              Cookie Policy
-            </Link>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-xs flex items-center"
-          >
-            <span className={darkMode ? 'text-gray-500' : 'text-gray-400'}>
-              Made with 
-            </span>
-            <FaHeart className={`mx-1 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`} />
-            <span className={darkMode ? 'text-gray-500' : 'text-gray-400'}>
-              and React + Tailwind CSS
-            </span>
           </motion.div>
         </div>
       </div>

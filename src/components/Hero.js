@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn, FaTwitter, FaCode, FaServer, FaCloud } from 'react-icons/fa';
 
 const Hero = ({ darkMode }) => {
   const container = {
@@ -22,112 +22,115 @@ const Hero = ({ darkMode }) => {
   const socialIcons = [
     { icon: <FaGithub />, url: 'https://github.com/SaiAkashNeela' },
     { icon: <FaLinkedinIn />, url: 'https://www.linkedin.com/in/saiakashneela/' },
+    { icon: <FaTwitter />, url: '#' },
   ];
 
   return (
-    <section id="home" className={`min-h-[90vh] flex items-center ${darkMode ? 'bg-primary' : 'bg-primary-light'}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center pt-12 md:pt-0">
-        <motion.div
-          className="w-full md:w-3/5 lg:w-1/2 md:pr-10"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.div variants={container} initial="hidden" animate="show">
-            <motion.p 
-              variants={item}
-              className={`text-lg sm:text-xl mb-3 mt-8 sm:mt-0 font-medium ${darkMode ? 'text-secondary' : 'text-secondary-light'} section-header`}
-              data-code={`// Welcome message
-const greeting = "Hello, I'm Sai Akash Neela";
-const role = "DevOps & Cloud Engineer";`}
-            >
-              Hello, my name is
-            </motion.p>
-            <motion.h1 
-              variants={item} 
-              className={`text-4xl sm:text-5xl md:text-6xl font-bold mb-3 ${darkMode ? 'text-gray-100' : 'text-slate-900'} section-header`}
-              data-code={`const name = "Sai Akash Neela";
-const role = "DevOps & Cloud Engineer";
-const location = "St Albans, UK";`}
-            >
-              Sai Akash Neela.
-            </motion.h1>
-            <motion.h2 
-              variants={item} 
-              className={`text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 ${darkMode ? 'text-gray-400' : 'text-slate-600'} opacity-100 section-header`}
-              data-code={`const skills = {
-  devops: ["AWS", "Docker", "Kubernetes"],
-  cloud: ["AWS", "Azure", "GCP"],
-  web: ["WordPress", "DNS", "Hosting"]
-};`}
-            >
-              DevOps & Cloud/Web Infrastructure Engineer
-            </motion.h2>
-            <motion.p 
-              variants={item} 
-              className={`text-base sm:text-lg max-w-lg mb-8 ${darkMode ? 'text-gray-300' : 'text-slate-700'} section-header`}
-              data-code={`// About me
-const about = {
-  passion: "Building scalable infrastructure",
-  expertise: ["DevOps automation", "WordPress", "DNS management"],
-  location: "St Albans, United Kingdom"
-};`}
-            >
-              Passionate about building scalable infrastructure and optimizing web hosting environments.
-              I specialize in DevOps automation, WordPress development, and DNS/domain management.
-            </motion.p>
-
-            <motion.div variants={item} className="flex flex-wrap gap-4">
-              <a 
-                href="#contact" 
-                className={`btn-primary ${darkMode ? '' : 'btn-primary-light'} px-6 py-3 rounded hover-lift`}
+    <section id="home" className="min-h-screen flex items-center pt-24 md:pt-0">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row items-center justify-between">
+          {/* Left Content - Bio */}
+          <motion.div
+            className="w-full lg:w-1/2 lg:pr-12 text-center lg:text-left"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <motion.div variants={container} initial="hidden" animate="show">
+              <motion.p 
+                variants={item}
+                className={`text-lg mb-3 ${darkMode ? 'text-indigo-400' : 'text-indigo-600'} font-medium`}
               >
-                Get In Touch
-              </a>
-              <a 
-                href="#projects" 
-                className={`btn-secondary ${darkMode ? '' : 'btn-secondary-light'} px-6 py-3 rounded hover-lift`}
+                Hello, I'm
+              </motion.p>
+              <motion.h1 
+                variants={item} 
+                className={`text-4xl sm:text-5xl md:text-6xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}
               >
-                See My Work
-              </a>
-            </motion.div>
+                Sai Akash Neela
+              </motion.h1>
+              <motion.h2 
+                variants={item} 
+                className={`text-2xl sm:text-3xl font-medium mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}
+              >
+                DevOps & Cloud Infrastructure Engineer
+              </motion.h2>
+              <motion.p 
+                variants={item} 
+                className={`text-base sm:text-lg max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}
+              >
+                I build scalable infrastructure and optimize web environments with expertise in DevOps automation, 
+                cloud architecture, and security best practices. Based in St Albans, UK.
+              </motion.p>
 
-            <motion.div variants={item} className="flex mt-8 space-x-5">
-              {socialIcons.map((social, index) => (
+              <motion.div variants={item} className="flex flex-wrap justify-center lg:justify-start gap-4">
                 <a 
-                  key={index} 
-                  href={social.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className={`text-xl hover-glow hover-lift flex items-center justify-center h-10 w-10 rounded-full ${
-                    darkMode 
-                      ? 'bg-navy-light text-gray-300 hover:text-secondary' 
-                      : 'bg-slate-100 text-slate-700 hover:text-secondary-light'
-                  } transition-all duration-300`}
+                  href="#contact" 
+                  className="button button-primary"
                 >
-                  {social.icon}
+                  Get In Touch
                 </a>
-              ))}
+                <a 
+                  href="#projects" 
+                  className="button button-secondary"
+                >
+                  View My Work
+                </a>
+              </motion.div>
+
+              <motion.div variants={item} className="flex mt-8 space-x-4 justify-center lg:justify-start">
+                {socialIcons.map((social, index) => (
+                  <a 
+                    key={index} 
+                    href={social.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className={`text-lg flex items-center justify-center h-10 w-10 rounded-full transition-all duration-300 ${
+                      darkMode 
+                        ? 'bg-gray-800 text-gray-300 hover:bg-indigo-600 hover:text-white' 
+                        : 'bg-gray-100 text-gray-600 hover:bg-indigo-500 hover:text-white'
+                    }`}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </motion.div>
             </motion.div>
           </motion.div>
-        </motion.div>
 
-        <motion.div
-          className="w-full md:w-2/5 lg:w-1/2 mt-12 md:mt-0"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
-          <div className={`relative ${darkMode ? 'glow-card' : 'glow-card-light'} rounded-lg p-1 max-w-md mx-auto`}>
-            <div className="animate-float">
-              <img 
-                src="https://s3.ap-south-2.amazonaws.com/saiakashneela.com/profile.png" 
-                alt="Sai Akash Neela" 
-                className="rounded-lg shadow-lg w-full"
-              />
+          {/* Right Content - Animation */}
+          <motion.div
+            className="w-full lg:w-1/2 mt-12 lg:mt-0 flex justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <div className="relative grid grid-cols-2 gap-4 max-w-lg w-full">
+              {[
+                { icon: <FaCloud />, label: "Cloud", delay: 0.1 },
+                { icon: <FaServer />, label: "DevOps", delay: 0.3 },
+                { icon: <FaCode />, label: "Development", delay: 0.5 }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: item.delay, duration: 0.5 }}
+                  className={`${index === 2 ? "col-span-2" : ""} p-6 rounded-xl flex flex-col items-center ${
+                    darkMode 
+                      ? 'bg-navy-light bg-opacity-80 text-gray-300' 
+                      : 'bg-white bg-opacity-80 shadow-lg text-gray-700'
+                  }`}
+                >
+                  <div className={`text-3xl mb-3 ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>
+                    {item.icon}
+                  </div>
+                  <h3 className="text-lg font-medium">{item.label}</h3>
+                </motion.div>
+              ))}
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -5,9 +5,7 @@ import './App.css';
 import './components/DevEffects.css';
 import './components/MobileFixes.css';
 import AnimatedBackground from './components/AnimatedBackground';
-import DevTerminal from './components/DevTerminal';
 import CodeSnippets from './components/CodeSnippets';
-import ChatBox from './components/ChatBox';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -19,9 +17,8 @@ import Certifications from './components/Certifications';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Loader from './components/Loader';
+import AIIntroLoader from './components/AIIntroLoader';
 import PrivacyPolicy from './components/PrivacyPolicy';
-import CookiePolicy from './components/CookiePolicy';
 import NotFound from './components/NotFound';
 import SEO from './components/SEO';
 import CookieConsentButton from './components/CookieConsentButton';
@@ -29,9 +26,14 @@ import MobileFixer from './components/MobileFixer';
 import { getPersonSchema, getWebsiteSchema } from './schema';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    const currentHour = new Date().getHours();
+    // Default to dark mode between 7 PM (19:00) and 6 AM (6:00)
+    const isDarkMode = currentHour >= 19 || currentHour < 6;
+    console.log(`Current hour: ${currentHour}, Dark mode: ${isDarkMode}`);
+    return isDarkMode;
+  });
   const [isLoading, setIsLoading] = useState(true);
-  const [showTerminal, setShowTerminal] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   // Combined schema for the homepage
@@ -76,25 +78,10 @@ function App() {
       setIsLoading(false);
     }, 3000); // Loading screen duration
     
-    // Show terminal after a delay when page loads (after main loader is gone)
-    const terminalTimer = setTimeout(() => {
-      // Only show terminal on non-mobile devices
-      if (!isMobile) {
-        setShowTerminal(true);
-      }
-    }, 5000); // Delay before showing terminal
-    
-    // Automatically hide terminal after 1 minute if user doesn't interact with it
-    const terminalHideTimer = setTimeout(() => {
-      setShowTerminal(false);
-    }, 60000);
-    
     return () => {
       clearTimeout(loadTimer);
-      clearTimeout(terminalTimer);
-      clearTimeout(terminalHideTimer);
     };
-  }, [isMobile]); // Add isMobile as dependency
+  }, []); 
 
   // Preload critical images
   useEffect(() => {
@@ -108,11 +95,6 @@ function App() {
       img.src = src;
     });
   }, []);
-
-  // Handler to hide terminal
-  const hideTerminal = () => {
-    setShowTerminal(false);
-  };
 
   // Homepage component
   const HomePage = () => (
@@ -131,8 +113,8 @@ function App() {
         <Skills darkMode={darkMode} />
         <Publications darkMode={darkMode} />
         <Certifications darkMode={darkMode} />
-        <Projects darkMode={darkMode} />
         <Freelance darkMode={darkMode} />
+        <Projects darkMode={darkMode} />
         <Contact darkMode={darkMode} />
         <Footer darkMode={darkMode} />
       </div>
@@ -144,14 +126,12 @@ function App() {
       <Router>
         <AnimatedBackground darkMode={darkMode} />
         <CodeSnippets darkMode={darkMode} />
-        {showTerminal && !isMobile && <DevTerminal darkMode={darkMode} hideTerminal={hideTerminal} />}
-        <ChatBox darkMode={darkMode} isMobile={isMobile} />
         <MobileFixer />
         <div className={`App transition-colors duration-300 ${darkMode ? 'dark' : 'light'}`}>
           {isLoading ? (
             <>
               <SEO title="Loading... | Sai Akash Neela" />
-              <Loader />
+              <AIIntroLoader darkMode={darkMode} />
             </>
           ) : (
             <>
@@ -160,21 +140,22 @@ function App() {
                 <Route path="/privacy-policy" element={
                   <>
                     <SEO 
-                      title="Privacy Policy | Sai Akash Neela"
-                      description="Privacy policy for Sai Akash Neela's portfolio website. Learn about how we handle your data and protect your privacy."
+                      title="Privacy & Cookie Policy | Sai Akash Neela"
+                      description="Privacy and cookie policy for Sai Akash Neela's portfolio website. Learn about how we handle your data and protect your privacy."
                       canonicalUrl="/privacy-policy"
                     />
                     <PrivacyPolicy darkMode={darkMode} setDarkMode={setDarkMode} />
                   </>
                 } />
+                {/* Redirect /cookie-policy to /privacy-policy */}
                 <Route path="/cookie-policy" element={
                   <>
                     <SEO 
-                      title="Cookie Policy | Sai Akash Neela"
-                      description="Cookie policy for Sai Akash Neela's portfolio website. Learn about how we use cookies and protect your privacy."
-                      canonicalUrl="/cookie-policy"
+                      title="Privacy & Cookie Policy | Sai Akash Neela"
+                      description="Privacy and cookie policy for Sai Akash Neela's portfolio website. Learn about how we handle your data and protect your privacy."
+                      canonicalUrl="/privacy-policy"
                     />
-                    <CookiePolicy darkMode={darkMode} setDarkMode={setDarkMode} />
+                    <PrivacyPolicy darkMode={darkMode} setDarkMode={setDarkMode} />
                   </>
                 } />
                 <Route path="*" element={

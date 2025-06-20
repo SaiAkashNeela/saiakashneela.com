@@ -78,7 +78,14 @@ const CookieConsentButton = ({ darkMode }) => {
               </h3>
               <p className="text-sm">
                 This website uses cookies from Google Analytics to analyze traffic and improve your experience.
-                These cookies collect information about how you use our site.
+                Learn more in our <a 
+                  href="/privacy-policy" 
+                  className={`${darkMode ? 'text-secondary hover:text-secondary-light' : 'text-secondary-light hover:text-secondary'}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Privacy & Cookie Policy
+                </a>.
               </p>
               <div className="flex gap-2 mt-2">
                 <button

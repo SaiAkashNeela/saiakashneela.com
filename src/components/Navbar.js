@@ -43,56 +43,46 @@ const Navbar = ({ darkMode, setDarkMode }) => {
     { name: 'About', href: '#about' },
     { name: 'Experience', href: '#experience' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Publications', href: '#publications' },
-    { name: 'Certifications', href: '#certifications' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Freelance', href: '#freelance' },
     { name: 'Contact', href: '#contact' },
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? (darkMode ? 'bg-primary shadow-lg' : 'bg-primary-light shadow-lg') : 'py-4'}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className={`navbar fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-3 shadow-md' : 'py-5'}`}>
+      <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="flex items-center"
           >
-            <a href="#home" className={`font-bold text-xl sm:text-2xl ${darkMode ? 'text-secondary' : 'text-secondary-light'} hover-glow ${scrolled ? '' : 'hidden sm:block'}`}>
-              Sai Akash Neela
+            <a href="#home" className={`font-bold text-xl sm:text-2xl ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+              <span className={darkMode ? 'text-indigo-400' : 'text-indigo-600'}>Sai</span> Akash Neela
             </a>
-            {!scrolled && (
-              <div className="block sm:hidden w-8"></div>
-            )}
           </motion.div>
 
           {/* Desktop Menu */}
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="hidden md:flex space-x-3 lg:space-x-6 items-center"
+            className="hidden md:flex items-center space-x-6"
           >
             {navLinks.map((link, index) => (
               <a 
                 key={index} 
                 href={link.href} 
-                className={`transition-colors duration-300 text-sm lg:text-base hover-glow dev-hover-effect nav-link ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}
-                data-code={`<nav-link href="${link.href}">${link.name}</nav-link>`}
+                className={`text-sm font-medium hover:text-indigo-500 transition-colors duration-300 ${
+                  darkMode ? 'text-gray-300' : 'text-gray-700'
+                }`}
               >
                 {link.name}
               </a>
             ))}
             <button 
               onClick={() => window.open('https://s3.ap-south-2.amazonaws.com/saiakashneela.com/Sai-Akash-Neela.docx', '_blank')}
-              className={`border rounded px-3 py-1 transition-colors duration-300 text-sm lg:text-base ml-2 dev-hover-effect ${
-                darkMode 
-                  ? 'border-secondary text-secondary hover:bg-secondary hover:bg-opacity-10' 
-                  : 'border-secondary-light text-secondary-light hover:bg-secondary-light hover:bg-opacity-10'
-              } hover-lift`}
-              data-code="window.open('resume.pdf')"
+              className="button button-primary"
             >
               Resume
             </button>
@@ -100,7 +90,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             {/* Dark Mode Toggle */}
             <button 
               onClick={toggleDarkMode} 
-              className="ml-4 focus:outline-none"
+              className="focus:outline-none"
               aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
             >
               <div className="toggle-track">
@@ -111,7 +101,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 >
                   {darkMode ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800" viewBox="0 0 20 20" fill="currentColor">
                       <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
                     </svg>
                   ) : (
@@ -140,7 +130,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 >
                   {darkMode ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800" viewBox="0 0 20 20" fill="currentColor">
                       <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
                     </svg>
                   ) : (
@@ -154,7 +144,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             
             <button 
               onClick={toggleMenu} 
-              className={`focus:outline-none p-2 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}
+              className={`focus:outline-none p-2 rounded-md ${darkMode ? 'text-gray-300 hover:bg-gray-800' : 'text-gray-700 hover:bg-gray-100'} transition-colors duration-300`}
               aria-label="Toggle menu"
             >
               {isOpen ? (
@@ -179,24 +169,19 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           height: isOpen ? 'auto' : 0
         }}
         transition={{ duration: 0.3 }}
-        className="md:hidden overflow-hidden shadow-lg"
-        style={{ 
-          backgroundColor: darkMode ? 'var(--navy-light, #233554)' : 'var(--slate-light, #f8fafc)'
-        }}
+        className={`md:hidden overflow-hidden ${darkMode ? 'bg-gray-900/90' : 'bg-white/90'} backdrop-blur-sm`}
       >
-        <div className="px-4 py-3 space-y-1">
+        <div className="px-4 py-3 space-y-2">
           {navLinks.map((link, index) => (
             <motion.a
               key={index}
               href={link.href}
-              className={`block py-2 border-b last:border-b-0 hover-glow ${
-                darkMode 
-                  ? 'text-gray-300 border-gray-700' 
-                  : 'text-slate-700 border-gray-200'
+              className={`block py-2 text-center font-medium ${
+                darkMode ? 'text-gray-300 hover:text-indigo-400' : 'text-gray-700 hover:text-indigo-600'
               }`}
               onClick={toggleMenu}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
             >
               {link.name}
@@ -207,19 +192,12 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               window.open('https://s3.ap-south-2.amazonaws.com/saiakashneela.com/Sai-Akash-Neela.docx', '_blank');
               toggleMenu();
             }}
-            className={`border rounded px-4 py-2 my-2 w-full flex justify-center items-center hover-lift ${
-              darkMode 
-                ? 'border-secondary text-secondary hover:bg-secondary hover:bg-opacity-10' 
-                : 'border-secondary-light text-secondary-light hover:bg-secondary-light hover:bg-opacity-10'
-            }`}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            className="button button-primary w-full mt-3"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: navLinks.length * 0.05 }}
           >
-            <span>Resume</span>
-            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-            </svg>
+            Resume
           </motion.button>
         </div>
       </motion.div>
