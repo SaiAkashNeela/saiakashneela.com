@@ -63,39 +63,45 @@ const Contact = () => {
     <section id="contact" className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold">Get In Touch</h2>
-          <p className="text-muted-foreground">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Get In Touch
+          </h2>
+          <p className="mt-3 text-lg text-muted-foreground">
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+          </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <div className="space-y-4">
-              {contactInfo.map((info) => (
-                <Card key={info.title}>
-                  <CardHeader className="flex flex-row items-center gap-4">
-                    {info.icon}
-                    <CardTitle>{info.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <a href={info.link} className="text-muted-foreground hover:text-foreground">{info.content}</a>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          <div className="space-y-6">
+            {contactInfo.map((info) => (
+              <Card key={info.title} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+                <CardHeader className="flex flex-row items-center gap-4 p-4">
+                  <div className="flex-shrink-0">{info.icon}</div>
+                  <div>
+                    <CardTitle className="text-lg font-semibold text-primary">{info.title}</CardTitle>
+                    <a href={info.link} className="text-base text-muted-foreground hover:text-foreground transition-colors duration-300">
+                      {info.content}
+                    </a>
+                  </div>
+                </CardHeader>
+              </Card>
+            ))}
           </div>
           <div>
-            <Card>
+            <Card className="transform transition-transform duration-300 hover:shadow-lg">
               <CardHeader>
-                <CardTitle>Send me a message</CardTitle>
+                <CardTitle className="text-xl font-semibold text-center text-primary">Send me a message</CardTitle>
               </CardHeader>
               <CardContent>
                 {submitted ? (
-                  <div className="text-center">
-                    <FaPaperPlane className="h-12 w-12 text-primary mx-auto mb-4" />
-                    <h3 className="text-xl font-bold mb-2">Email Client Opened!</h3>
-                    <p className="text-muted-foreground">Your email app has been launched. Please send the email to complete your message.</p>
+                  <div className="text-center py-8">
+                    <FaPaperPlane className="h-12 w-12 text-primary mx-auto mb-4 animate-pulse" />
+                    <h3 className="text-xl font-bold text-foreground mb-2">Email Client Opened!</h3>
+                    <p className="text-muted-foreground">
+                      Your email app has been launched. Please send the email to complete your message.
+                    </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="email" className="sr-only">Email</label>
                       <Input
@@ -106,6 +112,7 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                         placeholder="Your Email"
+                        className="transition-shadow duration-300 focus:ring-2 focus:ring-primary"
                       />
                     </div>
                     <div>
@@ -118,9 +125,10 @@ const Contact = () => {
                         required
                         rows="6"
                         placeholder="Your Message"
+                        className="transition-shadow duration-300 focus:ring-2 focus:ring-primary"
                       />
                     </div>
-                    <Button type="submit" disabled={isSubmitting} className="w-full">
+                    <Button type="submit" disabled={isSubmitting} className="w-full transition-transform duration-300 hover:scale-105">
                       {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
                   </form>

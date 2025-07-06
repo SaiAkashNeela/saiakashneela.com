@@ -42,17 +42,17 @@ const Navbar = ({ darkMode, setDarkMode }) => {
   ];
 
   return (
-    <nav className={`navbar fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-2 shadow-md' : 'py-4'}`}>
+    <nav className={`navbar fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-2 shadow-md' : 'py-4'} bg-background/80 backdrop-blur-sm`}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center"
+            className="flex items-center flex-grow"
           >
-            <a href="#home" className={`font-bold text-xl sm:text-2xl ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-              <span className={darkMode ? 'text-indigo-400' : 'text-indigo-600'}>Sai Akash</span> Neela
+            <a href="#home" className="font-bold text-xl sm:text-2xl text-gray-800 dark:text-white">
+              <span className="text-indigo-600 dark:text-indigo-400">Sai Akash</span> Neela
             </a>
           </motion.div>
 
@@ -77,11 +77,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               </a>
             </Button>
             <Button variant="ghost" size="icon" onClick={toggleDarkMode} aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}>
-              {darkMode ? (
-                <FaSun className="h-5 w-5" />
-              ) : (
-                <FaMoon className="h-5 w-5" />
-              )}
+              <FaSun className="h-5 w-5 hidden dark:block" />
+              <FaMoon className="h-5 w-5 block dark:hidden" />
             </Button>
           </div>
 
@@ -89,11 +86,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           {/* Mobile & Tablet Menu Toggle */}
           <div className="lg:hidden flex items-center">
             <Button variant="ghost" size="icon" onClick={toggleDarkMode} aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}>
-              {darkMode ? (
-                <FaSun className="h-5 w-5" />
-              ) : (
-                <FaMoon className="h-5 w-5" />
-              )}
+              <FaSun className="h-5 w-5 hidden dark:block" />
+              <FaMoon className="h-5 w-5 block dark:hidden" />
             </Button>
             <Sheet>
               <SheetTrigger asChild>
@@ -109,8 +103,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                     <a
                       key={index}
                       href={link.href}
-                      className={`block py-2 text-center font-medium ${darkMode ? 'text-gray-300 hover:text-indigo-400' : 'text-gray-700 hover:text-indigo-600'
-                        }`}
+                      className="block py-2 text-center font-medium text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400"
                     >
                       {link.name}
                     </a>

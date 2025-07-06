@@ -21,11 +21,8 @@ import CookieConsentButton from './components/CookieConsentButton';
 import { getPersonSchema, getWebsiteSchema } from './schema';
 
 function App() {
-  // Initialize dark mode based on time of day (dark mode between 7PM and 6AM)
-  const [darkMode, setDarkMode] = useState(() => {
-    const hours = new Date().getHours();
-    return hours >= 19 || hours < 6;
-  });
+  // Initialize dark mode to false (light mode)
+  const [darkMode, setDarkMode] = useState(false);
   
   const [loading, setLoading] = useState(true);
 
@@ -40,12 +37,13 @@ function App() {
 
   // Apply dark mode class to body
   useEffect(() => {
+    const body = document.body;
     if (darkMode) {
-      document.body.classList.add('dark');
-      document.body.classList.remove('light');
+      body.classList.add('dark', 'bg-background');
+      body.classList.remove('light');
     } else {
-      document.body.classList.add('light');
-      document.body.classList.remove('dark');
+      body.classList.add('light', 'bg-background');
+      body.classList.remove('dark');
     }
   }, [darkMode]);
 

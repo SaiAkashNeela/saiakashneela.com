@@ -22,31 +22,41 @@ const Publications = () => {
     <section id="publications" className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold">Research Work</h2>
-          <p className="text-muted-foreground">My published papers.</p>
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Research Work
+          </h2>
+          <p className="mt-3 text-lg text-muted-foreground">
+            A summary of my published research and contributions.
+          </p>
         </div>
         <div className="space-y-8">
           {publications.map((publication) => (
-            <Card key={publication.doi}>
+            <Card key={publication.doi} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
               <CardHeader>
-                <CardTitle>{publication.title}</CardTitle>
-                <p className="text-muted-foreground">{publication.journal}, {publication.year}</p>
+                <CardTitle className="text-xl font-semibold text-primary">{publication.title}</CardTitle>
+                <p className="text-sm text-muted-foreground">{publication.journal}, {publication.year}</p>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">{publication.authors}</p>
-                <p className="text-muted-foreground mb-4">{publication.abstract}</p>
+                <p className="mb-4 text-sm font-medium text-muted-foreground">
+                  Authors: <span className="text-foreground">{publication.authors}</span>
+                </p>
+                <p className="mb-4 text-base text-foreground leading-relaxed">
+                  {publication.abstract}
+                </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {publication.keywords.map((keyword) => (
-                    <Badge key={keyword} variant="secondary">{keyword}</Badge>
+                    <Badge key={keyword} variant="secondary" className="transition-colors duration-300 hover:bg-primary hover:text-primary-foreground">
+                      {keyword}
+                    </Badge>
                   ))}
                 </div>
-                <div className="flex gap-4">
-                  <Button asChild>
+                <div className="flex flex-wrap gap-4 mt-6">
+                  <Button asChild className="transition-transform duration-300 hover:scale-105">
                     <a href={publication.link} target="_blank" rel="noopener noreferrer">
                       <FaExternalLinkAlt className="mr-2 h-4 w-4" /> View Publication
                     </a>
                   </Button>
-                  <Button variant="secondary" asChild>
+                  <Button variant="secondary" asChild className="transition-transform duration-300 hover:scale-105">
                     <a href={`https://doi.org/${publication.doi}`} target="_blank" rel="noopener noreferrer">
                       <FaFilePdf className="mr-2 h-4 w-4" /> DOI: {publication.doi}
                     </a>

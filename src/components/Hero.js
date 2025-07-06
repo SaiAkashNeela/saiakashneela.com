@@ -9,13 +9,13 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center bg-background">
+    <section id="home" className="flex items-center justify-center bg-background py-20">
       <div className="container mx-auto px-4">
         <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-center">
             Sai Akash Neela
           </h1>
-          <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-8">
+          <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-8 text-center">
             DevOps & Cloud Infrastructure Engineer
           </p>
           <div className="flex justify-center gap-4 mb-8">
