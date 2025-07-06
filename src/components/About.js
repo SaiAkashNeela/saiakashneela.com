@@ -12,7 +12,7 @@ const About = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="md:col-span-2">
-            <Card>
+            <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
               <CardHeader>
                 <CardTitle>Hello! I'm Sai Akash</CardTitle>
               </CardHeader>
@@ -33,7 +33,7 @@ const About = () => {
             </Card>
           </div>
           <div>
-            <Card>
+            <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
               <CardHeader>
                 <CardTitle>Personal Info</CardTitle>
               </CardHeader>
@@ -62,14 +62,14 @@ const About = () => {
 };
 
 const InfoItem = ({ label, value, isEmail = false }) => (
-  <li className="flex justify-between">
+  <li className="flex flex-col sm:flex-row sm:justify-between">
     <span className="font-semibold">{label}:</span>
     {isEmail ? (
-      <a href={`mailto:${value}`} className="text-primary hover:underline">
+      <a href={`mailto:${value}`} className="text-primary hover:underline break-all">
         {value}
       </a>
     ) : (
-      <span className="text-muted-foreground">{value}</span>
+      <span className="text-muted-foreground break-all">{value}</span>
     )}
   </li>
 );

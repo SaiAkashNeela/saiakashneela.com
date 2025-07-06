@@ -50,13 +50,13 @@ const Publications = () => {
                     </Badge>
                   ))}
                 </div>
-                <div className="flex flex-wrap gap-4 mt-6">
-                  <Button asChild className="transition-transform duration-300 hover:scale-105">
+                <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                  <Button asChild className="transition-transform duration-300 hover:scale-105 w-full sm:w-auto">
                     <a href={publication.link} target="_blank" rel="noopener noreferrer">
                       <FaExternalLinkAlt className="mr-2 h-4 w-4" /> View Publication
                     </a>
                   </Button>
-                  <Button variant="secondary" asChild className="transition-transform duration-300 hover:scale-105">
+                  <Button variant="secondary" asChild className="transition-transform duration-300 hover:scale-105 w-full sm:w-auto">
                     <a href={`https://doi.org/${publication.doi}`} target="_blank" rel="noopener noreferrer">
                       <FaFilePdf className="mr-2 h-4 w-4" /> DOI: {publication.doi}
                     </a>

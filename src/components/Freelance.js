@@ -53,7 +53,7 @@ const Freelance = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {services.map((service) => (
-            <Card key={service.title}>
+            <Card key={service.title} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
               <CardHeader className="flex flex-row items-center gap-4">
                 {service.icon}
                 <CardTitle>{service.title}</CardTitle>
@@ -64,7 +64,7 @@ const Freelance = () => {
             </Card>
           ))}
         </div>
-        <Card>
+        <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
           <CardHeader>
             <CardTitle>Freelance Achievements</CardTitle>
           </CardHeader>

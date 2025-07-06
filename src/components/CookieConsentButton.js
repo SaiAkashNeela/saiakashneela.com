@@ -53,9 +53,7 @@ const CookieConsentButton = ({ darkMode }) => {
     <>
       <button
         onClick={handleClick}
-        className={`fixed bottom-4 left-4 z-50 p-3 rounded-full shadow-lg transition-transform hover:scale-110 focus:outline-none ${
-          darkMode ? 'bg-navy-light text-secondary' : 'bg-white text-secondary'
-        }`}
+        className="fixed bottom-4 left-4 z-50 p-3 rounded-full shadow-lg transition-transform hover:scale-110 focus:outline-none bg-background text-foreground border border-border"
         aria-label="Manage Cookie Preferences"
         title="Manage Cookie Preferences"
       >
@@ -69,19 +67,17 @@ const CookieConsentButton = ({ darkMode }) => {
             animate={{ opacity: 1, y: 0, x: 0 }}
             exit={{ opacity: 0, y: 20, x: -20 }}
             transition={{ duration: 0.3 }}
-            className={`fixed bottom-16 left-4 z-50 p-4 rounded-lg shadow-xl max-w-xs sm:max-w-sm ${
-              darkMode ? 'bg-navy-light text-gray-300' : 'bg-white text-slate-700'
-            }`}
+            className="fixed bottom-16 left-4 z-50 p-4 rounded-lg shadow-xl max-w-xs sm:max-w-sm bg-background text-foreground border border-border"
           >
             <div className="flex flex-col gap-3">
-              <h3 className={`font-semibold ${darkMode ? 'text-secondary' : 'text-secondary'}`}>
+              <h3 className="font-semibold text-primary">
                 Cookie Consent
               </h3>
-              <p className="text-sm">
+              <p className="text-sm text-muted-foreground">
                 This website uses cookies from Google Analytics to analyze traffic and improve your experience.
                 Learn more in our <Link 
                   to="/privacy-policy" 
-                  className={`${darkMode ? 'text-secondary hover:text-secondary' : 'text-secondary hover:text-secondary'}`}
+                  className="text-primary hover:underline"
                   onClick={() => setShowMessage(false)}
                 >
                   Privacy & Cookie Policy
@@ -90,21 +86,13 @@ const CookieConsentButton = ({ darkMode }) => {
               <div className="flex gap-2 mt-2">
                 <button
                   onClick={declineCookies}
-                  className={`px-3 py-1.5 text-xs font-medium rounded ${
-                    darkMode 
-                      ? 'bg-navy text-gray-300 hover:bg-navy-dark' 
-                      : 'bg-gray-200 text-slate-700 hover:bg-gray-300'
-                  }`}
+                  className="px-3 py-1.5 text-xs font-medium rounded bg-secondary text-secondary-foreground hover:bg-secondary/80"
                 >
                   Decline
                 </button>
                 <button
                   onClick={acceptCookies}
-                  className={`px-3 py-1.5 text-xs font-medium rounded ${
-                    darkMode 
-                      ? 'bg-secondary text-primary hover:bg-secondary-dark' 
-                      : 'bg-secondary-light text-white hover:bg-secondary'
-                  }`}
+                  className="px-3 py-1.5 text-xs font-medium rounded bg-primary text-primary-foreground hover:bg-primary/90"
                 >
                   Accept
                 </button>

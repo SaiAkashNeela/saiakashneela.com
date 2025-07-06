@@ -48,7 +48,7 @@ const Certifications = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {certifications.map((cert) => (
-            <Card key={cert.title}>
+            <Card key={cert.title} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
               <CardHeader className="flex flex-row items-center gap-4">
                 {cert.icon}
                 <div>

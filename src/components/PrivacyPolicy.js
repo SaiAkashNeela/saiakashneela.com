@@ -10,7 +10,7 @@ const PrivacyPolicy = ({ darkMode, setDarkMode }) => {
   };
 
   return (
-    <section className={`min-h-screen py-16 ${darkMode ? 'bg-primary text-gray-300' : 'bg-background text-foreground'}`}>
+    <section className="min-h-screen py-16 bg-background text-foreground">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -19,13 +19,13 @@ const PrivacyPolicy = ({ darkMode, setDarkMode }) => {
           className="mb-8 flex flex-wrap items-center justify-between"
         >
           <div>
-            <Link to="/" className={`inline-flex items-center ${darkMode ? 'text-indigo-400 hover:text-indigo-300' : 'text-indigo-600 hover:text-indigo-700'} mb-6`}>
+            <Link to="/" className="inline-flex items-center text-primary hover:underline mb-6">
               <FaArrowLeft className="mr-2" />
               Back to Home
             </Link>
             
-            <h1 className={`text-3xl md:text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Privacy & Cookie Policy</h1>
-            <p className="text-sm text-gray-500">Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Privacy & Cookie Policy</h1>
+            <p className="text-sm text-muted-foreground">Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
           </div>
           
           <div className="mt-4 md:mt-0">
@@ -60,68 +60,68 @@ const PrivacyPolicy = ({ darkMode, setDarkMode }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className={`prose max-w-none ${darkMode ? 'prose-invert' : ''}`}
+          className="prose max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary prose-strong:text-foreground prose-ul:text-muted-foreground prose-li:text-muted-foreground"
         >
           {/* Introduction */}
-          <div className={`p-6 md:p-8 rounded-lg mb-6 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Introduction</h2>
+          <div className="p-6 md:p-8 rounded-lg mb-6 bg-card text-card-foreground shadow-md">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">Introduction</h2>
             <p className="mb-4">
-              This Privacy & Cookie Policy describes how Sai Akash Neela's portfolio website ("we", "our", or "us") collects and processes your personal information and how we use cookies through this website.
+              This Privacy & Cookie Policy describes how I collect and process your personal information and how I use cookies through this website.
             </p>
             <p>
-              We respect your privacy and are committed to protecting your personal data. Please read this Privacy & Cookie Policy carefully to understand how we handle your information.
+              I respect your privacy and am committed to protecting your personal data. Please read this Privacy & Cookie Policy carefully to understand how I handle your information.
             </p>
           </div>
 
           {/* Privacy Policy Section */}
-          <div className={`p-6 md:p-8 rounded-lg mb-6 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Information We Collect</h2>
+          <div className="p-6 md:p-8 rounded-lg mb-6 bg-card text-card-foreground shadow-md">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">Information I Collect</h2>
             <p className="mb-4">
-              We collect the following information:
+              I collect the following information:
             </p>
             <ul className="list-disc pl-6 mb-4">
-              <li className="mb-2"><strong>Contact Information:</strong> We collect your email address when you submit our contact form.</li>
-              <li className="mb-2"><strong>Message Content:</strong> We collect the content of messages you send through our contact form.</li>
-              <li className="mb-2"><strong>Analytics Data:</strong> We use Google Analytics to collect anonymous usage data such as page views, time spent on the site, and referring websites. This helps us understand how visitors interact with our website.</li>
-              <li><strong>Cookies:</strong> Our website uses cookies to enhance your browsing experience and collect analytics data. You can control cookie settings through our Cookie Consent Banner or your browser settings.</li>
+              <li className="mb-2"><strong>Contact Information:</strong> I collect your email address when you submit the contact form.</li>
+              <li className="mb-2"><strong>Message Content:</strong> I collect the content of messages you send through the contact form.</li>
+              <li className="mb-2"><strong>Analytics Data:</strong> I use Google Analytics to collect anonymous usage data such as page views, time spent on the site, and referring websites. This helps me understand how visitors interact with my website.</li>
+              <li><strong>Cookies:</strong> My website uses cookies to enhance your browsing experience and collect analytics data. You can control cookie settings through the Cookie Consent Banner or your browser settings.</li>
             </ul>
             <p>
-              The analytics and cookie data are collected only with your consent, which you can provide or withdraw at any time through our Cookie Consent Banner.
+              The analytics and cookie data are collected only with your consent, which you can provide or withdraw at any time through the Cookie Consent Banner.
             </p>
           </div>
 
-          <div className={`p-6 md:p-8 rounded-lg mb-6 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>How We Use Your Information</h2>
+          <div className="p-6 md:p-8 rounded-lg mb-6 bg-card text-card-foreground shadow-md">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">How I Use Your Information</h2>
             <p className="mb-4">
-              We use the information you provide solely for communication purposes:
+              I use the information you provide solely for communication purposes:
             </p>
             <ul className="list-disc pl-6">
               <li className="mb-2">To respond to your inquiries or messages</li>
               <li className="mb-2">To communicate with you regarding your requests</li>
               <li className="mb-2">To provide you with information that you have requested</li>
-              <li>To analyze and improve our website performance and user experience</li>
+              <li>To analyze and improve my website performance and user experience</li>
             </ul>
           </div>
 
-          <div className={`p-6 md:p-8 rounded-lg mb-6 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Data Sharing and Disclosure</h2>
+          <div className="p-6 md:p-8 rounded-lg mb-6 bg-card text-card-foreground shadow-md">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">Data Sharing and Disclosure</h2>
             <p className="mb-4">
-              We do not sell, trade, or otherwise transfer your personal information to outside parties.
+              I do not sell, trade, or otherwise transfer your personal information to outside parties.
             </p>
             <p>
-              Your email and message content are used exclusively for direct communication between you and Sai Akash Neela.
+              Your email and message content are used exclusively for direct communication between you and me.
             </p>
           </div>
 
-          <div className={`p-6 md:p-8 rounded-lg mb-6 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Data Retention</h2>
+          <div className="p-6 md:p-8 rounded-lg mb-6 bg-card text-card-foreground shadow-md">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">Data Retention</h2>
             <p>
-              We retain your email address and message content only for as long as necessary to fulfill the purposes for which we collected it, including for the purposes of satisfying any legal requirements.
+              I retain your email address and message content only for as long as necessary to fulfill the purposes for which I collected it, including for the purposes of satisfying any legal requirements.
             </p>
           </div>
 
-          <div className={`p-6 md:p-8 rounded-lg mb-6 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Your Rights</h2>
+          <div className="p-6 md:p-8 rounded-lg mb-6 bg-card text-card-foreground shadow-md">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">Your Rights</h2>
             <p className="mb-4">
               You have the right to:
             </p>
@@ -134,8 +134,8 @@ const PrivacyPolicy = ({ darkMode, setDarkMode }) => {
           </div>
 
           {/* Cookie Policy Section */}
-          <div className={`p-6 md:p-8 rounded-lg mb-6 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>What Are Cookies?</h2>
+          <div className="p-6 md:p-8 rounded-lg mb-6 bg-card text-card-foreground shadow-md">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">What Are Cookies?</h2>
             <p className="mb-4">
               Cookies are small text files that are stored on your device (computer, tablet, or mobile) when you visit 
               certain websites. They are widely used to make websites work more efficiently and provide information to 
@@ -143,16 +143,16 @@ const PrivacyPolicy = ({ darkMode, setDarkMode }) => {
             </p>
           </div>
 
-          <div className={`p-6 md:p-8 rounded-lg mb-6 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Types of Cookies We Use</h2>
+          <div className="p-6 md:p-8 rounded-lg mb-6 bg-card text-card-foreground shadow-md">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">Types of Cookies I Use</h2>
             <p className="mb-4">
-              Our website primarily uses the following types of cookies:
+              My website primarily uses the following types of cookies:
             </p>
             <div>
-              <h3 className={`font-bold mt-4 mb-2 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>Analytics Cookies</h3>
+              <h3 className="font-bold mt-4 mb-2 text-foreground">Analytics Cookies</h3>
               <p className="mb-4">
-                These cookies, provided by Google Analytics, help us understand how visitors interact with our website by 
-                collecting and reporting information anonymously. This helps us improve our website and your experience.
+                These cookies, provided by Google Analytics, help me understand how visitors interact with my website by 
+                collecting and reporting information anonymously. This helps me improve my website and your experience.
               </p>
               <ul className="list-disc pl-6 mb-4">
                 <li className="mb-2"><strong>_ga:</strong> Used to distinguish users. Expiration: 2 years</li>
@@ -162,25 +162,25 @@ const PrivacyPolicy = ({ darkMode, setDarkMode }) => {
             </div>
           </div>
 
-          <div className={`p-6 md:p-8 rounded-lg mb-6 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Why We Use Cookies</h2>
+          <div className="p-6 md:p-8 rounded-lg mb-6 bg-card text-card-foreground shadow-md">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">Why I Use Cookies</h2>
             <p className="mb-4">
-              We use cookies for the following purposes:
+              I use cookies for the following purposes:
             </p>
             <ul className="list-disc pl-6">
-              <li className="mb-2">To analyze the traffic to our website and how users interact with it</li>
-              <li className="mb-2">To improve the performance and user experience of our website</li>
+              <li className="mb-2">To analyze the traffic to my website and how users interact with it</li>
+              <li className="mb-2">To improve the performance and user experience of my website</li>
               <li className="mb-2">To remember your preferences and settings</li>
-              <li>To collect anonymous statistical information about how visitors use our website</li>
+              <li>To collect anonymous statistical information about how visitors use my website</li>
             </ul>
           </div>
 
-          <div className={`p-6 md:p-8 rounded-lg mb-6 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Your Cookie Choices</h2>
+          <div className="p-6 md:p-8 rounded-lg mb-6 bg-card text-card-foreground shadow-md">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">Your Cookie Choices</h2>
             <p className="mb-4">
-              When you first visit our website, you will be presented with a cookie consent banner. You can choose to 
+              When you first visit my website, you will be presented with a cookie consent banner. You can choose to 
               accept or decline the use of cookies. If you choose to decline, analytical cookies will not be set,
-              and your browsing activity on our site will not be tracked for analytics purposes.
+              and your browsing activity on my site will not be tracked for analytics purposes.
             </p>
             <p>
               You can also control cookies through your browser settings. Most web browsers allow some control of most 
@@ -189,7 +189,7 @@ const PrivacyPolicy = ({ darkMode, setDarkMode }) => {
                 href="https://www.allaboutcookies.org" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className={`${darkMode ? 'text-indigo-400 hover:text-indigo-300' : 'text-indigo-600 hover:text-indigo-700'}`}
+                className="text-primary hover:underline"
               >
                 www.allaboutcookies.org
               </a>.
@@ -198,15 +198,15 @@ const PrivacyPolicy = ({ darkMode, setDarkMode }) => {
 
           <CookiePreferences darkMode={darkMode} />
 
-          <div className={`p-6 md:p-8 rounded-lg mb-6 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Third-Party Cookies</h2>
+          <div className="p-6 md:p-8 rounded-lg mb-6 bg-card text-card-foreground shadow-md">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">Third-Party Cookies</h2>
             <p>
-              Our website uses Google Analytics, which sets cookies to help us understand how visitors interact with our 
+              My website uses Google Analytics, which sets cookies to help me understand how visitors interact with my 
               website. Google's privacy policy can be accessed at: <a 
                 href="https://policies.google.com/privacy" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className={`${darkMode ? 'text-indigo-400 hover:text-indigo-300' : 'text-indigo-600 hover:text-indigo-700'}`}
+                className="text-primary hover:underline"
               >
                 https://policies.google.com/privacy
               </a>.
@@ -214,13 +214,13 @@ const PrivacyPolicy = ({ darkMode, setDarkMode }) => {
           </div>
 
           {/* Contact Section */}
-          <div className={`p-6 md:p-8 rounded-lg mb-6 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Contact Us</h2>
+          <div className="p-6 md:p-8 rounded-lg mb-6 bg-card text-card-foreground shadow-md">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">Contact Me</h2>
             <p className="mb-4">
-              If you have any questions about our Privacy & Cookie Policy or our data practices, please contact us at:
+              If you have any questions about my Privacy & Cookie Policy or my data practices, please contact me at:
             </p>
             <p>
-              <a href="mailto:hello@saiakashneela.com" className={`${darkMode ? 'text-indigo-400 hover:text-indigo-300' : 'text-indigo-600 hover:text-indigo-700'}`}>
+              <a href="mailto:hello@saiakashneela.com" className="text-primary hover:underline">
                 hello@saiakashneela.com
               </a>
             </p>

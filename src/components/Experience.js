@@ -65,7 +65,7 @@ const Experience = () => {
           </TabsList>
           {experiences.map((experience) => (
             <TabsContent key={experience.company} value={experience.company}>
-              <Card>
+              <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
                 <CardHeader>
                   <CardTitle>{experience.title}</CardTitle>
                   <p className="text-muted-foreground">{experience.period}</p>
