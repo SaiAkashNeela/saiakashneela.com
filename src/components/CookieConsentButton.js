@@ -54,7 +54,7 @@ const CookieConsentButton = ({ darkMode }) => {
       <button
         onClick={handleClick}
         className={`fixed bottom-4 left-4 z-50 p-3 rounded-full shadow-lg transition-transform hover:scale-110 focus:outline-none ${
-          darkMode ? 'bg-navy-light text-secondary' : 'bg-white text-secondary-light'
+          darkMode ? 'bg-navy-light text-secondary' : 'bg-white text-secondary'
         }`}
         aria-label="Manage Cookie Preferences"
         title="Manage Cookie Preferences"
@@ -74,14 +74,14 @@ const CookieConsentButton = ({ darkMode }) => {
             }`}
           >
             <div className="flex flex-col gap-3">
-              <h3 className={`font-semibold ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>
+              <h3 className={`font-semibold ${darkMode ? 'text-secondary' : 'text-secondary'}`}>
                 Cookie Consent
               </h3>
               <p className="text-sm">
                 This website uses cookies from Google Analytics to analyze traffic and improve your experience.
                 Learn more in our <Link 
                   to="/privacy-policy" 
-                  className={`${darkMode ? 'text-secondary hover:text-secondary-light' : 'text-secondary-light hover:text-secondary'}`}
+                  className={`${darkMode ? 'text-secondary hover:text-secondary' : 'text-secondary hover:text-secondary'}`}
                   onClick={() => setShowMessage(false)}
                 >
                   Privacy & Cookie Policy
@@ -117,4 +117,4 @@ const CookieConsentButton = ({ darkMode }) => {
   );
 };
 
-export default CookieConsentButton; 
+export default CookieConsentButton;

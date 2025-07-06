@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 
-const Experience = ({ darkMode }) => {
-  const [activeTab, setActiveTab] = useState(0);
-
+const Experience = () => {
   const experiences = [
     {
       company: 'BellSoft Ltd',
@@ -39,129 +38,55 @@ const Experience = ({ darkMode }) => {
       period: 'From January 2019',
       responsibilities: [
         'Configured and managed WordPress websites, including domain setup, DNS management, and SSL implementation.',
-  'Handled end-to-end hosting setup using cPanel, WHM, and cloud-based platforms for WordPress deployments.',
-  'Optimized website performance through caching solutions, image compression, and database tuning.',
-  'Implemented SEO best practices using WordPress plugins like Rank Math and Yoast.',
-  'Integrated third-party tools and services such as Google Analytics, SMTP, and payment gateways.',
-  'Managed DNS configurations (A, CNAME, MX, TXT, SPF, DKIM) to ensure domain and email reliability.',
-  'Provided ongoing technical support, regular maintenance, backups, and security scans for WordPress sites.'
+        'Handled end-to-end hosting setup using cPanel, WHM, and cloud-based platforms for WordPress deployments.',
+        'Optimized website performance through caching solutions, image compression, and database tuning.',
+        'Implemented SEO best practices using WordPress plugins like Rank Math and Yoast.',
+        'Integrated third-party tools and services such as Google Analytics, SMTP, and payment gateways.',
+        'Managed DNS configurations (A, CNAME, MX, TXT, SPF, DKIM) to ensure domain and email reliability.',
+        'Provided ongoing technical support, regular maintenance, backups, and security scans for WordPress sites.'
       ],
     },
   ];
 
   return (
-    <section id="experience" className={`py-12 md:py-16 ${darkMode ? 'bg-primary' : 'bg-primary-light'}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className={`text-2xl md:text-3xl font-bold mb-2 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>Experience</h2>
-          <h3 className={`text-3xl md:text-4xl font-bold mb-10 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Where I've Worked</h3>
-        </motion.div>
-
-        <div className="grid md:grid-cols-4 gap-8">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="md:col-span-1"
-          >
-            <div className={`flex md:flex-col overflow-x-auto md:overflow-x-visible scrollbar-hide pb-2 md:pb-0 ${darkMode ? 'border-b md:border-b-0 md:border-r border-gray-700' : 'border-b md:border-b-0 md:border-r border-gray-300'}`}>
-              {experiences.map((experience, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveTab(index)}
-                  className={`px-4 py-3 md:py-4 text-left whitespace-nowrap md:whitespace-normal transition-all duration-300 hover-glow ${
-                    activeTab === index
-                      ? darkMode 
-                          ? 'text-secondary border-secondary' 
-                          : 'text-secondary-light border-secondary-light'
-                      : darkMode
-                          ? 'text-gray-400 hover:text-gray-300 hover:bg-navy-light'
-                          : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100'
-                  } ${
-                    darkMode 
-                      ? 'md:border-l-0 md:border-r-4' 
-                      : 'md:border-l-0 md:border-r-4'
-                  } ${
-                    activeTab === index
-                      ? 'md:border-r-4 border-b-2 md:border-b-0'
-                      : 'border-transparent'
-                  }`}
-                >
-                  {experience.company}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="md:col-span-3"
-          >
-            <motion.div
-              key={experiences[activeTab].id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: activeTab * 0.1 }}
-              className={`experience-card ${darkMode ? 'bg-navy-light' : 'bg-white'} p-6 rounded-lg shadow-md ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} hover-lift`}
-              data-code={`// ${experiences[activeTab].title}
-// ${experiences[activeTab].company}
-// ${experiences[activeTab].period}
-
-const responsibilities = [
-${experiences[activeTab].responsibilities.map(r => `  "${r}"`).join(',\n')}
-];
-
-const techStack = [
-${experiences[activeTab].techStack ? experiences[activeTab].techStack.map(tech => `  "${tech}"`).join(',\n') : '  "Various technologies"'}
-];
-
-const achievements = [
-${experiences[activeTab].achievements ? experiences[activeTab].achievements.map(achievement => `  "${achievement}"`).join(',\n') : '  "Multiple successful projects"'}
-];`}
-            >
-              <div>
-                <h3 className={`text-xl md:text-2xl font-bold ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>
-                  {experiences[activeTab].title}{' '}
-                  <span className={`${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>
-                    @ {experiences[activeTab].company}
-                  </span>
-                </h3>
-                <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-slate-500'}`}>
-                  {experiences[activeTab].period}
-                </p>
-                <ul className="space-y-3">
-                  {experiences[activeTab].responsibilities.map((responsibility, index) => (
-                    <motion.li
-                      key={index}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className={`flex items-start ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}
-                    >
-                      <span className={`text-xl mr-2 mt-0.5 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>
-                        ›
-                      </span>
-                      {responsibility}
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          </motion.div>
+    <section id="experience" className="py-16 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold">Where I've Worked</h2>
+          <p className="text-muted-foreground">My professional experience.</p>
         </div>
+        <Tabs defaultValue="BellSoft Ltd" className="w-full">
+          <TabsList>
+            {experiences.map((experience) => (
+              <TabsTrigger key={experience.company} value={experience.company}>
+                {experience.company}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {experiences.map((experience) => (
+            <TabsContent key={experience.company} value={experience.company}>
+              <Card>
+                <CardHeader>
+                  <CardTitle>{experience.title}</CardTitle>
+                  <p className="text-muted-foreground">{experience.period}</p>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2">
+                    {experience.responsibilities.map((responsibility, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-primary mr-2 mt-1">•</span>
+                        <span className="text-muted-foreground">{responsibility}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
     </section>
   );
 };
 
-export default Experience; 
+export default Experience;

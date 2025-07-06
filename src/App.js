@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import './App.css';
-import './components/DevEffects.css';
-import './components/MobileFixes.css';
-import AnimatedBackground from './components/AnimatedBackground';
-import CodeSnippets from './components/CodeSnippets';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -23,7 +18,6 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import NotFound from './components/NotFound';
 import SEO from './components/SEO';
 import CookieConsentButton from './components/CookieConsentButton';
-import MobileFixer from './components/MobileFixer';
 import { getPersonSchema, getWebsiteSchema } from './schema';
 
 function App() {
@@ -34,7 +28,6 @@ function App() {
   });
   
   const [loading, setLoading] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
 
   // Combined schema for the homepage
   const homePageSchema = {
@@ -56,21 +49,6 @@ function App() {
     }
   }, [darkMode]);
 
-  // Check if the device is mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    // Initial check
-    checkMobile();
-    
-    // Add event listener for window resize
-    window.addEventListener('resize', checkMobile);
-    
-    // Cleanup
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   // Simple loading screen
   useEffect(() => {
@@ -105,17 +83,17 @@ function App() {
       />
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
       <div className="min-h-screen">
-        <Hero darkMode={darkMode} />
-        <About darkMode={darkMode} />
-        <Experience darkMode={darkMode} />
-        <Skills darkMode={darkMode} />
-        <Publications darkMode={darkMode} />
-        <Certifications darkMode={darkMode} />
-        <Freelance darkMode={darkMode} />
-        <Projects darkMode={darkMode} />
-        <Education darkMode={darkMode} />
-        <Contact darkMode={darkMode} />
-        <Footer darkMode={darkMode} />
+        <Hero />
+        <About />
+        <Experience />
+        <Skills />
+        <Publications />
+        <Certifications />
+        <Freelance />
+        <Projects />
+        <Education />
+        <Contact />
+        <Footer />
       </div>
     </>
   );
@@ -123,9 +101,6 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
-        <AnimatedBackground darkMode={darkMode} />
-        <CodeSnippets darkMode={darkMode} />
-        <MobileFixer />
         <div className={`App transition-colors duration-300 ${darkMode ? 'dark' : 'light'}`}>
           {loading ? (
             <>

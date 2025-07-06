@@ -3,52 +3,78 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: 'class',
+  darkMode: ["class"],
+  content: [
+    './pages/**/*.{js,jsx}',
+    './components/**/*.{js,jsx}',
+    './app/**/*.{js,jsx}',
+    './src/**/*.{js,jsx}',
+  ],
+  prefix: "",
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#0a192f", // Dark mode primary
-          light: "#f5f9ff"    // Light mode primary
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "#64ffda", // Dark mode secondary
-          light: "#ff7e50"    // Light mode secondary (orange)
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
-        tertiary: {
-          DEFAULT: "#112240", // Dark mode tertiary
-          light: "#e5e7eb"    // Light mode tertiary
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
-        navy: {
-          light: "#233554",   // Dark mode navy light 
-          dark: "#0a192f"     // Dark mode navy dark
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
-        slate: {
-          light: "#f8fafc",    // Light mode background
-          dark: "#1e293b"      // Light mode darker shade
-        }
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
       },
-      boxShadow: {
-        'neo-light': '8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff',
-        'neo-dark': '8px 8px 16px #060e1a, -8px -8px 16px #0e2444'
-      },
-      animation: {
-        'bounce-slow': 'bounce 3s infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate'
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' }
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
-        glow: {
-          '0%': { boxShadow: '0 0 5px rgba(100, 255, 218, 0.5)' },
-          '100%': { boxShadow: '0 0 20px rgba(100, 255, 218, 0.8)' }
-        }
-      }
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
     },
   },
-  plugins: [],
-} 
+  plugins: [require("tailwindcss-animate")],
+}

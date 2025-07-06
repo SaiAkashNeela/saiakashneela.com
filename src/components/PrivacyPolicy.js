@@ -10,7 +10,7 @@ const PrivacyPolicy = ({ darkMode, setDarkMode }) => {
   };
 
   return (
-    <section className={`min-h-screen py-16 ${darkMode ? 'bg-primary text-gray-300' : 'bg-primary-light text-slate-700'}`}>
+    <section className={`min-h-screen py-16 ${darkMode ? 'bg-primary text-gray-300' : 'bg-background text-foreground'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -243,4 +243,4 @@ const PrivacyPolicy = ({ darkMode, setDarkMode }) => {
   );
 };
 
-export default PrivacyPolicy; 
+export default PrivacyPolicy;

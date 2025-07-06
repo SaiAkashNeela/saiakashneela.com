@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
+import { Badge } from "./ui/badge"
+import { Button } from './ui/button';
 
-const Projects = ({ darkMode }) => {
+const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
 
   const projects = [
@@ -45,106 +47,43 @@ const Projects = ({ darkMode }) => {
 
   const filters = ['All', 'E-commerce', 'Blog', 'Web App', 'Corporate', 'FinTech'];
 
-  // Function to get gradient based on category
-  const getCategoryGradient = (category) => {
-    switch(category) {
-      case 'E-commerce':
-        return 'from-green-700 to-emerald-900';
-      case 'Blog':
-        return 'from-blue-700 to-indigo-900';
-      case 'Web App':
-        return 'from-purple-700 to-violet-900';
-      case 'Corporate':
-        return 'from-slate-700 to-gray-900';
-      case 'FinTech':
-        return 'from-yellow-600 to-orange-800';
-      default:
-        return 'from-blue-800 to-purple-800';
-    }
-  };
-
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
+  const filteredProjects = activeFilter === 'All'
+    ? projects
     : projects.filter(project => project.category === activeFilter);
 
   return (
-    <section id="projects" className={`py-12 md:py-16 ${darkMode ? 'bg-primary' : 'bg-primary-light'}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className={`text-2xl md:text-3xl font-bold mb-2 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>Projects</h2>
-          <h3 className={`text-3xl md:text-4xl font-bold mb-10 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Client Work</h3>
-        </motion.div>
-
-        <div className="flex flex-wrap justify-center mb-8">
-          {filters.map((filter, index) => (
-            <motion.button
-              key={index}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
+    <section id="projects" className="py-16 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold">Client Work</h2>
+          <p className="text-muted-foreground">A selection of my projects.</p>
+        </div>
+        <div className="flex justify-center flex-wrap gap-2 mb-8">
+          {filters.map((filter) => (
+            <Button
+              key={filter}
+              variant={activeFilter === filter ? "default" : "secondary"}
               onClick={() => setActiveFilter(filter)}
-              className={`px-4 py-2 m-2 rounded-full transition-all duration-300 dev-hover-effect ${
-                activeFilter === filter
-                  ? darkMode
-                    ? 'bg-secondary text-primary-light font-medium'
-                    : 'bg-secondary-light text-white font-medium'
-                  : darkMode
-                    ? 'bg-navy-light text-gray-300 hover:bg-secondary hover:text-primary-light'
-                    : 'bg-slate-100 text-slate-700 hover:bg-secondary-light hover:text-white'
-              } hover-lift`}
-              data-code={`setFilter('${filter}')`}
             >
               {filter}
-            </motion.button>
+            </Button>
           ))}
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`rounded-lg overflow-hidden ${darkMode ? 'bg-navy-light' : 'bg-white'} shadow-md hover-lift ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} transition-all duration-300 hover:shadow-xl project-card group`}
-              data-code={`// ${project.title}\n// ${project.technologies.join(', ')}`}
-            >
-              <div className="relative overflow-hidden">
-                <div className={`w-full h-48 flex items-center justify-center bg-gradient-to-r ${getCategoryGradient(project.category)} transition-transform duration-500 group-hover:scale-105`}>
-                  <h3 className={`text-xl md:text-2xl font-bold px-4 text-white text-center`}>
-                    {project.title}
-                  </h3>
-                </div>
-                <div className={`absolute top-2 right-2 px-2 py-1 text-xs rounded ${darkMode ? 'bg-secondary text-primary' : 'bg-secondary-light text-white'}`}>
-                  {project.category}
-                </div>
-              </div>
-              <div className="p-6 group-hover:bg-opacity-95">
-                <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>{project.title}</h4>
-                <p className={`mb-4 text-sm ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>{project.description}</p>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className={`px-2 py-1 text-xs rounded-full ${
-                        darkMode
-                          ? 'bg-primary text-gray-300'
-                          : 'bg-slate-100 text-slate-700'
-                      }`}
-                    >
-                      {tech}
-                    </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project) => (
+            <Card key={project.title}>
+              <CardHeader>
+                <CardTitle>{project.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <Badge key={tech} variant="secondary">{tech}</Badge>
                   ))}
                 </div>
-              </div>
-            </motion.div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
@@ -152,4 +91,4 @@ const Projects = ({ darkMode }) => {
   );
 };
 
-export default Projects; 
+export default Projects;

@@ -25,7 +25,7 @@ const NotFound = ({ darkMode, setDarkMode }) => {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-primary text-gray-300' : 'bg-primary-light text-slate-700'}`}>
+    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-primary text-gray-300' : 'bg-background text-foreground'}`}>
       <div className="container mx-auto px-4 flex-grow flex flex-col items-center justify-center py-16">
         <div className="absolute top-6 right-6">
           <button 
@@ -71,7 +71,7 @@ const NotFound = ({ darkMode, setDarkMode }) => {
             }}
             className="flex justify-center mb-6"
           >
-            <FaExclamationTriangle className={`text-6xl ${darkMode ? 'text-secondary' : 'text-secondary-light'}`} />
+            <FaExclamationTriangle className={`text-6xl ${darkMode ? 'text-secondary' : 'text-secondary'}`} />
           </motion.div>
           
           <motion.h1 
@@ -133,4 +133,4 @@ const NotFound = ({ darkMode, setDarkMode }) => {
   );
 };
 
-export default NotFound; 
+export default NotFound;

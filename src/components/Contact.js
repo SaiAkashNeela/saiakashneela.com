@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { Button } from "./ui/button"
+import { Input } from "./ui/input"
+import { Textarea } from "./ui/textarea"
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
-const Contact = ({ darkMode }) => {
+const Contact = () => {
   const [formData, setFormData] = useState({
     email: '',
     message: '',
@@ -18,25 +21,17 @@ const Contact = ({ darkMode }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Prepare email content - only include body, not subject
+
     const body = encodeURIComponent(
       `Email: ${formData.email}\n\n${formData.message}`
     );
-    
-    // Create mailto link without subject
     const mailtoLink = `mailto:hello@saiakashneela.com?body=${body}`;
-    
-    // Open default mail client with prefilled data
     window.location.href = mailtoLink;
-    
-    // Show success message after a short delay
+
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
       setFormData({ email: '', message: '' });
-      
-      // Reset submitted state after 15 seconds
       setTimeout(() => {
         setSubmitted(false);
       }, 15000);
@@ -45,19 +40,19 @@ const Contact = ({ darkMode }) => {
 
   const contactInfo = [
     {
-      icon: <FaEnvelope />,
+      icon: <FaEnvelope className="h-8 w-8 text-primary" />,
       title: 'Email',
-      content: 'hello@saiakashneela.com\nsaiakashneela@outlook.com',
+      content: 'hello@saiakashneela.com',
       link: 'mailto:hello@saiakashneela.com',
     },
     {
-      icon: <FaPhone />,
+      icon: <FaPhone className="h-8 w-8 text-primary" />,
       title: 'Phone',
       content: '+44 7767934364',
       link: 'tel:+447767934364',
     },
     {
-      icon: <FaMapMarkerAlt />,
+      icon: <FaMapMarkerAlt className="h-8 w-8 text-primary" />,
       title: 'Location',
       content: 'United Kingdom',
       link: 'https://maps.google.com/?q=St+Albans,+United+Kingdom',
@@ -65,217 +60,78 @@ const Contact = ({ darkMode }) => {
   ];
 
   return (
-    <section id="contact" className={`py-12 md:py-16 ${darkMode ? 'bg-navy' : 'bg-slate-50'}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className={`text-2xl md:text-3xl font-bold mb-2 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>Contact</h2>
-          <h3 className={`text-3xl md:text-4xl font-bold mb-10 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Get In Touch</h3>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {/* Left Column - Contact Info & Availability */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-1"
-          >
-            {/* Contact Info Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-4 sm:gap-6 mb-6">
-              {contactInfo.map((info, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 + 0.3 }}
-                  className={`flex items-start p-4 rounded-lg ${darkMode ? 'bg-navy-light' : 'bg-white'} shadow-md hover-lift dev-hover-effect`}
-                  data-code={`const ${info.title.toLowerCase()} = {
-  type: '${info.title}',
-  value: '${info.content}',
-  action: '${info.link}'
-}`}
-                >
-                  <div className={`p-3 rounded-full ${darkMode ? 'bg-primary' : 'bg-slate-100'} mr-4`}>
-                    <span className={darkMode ? 'text-secondary' : 'text-secondary-light'}>{info.icon}</span>
-                  </div>
-                  <div>
-                    <h4 className={`font-medium mb-1 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>{info.title}</h4>
-                    {info.title === 'Email' ? (
-                      <div className={`${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                        <a
-                          href={info.link}
-                          className={`${darkMode ? 'text-gray-300 hover:text-secondary' : 'text-slate-700 hover:text-secondary-light'} hover-glow transition-colors duration-300`}
-                        >
-                          {info.content.split('\n')[0]}
-                        </a>
-                        <br />
-                        <a
-                          href={`mailto:${info.content.split('\n')[1]}`}
-                          className={`${darkMode ? 'text-gray-300 hover:text-secondary' : 'text-slate-700 hover:text-secondary-light'} hover-glow transition-colors duration-300 break-all`}
-                        >
-                          {info.content.split('\n')[1]}
-                        </a>
-                      </div>
-                    ) : (
-                      <a
-                        href={info.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`${darkMode ? 'text-gray-300 hover:text-secondary' : 'text-slate-700 hover:text-secondary-light'} hover-glow transition-colors duration-300`}
-                      >
-                        {info.content}
-                      </a>
-                    )}
-                  </div>
-                </motion.div>
+    <section id="contact" className="py-16 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold">Get In Touch</h2>
+          <p className="text-muted-foreground">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <div className="space-y-4">
+              {contactInfo.map((info) => (
+                <Card key={info.title}>
+                  <CardHeader className="flex flex-row items-center gap-4">
+                    {info.icon}
+                    <CardTitle>{info.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <a href={info.link} className="text-muted-foreground hover:text-foreground">{info.content}</a>
+                  </CardContent>
+                </Card>
               ))}
             </div>
-            
-            {/* Availability Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className={`p-6 rounded-lg ${darkMode ? 'bg-navy-light' : 'bg-white'} shadow-md dev-hover-effect`}
-              data-code={`const availability = {
-  status: 'open',
-  opportunities: ['Full-time', 'Freelance', 'Consulting']
-}`}
-            >
-              <h4 className={`text-xl font-bold mb-4 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Availability</h4>
-              <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                I'm currently open to:
-              </p>
-              <ul className={`space-y-2 ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                <li className="flex items-start">
-                  <span className={`text-xl mr-2 mt-0.5 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>
-                    ›
-                  </span>
-                  Full-time DevOps opportunities
-                </li>
-                <li className="flex items-start">
-                  <span className={`text-xl mr-2 mt-0.5 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>
-                    ›
-                  </span>
-                  Freelance development projects
-                </li>
-                <li className="flex items-start">
-                  <span className={`text-xl mr-2 mt-0.5 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>
-                    ›
-                  </span>
-                  Technical consulting services
-                </li>
-              </ul>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Column - Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="md:col-span-1 lg:col-span-2"
-          >
-            <motion.form
-              onSubmit={handleSubmit}
-              className={`contact-form ${darkMode ? 'bg-navy-light' : 'bg-white'} p-6 rounded-lg shadow-md ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} hover-lift h-full`}
-              data-code={`POST /api/contact\nContent-Type: application/json\n\n{\n  "email": "${formData.email}",\n  "message": "${formData.message}"\n}`}
-            >
-              {submitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="py-12 text-center"
-                >
-                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${darkMode ? 'bg-secondary bg-opacity-20' : 'bg-secondary-light bg-opacity-20'} mb-4`}>
-                    <FaPaperPlane className={`w-6 h-6 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`} />
+          </div>
+          <div>
+            <Card>
+              <CardHeader>
+                <CardTitle>Send me a message</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {submitted ? (
+                  <div className="text-center">
+                    <FaPaperPlane className="h-12 w-12 text-primary mx-auto mb-4" />
+                    <h3 className="text-xl font-bold mb-2">Email Client Opened!</h3>
+                    <p className="text-muted-foreground">Your email app has been launched. Please send the email to complete your message.</p>
                   </div>
-                  <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>Email Client Opened!</h4>
-                  <p className={`${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                    Your email app has been launched. Please send the email to complete your message.
-                  </p>
-                </motion.div>
-              ) : (
-                <>
-                  <div className="mb-6">
-                    <label htmlFor="email" className={`block mb-2 font-medium ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="your.email@example.com"
-                      className={`w-full p-3 rounded-md ${
-                        darkMode 
-                          ? 'bg-primary border-gray-700 text-gray-200 focus:border-secondary' 
-                          : 'bg-slate-100 border-gray-300 text-slate-800 focus:border-secondary-light'
-                      } border focus:outline-none transition-colors duration-300`}
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <label htmlFor="message" className={`block mb-2 font-medium ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows="6"
-                      placeholder="What would you like to discuss?"
-                      className={`w-full p-3 rounded-md ${
-                        darkMode 
-                          ? 'bg-primary border-gray-700 text-gray-200 focus:border-secondary' 
-                          : 'bg-slate-100 border-gray-300 text-slate-800 focus:border-secondary-light'
-                      } border focus:outline-none transition-colors duration-300`}
-                    ></textarea>
-                  </div>
-                  <div className="flex justify-center md:justify-start">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className={`btn-primary ${darkMode ? '' : 'btn-primary-light'} px-6 py-3 rounded flex items-center justify-center hover-lift ${
-                        isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
-                      }`}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          Send Message
-                          <FaPaperPlane className="ml-2" />
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </>
-              )}
-            </motion.form>
-          </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label htmlFor="email" className="sr-only">Email</label>
+                      <Input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        placeholder="Your Email"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="message" className="sr-only">Message</label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        rows="6"
+                        placeholder="Your Message"
+                      />
+                    </div>
+                    <Button type="submit" disabled={isSubmitting} className="w-full">
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </Button>
+                  </form>
+                )}
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default Contact; 
+export default Contact;

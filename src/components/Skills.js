@@ -1,58 +1,19 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  FaDocker, FaAws, FaReact, FaNode, FaPython, 
-  FaDatabase, FaCode, FaJs, FaHtml5, FaCss3Alt, 
+import {
+  FaDocker, FaAws, FaReact, FaNode, FaPython,
+  FaDatabase, FaCode, FaJs, FaHtml5, FaCss3Alt,
   FaMicrosoft, FaServer, FaCloud, FaWordpress,
   FaGlobe, FaGlobeAmericas, FaNetworkWired as FaDnsIcon
 } from 'react-icons/fa';
-import { 
-  SiKubernetes, SiTerraform, SiGrafana, SiPrometheus, 
-  SiGithub, SiGoogle, SiAmazon, SiMongodb, 
-  SiMysql, SiTailwindcss, 
+import {
+  SiKubernetes, SiTerraform, SiGrafana, SiPrometheus,
+  SiGithub, SiGoogle, SiAmazon, SiMongodb,
+  SiMysql, SiTailwindcss,
   SiAnsible, SiJenkins, SiCloudflare, SiApache, SiNginx
 } from 'react-icons/si';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
-const skillCommands = {
-  'Docker': 'docker run hello-world',
-  'Kubernetes': 'kubectl get pods',
-  'Jenkins': 'jenkins --version',
-  'GitHub Actions': 'gh workflow list',
-  'Azure DevOps': 'az pipelines list',
-  'Terraform': 'terraform init',
-  'Ansible': 'ansible-playbook site.yml',
-  'Prometheus': 'prometheus --config.file=prometheus.yml',
-  'Grafana': 'grafana-server web',
-  'AWS': 'aws s3 ls',
-  'Azure': 'az login',
-  'GCP': 'gcloud init',
-  'S3': 'aws s3 cp file.txt s3://bucket/',
-  'EC2': 'aws ec2 describe-instances',
-  'RDS': 'aws rds describe-db-instances',
-  'EKS': 'aws eks list-clusters',
-  'ECS': 'aws ecs list-clusters',
-  'Lambda': 'aws lambda list-functions',
-  'HTML': '<!DOCTYPE html>',
-  'CSS': 'body { color: #222; }',
-  'JavaScript': 'console.log("Hello, world!")',
-  'React': 'npx create-react-app my-app',
-  'Tailwind CSS': 'npx tailwindcss init',
-  'WordPress': 'wp plugin install',
-  'Node.js': 'node app.js',
-  'Python': 'python3 script.py',
-  'MongoDB': 'mongod --dbpath /data/db',
-  'DNS': 'dig example.com',
-  'Domain Mgmt': 'whois example.com',
-  'Web Hosting': 'scp index.html user@host:/var/www',
-  'MX Records': 'dig MX example.com',
-  'TXT Records': 'dig TXT example.com',
-  'Cloudflare': 'cloudflared tunnel run',
-  'Apache': 'apachectl -k restart',
-  'Nginx': 'nginx -s reload',
-  'MySQL': 'mysql -u root -p'
-};
-
-const Skills = ({ darkMode }) => {
+const Skills = () => {
   const skillCategories = [
     {
       title: 'DevOps',
@@ -113,65 +74,34 @@ const Skills = ({ darkMode }) => {
   ];
 
   return (
-    <section id="skills" className={`py-16 md:py-24 ${darkMode ? 'bg-navy' : 'bg-slate-50'}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className={`text-2xl md:text-3xl font-bold mb-2 ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>Skills</h2>
-          <h3 className={`text-3xl md:text-4xl font-bold mb-10 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>My Technical Expertise</h3>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={categoryIndex}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              className={`${darkMode ? 'bg-navy-light' : 'bg-white'} p-6 rounded-lg shadow-md ${darkMode ? 'shadow-slate-900/30' : 'shadow-slate-200/60'} hover-lift`}
-            >
-              <h4 className={`text-xl font-bold mb-4 ${darkMode ? 'text-gray-200' : 'text-slate-800'}`}>{category.title}</h4>
-              <div className="grid grid-cols-3 gap-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skillIndex}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: skillIndex * 0.05 + categoryIndex * 0.1 }}
-                    className={`flex flex-col items-center ${darkMode ? 'hover:bg-primary' : 'hover:bg-slate-100'} p-2 rounded-md hover-lift transition-colors duration-300 dev-hover-effect skill-item`}
-                    data-code={skillCommands[skill.name]}
-                  >
-                    <div className={`mb-2 flex items-center justify-center ${darkMode ? 'text-secondary' : 'text-secondary-light'}`}>
-                      {skill.icon}
+    <section id="skills" className="py-16 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold">My Technical Expertise</h2>
+          <p className="text-muted-foreground">A look at my skills.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {skillCategories.map((category) => (
+            <Card key={category.title}>
+              <CardHeader>
+                <CardTitle>{category.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-3 gap-4">
+                  {category.skills.map((skill) => (
+                    <div key={skill.name} className="flex flex-col items-center text-center">
+                      <div className="text-4xl text-primary mb-2">{skill.icon}</div>
+                      <p className="text-sm text-muted-foreground">{skill.name}</p>
                     </div>
-                    <span className={`text-xs text-center ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>{skill.name}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 text-center"
-        >
-          <p className={`text-lg max-w-2xl mx-auto ${darkMode ? 'text-gray-300' : 'text-slate-700'}`}>
-            I'm always expanding my skill set and exploring new technologies. Currently, I'm learning more about serverless architecture and infrastructure as code.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
 };
 
-export default Skills; 
+export default Skills;
