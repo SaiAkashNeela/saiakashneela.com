@@ -11,7 +11,7 @@ const Publications = () => {
       journal: "IEEE International Conference on Electronics, Computing and Communication Technologies (CONECCT)",
       authors: "SaiAkash Neela, Yashwanth Neyyala, VamsiNadh Pendem, Kanishk Peryala, Vasantham Vijay Kumar",
       year: "2021",
-      doi: "10.1109/CONECCT52877.2021.9441974",
+      doi: "10.1109/ICACCS51430.2021.9441974",
       link: "https://ieeexplore.ieee.org/document/9441974/",
       abstract: "In this Web Application, we designed and implemented a Dynamic E-Learning Portal using WordPress through Amazon Web Services (AWS). The project mainly consists of 10 Amazon Cloud Services and Google Firebase. The main aim of this project is to provide E-Learning Courses for Engineering Students. Technologies used include Amazon RDS, Amazon SNS, Amazon Route53, Amazon S3, Amazon VPS, Amazon CloudFront, and other AWS services to create a scalable, secure, and cost-effective educational platform.",
       keywords: ["Cloud Computing", "Amazon Web Services", "AWS", "E-Learning", "Web Application", "WordPress", "Educational Technology"]
