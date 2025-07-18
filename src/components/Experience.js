@@ -7,7 +7,7 @@ const Experience = () => {
     {
       company: 'BellSoft Ltd',
       title: 'DevOps Engineer',
-      period: 'June 2022 - Present',
+      period: 'September 2022 - Present',
       responsibilities: [
         'Led the implementation of CI/CD pipelines using Jenkins, GitHub Actions, and Azure DevOps, reducing deployment time by 60%.',
         'Designed and maintained cloud infrastructure on AWS and Azure, improving system reliability by 40%.',
@@ -21,7 +21,7 @@ const Experience = () => {
     {
       company: 'Qapita Pte Ltd',
       title: 'DevOps Engineer',
-      period: 'February 2020 - May 2022',
+      period: 'April 2021 - August 2022',
       responsibilities: [
         'Managed multiple database systems including MySQL, PostgreSQL, and MongoDB.',
         'Deployed microservices on AWS ECS and EC2, improving application scalability by 30%.',

@@ -21,7 +21,7 @@ const About = () => {
                   A passionate DevOps Engineer with a strong background in frontend development. My journey in technology began when I was introduced to programming in college, and since then, I've been on an exciting path of continuous learning and growth.
                 </p>
                 <p className="text-muted-foreground mt-4">
-                  With over 6 years of professional experience, I've had the opportunity to work with diverse technologies and teams. My expertise lies in designing and implementing robust CI/CD pipelines, optimizing cloud infrastructure, and developing responsive web applications.
+                  With over 4 years of professional experience, I've had the opportunity to work with diverse technologies and teams. My expertise lies in designing and implementing robust CI/CD pipelines, optimizing cloud infrastructure, and developing responsive web applications.
                 </p>
                 <p className="text-muted-foreground mt-4">
                   I'm particularly passionate about combining DevOps practices with modern frontend development to create scalable, high-performing applications. My goal is to build systems that not only work efficiently but also provide exceptional user experiences.
@@ -43,7 +43,7 @@ const About = () => {
                   <InfoItem label="Location" value="United Kingdom" />
                   <InfoItem label="Email" value="hello@saiakashneela.com" isEmail={true} />
                   <InfoItem label="Education" value="Master of Science in Computer Science" />
-                  <InfoItem label="Experience" value="6+ Years" />
+                  <InfoItem label="Experience" value="4+ Years" />
                 </ul>
                 <div className="mt-6">
                   <Button asChild className="w-full">
