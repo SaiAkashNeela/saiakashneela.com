@@ -233,10 +233,10 @@ const PrivacyPolicy = ({ darkMode, setDarkMode }) => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-10 flex justify-center"
         >
-          <Link to="/" className="button button-primary">
-            <FaArrowLeft className="mr-2" />
-            Return to Homepage
-          </Link>
+          <Link to="/" className="inline-flex items-center text-primary hover:underline mb-6">
+              <FaArrowLeft className="mr-2" />
+              Back to Home
+            </Link>
         </motion.div>
       </div>
     </section>

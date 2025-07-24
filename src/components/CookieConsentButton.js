@@ -53,7 +53,7 @@ const CookieConsentButton = ({ darkMode }) => {
     <>
       <button
         onClick={handleClick}
-        className="fixed bottom-4 left-4 z-50 p-3 rounded-full shadow-lg transition-transform hover:scale-110 focus:outline-none bg-background text-foreground border border-border"
+        className="fixed bottom-4 right-4 z-50 p-3 rounded-full shadow-lg transition-transform hover:scale-110 focus:outline-none bg-background text-foreground border border-border"
         aria-label="Manage Cookie Preferences"
         title="Manage Cookie Preferences"
       >
@@ -63,11 +63,11 @@ const CookieConsentButton = ({ darkMode }) => {
       <AnimatePresence>
         {showMessage && (
           <motion.div
-            initial={{ opacity: 0, y: 20, x: -20 }}
+            initial={{ opacity: 0, y: 20, x: 20 }}
             animate={{ opacity: 1, y: 0, x: 0 }}
-            exit={{ opacity: 0, y: 20, x: -20 }}
+            exit={{ opacity: 0, y: 20, x: 20 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-16 left-4 z-50 p-4 rounded-lg shadow-xl max-w-xs sm:max-w-sm bg-background text-foreground border border-border"
+            className="fixed bottom-16 right-4 z-50 p-4 rounded-lg shadow-xl max-w-xs sm:max-w-sm bg-background text-foreground border border-border"
           >
             <div className="flex flex-col gap-3">
               <h3 className="font-semibold text-primary">

@@ -21,10 +21,8 @@ import CookieConsentButton from './components/CookieConsentButton';
 import { getPersonSchema, getWebsiteSchema } from './schema';
 
 function App() {
-  // Initialize dark mode to false (light mode)
-  const [darkMode, setDarkMode] = useState(false);
-  
   const [loading, setLoading] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   // Combined schema for the homepage
   const homePageSchema = {
@@ -34,19 +32,6 @@ function App() {
       getWebsiteSchema()
     ]
   };
-
-  // Apply dark mode class to body
-  useEffect(() => {
-    const body = document.body;
-    if (darkMode) {
-      body.classList.add('dark', 'bg-background');
-      body.classList.remove('light');
-    } else {
-      body.classList.add('light', 'bg-background');
-      body.classList.remove('dark');
-    }
-  }, [darkMode]);
-
 
   // Simple loading screen
   useEffect(() => {
@@ -79,7 +64,6 @@ function App() {
         canonicalUrl="/"
         schemaData={homePageSchema}
       />
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
       <div className="min-h-screen">
         <Hero />
         <About />
@@ -99,49 +83,54 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
-        <div className={`App transition-colors duration-300 ${darkMode ? 'dark' : 'light'}`}>
+        <div className="App">
           {loading ? (
             <>
               <SEO title="Loading... | Sai Akash Neela" />
-              <AIIntroLoader darkMode={darkMode} />
+              <AIIntroLoader />
             </>
           ) : (
             <>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/privacy-policy" element={
-                  <>
-                    <SEO 
-                      title="Privacy & Cookie Policy | Sai Akash Neela"
-                      description="Privacy and cookie policy for Sai Akash Neela's portfolio website. Learn about how we handle your data and protect your privacy."
-                      canonicalUrl="/privacy-policy"
-                    />
-                    <PrivacyPolicy darkMode={darkMode} setDarkMode={setDarkMode} />
-                  </>
-                } />
-                {/* Redirect /cookie-policy to /privacy-policy */}
-                <Route path="/cookie-policy" element={
-                  <>
-                    <SEO 
-                      title="Privacy & Cookie Policy | Sai Akash Neela"
-                      description="Privacy and cookie policy for Sai Akash Neela's portfolio website. Learn about how we handle your data and protect your privacy."
-                      canonicalUrl="/privacy-policy"
-                    />
-                    <PrivacyPolicy darkMode={darkMode} setDarkMode={setDarkMode} />
-                  </>
-                } />
-                <Route path="*" element={
-                  <>
-                    <SEO 
-                      title="Page Not Found | Sai Akash Neela"
-                      description="The page you are looking for could not be found. Please navigate back to the homepage."
-                      canonicalUrl="/404"
-                    />
-                    <NotFound darkMode={darkMode} setDarkMode={setDarkMode} />
-                  </>
-                } />
-              </Routes>
-              <CookieConsentButton darkMode={darkMode} />
+              <Navbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+              <main className={`transition-all duration-300 ${isSidebarOpen ? 'lg:ml-64' : 'ml-0'}`}>
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/privacy-policy" element={
+                      <>
+                        <SEO 
+                          title="Privacy & Cookie Policy | Sai Akash Neela"
+                          description="Privacy and cookie policy for Sai Akash Neela's portfolio website. Learn about how we handle your data and protect your privacy."
+                          canonicalUrl="/privacy-policy"
+                        />
+                        <PrivacyPolicy />
+                      </>
+                    } />
+                    {/* Redirect /cookie-policy to /privacy-policy */}
+                    <Route path="/cookie-policy" element={
+                      <>
+                        <SEO 
+                          title="Privacy & Cookie Policy | Sai Akash Neela"
+                          description="Privacy and cookie policy for Sai Akash Neela's portfolio website. Learn about how we handle your data and protect your privacy."
+                          canonicalUrl="/privacy-policy"
+                        />
+                        <PrivacyPolicy />
+                      </>
+                    } />
+                    <Route path="*" element={
+                      <>
+                        <SEO 
+                          title="Page Not Found | Sai Akash Neela"
+                          description="The page you are looking for could not be found. Please navigate back to the homepage."
+                          canonicalUrl="/404"
+                        />
+                        <NotFound />
+                      </>
+                    } />
+                  </Routes>
+                </div>
+                <CookieConsentButton />
+              </main>
             </>
           )}
         </div>

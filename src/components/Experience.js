@@ -7,7 +7,6 @@ const Experience = () => {
     {
       company: 'BellSoft Ltd',
       title: 'DevOps Engineer',
-      period: 'September 2022 - Present',
       responsibilities: [
         'Led the implementation of CI/CD pipelines using Jenkins, GitHub Actions, and Azure DevOps, reducing deployment time by 60%.',
         'Designed and maintained cloud infrastructure on AWS and Azure, improving system reliability by 40%.',
@@ -21,7 +20,6 @@ const Experience = () => {
     {
       company: 'Qapita Pte Ltd',
       title: 'DevOps Engineer',
-      period: 'April 2021 - August 2022',
       responsibilities: [
         'Managed multiple database systems including MySQL, PostgreSQL, and MongoDB.',
         'Deployed microservices on AWS ECS and EC2, improving application scalability by 30%.',
@@ -35,7 +33,6 @@ const Experience = () => {
     {
       company: 'Freelance',
       title: 'Freelance',
-      period: 'From January 2019',
       responsibilities: [
         'Configured and managed WordPress websites, including domain setup, DNS management, and SSL implementation.',
         'Handled end-to-end hosting setup using cPanel, WHM, and cloud-based platforms for WordPress deployments.',
@@ -68,7 +65,6 @@ const Experience = () => {
               <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
                 <CardHeader>
                   <CardTitle>{experience.title}</CardTitle>
-                  <p className="text-muted-foreground">{experience.period}</p>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
