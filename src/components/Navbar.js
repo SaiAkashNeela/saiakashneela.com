@@ -74,7 +74,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 <FiX />
               </Button>
               <Button asChild className="w-full">
-                <a href="https://tinyurl.com/SAN-Resume" target="_blank" rel="noopener noreferrer">
+                <a href="https://mega.nz/file/ajZ1GJxS#apHCGc0hxs9jR2i86jRqvx6uX45ga4UggEmpZDx_1Zo" target="_blank" rel="noopener noreferrer">
                   <FiDownload className="mr-2 h-4 w-4" /> Resume
                 </a>
               </Button>
