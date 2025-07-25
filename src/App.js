@@ -22,7 +22,20 @@ import { getPersonSchema, getWebsiteSchema } from './schema';
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        setIsSidebarOpen(false);
+      } else {
+        setIsSidebarOpen(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Combined schema for the homepage
   const homePageSchema = {

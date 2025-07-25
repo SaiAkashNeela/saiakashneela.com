@@ -26,10 +26,10 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
         variant="ghost"
         size="icon"
         onClick={() => setIsSidebarOpen(true)}
-        className={`fixed top-4 left-4 z-50 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`fixed top-4 left-4 z-50 transition-all duration-300 ${isSidebarOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'} bg-gray-800/50 text-white hover:bg-gray-700/70 p-2 rounded-full`}
         aria-label="Open menu"
       >
-        <FiMenu />
+        <FiMenu size={24} />
       </Button>
       <AnimatePresence>
         {isSidebarOpen && (
@@ -74,7 +74,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 <FiX />
               </Button>
               <Button asChild className="w-full">
-                <a href="https://s3.ap-south-2.amazonaws.com/saiakashneela.com/Sai-Akash-Neela.docx" target="_blank" rel="noopener noreferrer">
+                <a href="https://tinyurl.com/SAN-Resume" target="_blank" rel="noopener noreferrer">
                   <FiDownload className="mr-2 h-4 w-4" /> Resume
                 </a>
               </Button>
